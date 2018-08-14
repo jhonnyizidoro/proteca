@@ -1,0 +1,21 @@
+// Fonte
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+//Font Awesome
+@import url('https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+// Variáveis
+@import 'variables';
+//Bulma
+@import '~bulma/bulma';
+// Helpers
+@import 'helpers';
+//Estilos globais
+@import 'global';
+//Componentes
+@import 'components/banner';
+@import 'components/navbar';
+@import 'components/button';
+@import 'components/card';
+@import 'components/form';
+@import 'components/table';
+@import 'components/notification';
+@import 'components/modal';

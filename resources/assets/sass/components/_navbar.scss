@@ -1,0 +1,56 @@
+.navbar{
+    background: $inverse;
+    margin-bottom: 30px;
+    .navbar-menu {
+        background: $inverse;
+    }
+    .navbar-start {
+        //A position so pode ser absoluta na versão desktop, pois o Bulma CSS converte a navbar em mobile em resoluções < 1088px
+        @media (min-width:1088px) {
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+        .navbar-item {
+            color: $white;
+            line-height: $navbar-height;
+            padding: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 400ms;
+            &:hover {
+                transition: 100ms;
+                transform: scale(1.05);
+                background-color: $light-primary;
+            }
+            &.is-active {
+                background-color: $light-primary;
+            }
+        }
+    }
+    box-shadow: 3px 7px 28px -8px rgba(0,0,0,0.65);
+}
+
+.navbar-top {
+    height: 25px;
+    width: 100%;
+    background: $primary;
+    position: absolute;
+    z-index: 1;
+    .right {
+        float: right;
+    }
+    .divisor::after {
+        content: '|';
+        padding: 0 10px;
+    }
+    a {
+        line-height: 25px;
+        font-size: 0.9rem;
+        color: $white;
+        text-transform: uppercase;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

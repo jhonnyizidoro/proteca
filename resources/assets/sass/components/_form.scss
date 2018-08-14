@@ -1,0 +1,27 @@
+.input {
+    border-radius: 0px;
+    &::placeholder {
+        color: $muted;
+    }
+    &.has-char-counter {
+        padding-right: 45px;
+    }
+}
+
+select, .select {
+    border-radius: 0px !important;
+}
+
+.file {
+    .file-cta {
+        width: 100%;
+        text-align: center;
+        border-radius: 0px !important;
+    }
+}
+
+.char-counter {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}

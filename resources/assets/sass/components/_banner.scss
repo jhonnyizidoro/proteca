@@ -1,0 +1,22 @@
+.banner {
+    img {
+        height: 45vh;
+        object-fit: cover;
+        width: 100%;
+        filter: blur(6px);
+        transform: scale(1.15); // -> Remove a borda branca causada pelo blur
+    }
+    &.is-small {
+        img {
+            height: 25vh;
+        }
+    }
+}
+
+.thumbnail-preview {
+    max-height: 35vh;
+    object-fit: cover;
+    width: 100%;
+    object-position: 100% 20%;
+    min-height: 230px;
+}
