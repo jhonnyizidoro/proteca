@@ -14,34 +14,22 @@
         margin-top: 25vh;
     }
 }
-
- 
-$color_white: #fff;
-$color_prime: #5ad67d;
-$color_grey: #e2e2e2;
-$color_grey_dark: #a2a2a2;
   
 .post {
     display: flex;
     flex-direction: column;
-    margin: 1rem auto;
-    box-shadow: 0 3px 7px -1px rgba(#000, .1);
-    margin-bottom: 1.6%;
-    background: $color_white;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+        0 3px 1px -2px rgba(0,0,0,0.12),
+        0 1px 5px 0 rgba(0,0,0,0.2);
     line-height: 1.4;
     overflow: hidden;
-    z-index: 0;
     width: 100%;
-    //Links da imagem
-    a {
-        color: inherit;
-        &:hover {
-            color: $color_prime;
-        }
-    }
+    z-index: 0;
+    //Animação da imagem
     &:hover {
         .photo {
             transform: scale(1.3) rotate(3deg);
+            filter: blur(2px);
         }
     }
     .meta {
@@ -60,6 +48,7 @@ $color_grey_dark: #a2a2a2;
         left: 0;
         transition: transform .2s;
     }
+    //Informações encima da imagem
     .details, .details ul {
         margin: auto;
         padding: 0;
@@ -72,8 +61,8 @@ $color_grey_dark: #a2a2a2;
         left: -100%;
         margin: auto;
         transition: left .2s;
-        background: rgba(#000, .6);
-        color: $color_white;
+        background: rgba(#000, .35);
+        color: $white;
         padding: 10px;
         width: 100%;
         font-size: .9rem;
@@ -86,32 +75,36 @@ $color_grey_dark: #a2a2a2;
     }
     .description {
         padding: 1rem;
-        background: $color_white;
+        background: $white;
         position: relative;
         z-index: 1;
         h1 {
             line-height: 1;
             margin: 0;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
         .read-more {
             text-align: right;
+            float: right;
             a {
-                color: $color_prime;
+                color: $light-primary;
                 display: inline-block;
                 position: relative;
-                &:after {
-                    content: "\f061";
-                    font-family: FontAwesome;
-                    margin-left: -10px;
-                    opacity: 0;
-                    vertical-align: middle;
-                    transition: margin .3s, opacity .3s;
+                margin-left: 15px;
+                transition: 200ms;
+                &:hover {
+                    color: $primary;
                 }
-                &:hover:after {
-                    margin-left: 5px;
-                    opacity: 1;
-                }
+            }
+            i {
+                margin-left: -10px;
+                opacity: 0;
+                vertical-align: middle;
+                transition: margin .3s, opacity .3s;
+            }
+            &:hover i {
+                margin-left: 5px;
+                opacity: 1;
             }
         }
     }
@@ -124,7 +117,7 @@ $color_grey_dark: #a2a2a2;
                 content: "";
                 position: absolute;
                 height: 5px;
-                background: $color_prime;
+                background: $light-primary;
                 width: 35px;
                 top: -0.75rem;
                 border-radius: 3px;

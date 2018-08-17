@@ -152,6 +152,7 @@ var initCharCounter = function initCharCounter(inputSelector, charCounterSelecto
     var input = document.querySelector(inputSelector);
     var counter = document.querySelector(charCounterSelector);
     var maxLength = counter.innerHTML;
+    counter.innerHTML = maxLength - input.value.length;
     input.addEventListener('keyup', function () {
         if (counter.innerHTML = maxLength - input.value.length >= 0) {
             counter.classList.remove('text-danger');

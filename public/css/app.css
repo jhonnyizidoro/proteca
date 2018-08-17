@@ -12054,7 +12054,7 @@ a {
   width: 50px;
   margin-bottom: 20px;
   border-radius: 30px;
-  z-index: 1;
+  z-index: 99;
 }
 
 .button.is-fixed.aside {
@@ -12111,28 +12111,19 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 1rem auto;
-  -webkit-box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.6%;
-  background: #fff;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   line-height: 1.4;
   overflow: hidden;
-  z-index: 0;
   width: 100%;
-}
-
-.post a {
-  color: inherit;
-}
-
-.post a:hover {
-  color: #5ad67d;
+  z-index: 0;
 }
 
 .post:hover .photo {
   -webkit-transform: scale(1.3) rotate(3deg);
           transform: scale(1.3) rotate(3deg);
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
 }
 
 .post .meta {
@@ -12172,8 +12163,8 @@ a {
   margin: auto;
   -webkit-transition: left .2s;
   transition: left .2s;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  color: #FEFFFF;
   padding: 10px;
   width: 100%;
   font-size: .9rem;
@@ -12190,7 +12181,7 @@ a {
 
 .post .description {
   padding: 1rem;
-  background: #fff;
+  background: #FEFFFF;
   position: relative;
   z-index: 1;
 }
@@ -12198,22 +12189,28 @@ a {
 .post .description h1 {
   line-height: 1;
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .post .description .read-more {
   text-align: right;
+  float: right;
 }
 
 .post .description .read-more a {
-  color: #5ad67d;
+  color: #2B7A78;
   display: inline-block;
   position: relative;
+  margin-left: 15px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
-.post .description .read-more a:after {
-  content: "\F061";
-  font-family: FontAwesome;
+.post .description .read-more a:hover {
+  color: #14252A;
+}
+
+.post .description .read-more i {
   margin-left: -10px;
   opacity: 0;
   vertical-align: middle;
@@ -12221,7 +12218,7 @@ a {
   transition: margin .3s, opacity .3s;
 }
 
-.post .description .read-more a:hover:after {
+.post .description .read-more:hover i {
   margin-left: 5px;
   opacity: 1;
 }
@@ -12239,7 +12236,7 @@ a {
   content: "";
   position: absolute;
   height: 5px;
-  background: #5ad67d;
+  background: #2B7A78;
   width: 35px;
   top: -0.75rem;
   border-radius: 3px;

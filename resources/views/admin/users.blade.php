@@ -21,7 +21,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                @if (auth()->user()->hasTheRole('admin'))
+                                @if ($user->hasTheRole('admin'))
                                     Administrador
                                 @else
                                     Autor

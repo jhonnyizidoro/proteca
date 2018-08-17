@@ -9,6 +9,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'roles:author,admin'], functi
     Route::get('/noticias', 'PostController@showPosts')->name('admin.posts');
     Route::get('/noticias/nova', 'PostController@showNewPostForm')->name('admin.posts.new');
     Route::post('/noticias', 'PostController@createPost')->name('admin.posts.create');
+    Route::get('/noticias/excluir/{id}', 'PostController@deletePost')->name('admin.posts.delete');
+    Route::get('/noticias/editar/{id}', 'PostController@showEditPostForm')->name('admin.posts.edit');
+    Route::post('/noticias/editar/{id}', 'PostController@updatePost')->name('admin.posts.update');
     //Biblioteca
     Route::get('/biblioteca', 'WorkController@showWorks')->name('admin.works');
     Route::post('/biblioteca', 'WorkController@createWork')->name('admin.works.create');

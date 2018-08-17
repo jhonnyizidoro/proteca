@@ -52,5 +52,14 @@ class User extends Authenticatable
         }
         return false;
     }
+    
+
+    public function isAuthorOrAdmin(Post $post)
+    {
+        if ($this->hasTheRole('admin') || $this == $post->user()->first()) {
+            return true;
+        }
+        return false;
+    }
 
 }

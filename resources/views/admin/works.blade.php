@@ -113,6 +113,7 @@
             images_upload_url: "/api/biblioteca/imagem",
             images_upload_base_path: "/storage",
             height : "300",
+            entity_encoding : "raw",
         });
     });
 </script>

@@ -45,6 +45,7 @@ const initCharCounter = (inputSelector, charCounterSelector) => {
     const input = document.querySelector(inputSelector);
     const counter = document.querySelector(charCounterSelector);
     const maxLength = counter.innerHTML;
+    counter.innerHTML = maxLength - input.value.length;
     input.addEventListener('keyup', ()=>{
         if (counter.innerHTML = maxLength - input.value.length >= 0){
             counter.classList.remove('text-danger'); 

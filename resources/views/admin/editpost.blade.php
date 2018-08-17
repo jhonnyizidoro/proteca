@@ -5,15 +5,15 @@
         @include('partials.alerts.errors')
     </div>
     <div class="column is-10">
-        <form class="control" method="POST" action="{{ route('admin.posts.create') }}" enctype="multipart/form-data">
+        <form class="control" method="POST" action="{{ route('admin.posts.update', $post->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="columns is-centered is-multiline">
                 <div class="column is-12">
-                    <img class="thumbnail-preview" src="{{ asset('images/compressed/thumbnail.png') }}">
+                    <img class="thumbnail-preview" src="/storage/{{ $post->thumbnail }}">
                 </div>
                 <div class="column is-8">
                     <div class="control has-icons-left">
-                        <input class="input has-char-counter" maxlength="191" type="text" placeholder="Título da notícia" name="title" value="{{ old('title') }}">
+                        <input class="input has-char-counter" maxlength="191" type="text" placeholder="Título da notícia" name="title" value="{{ old('title', $post->title) }}">
                         <span class="icon is-small is-left">
                             <i class="fas fa-newspaper"></i>
                         </span>
@@ -26,7 +26,7 @@
                             <input class="file-input" accept=".jpeg,.png,.jpg" type="file" name="thumbnail">
                             <span class="file-cta">
                                 <span class="file-icon"><i class="fas fa-upload"></i></span>
-                                <span class="file-label">Escolha a thumbnail da notícia</span>
+                                <span class="file-label">Escolher outra thumbnail</span>
                             </span>
                         </label>
                     </div>
@@ -37,10 +37,10 @@
                     @endif
                 </div>
                 <div class="column is-12">
-                    <textarea name="body">{!! old('body', 'Escreva aqui o conteúdo da notícia.') !!}</textarea>
+                    <textarea name="body">{!! old('body', $post->body) !!}</textarea>
                 </div>
                 <div class="column is-4 is-offset-8">
-                    <button class="button is-primary is-fullwidth" type="submit">PUBLICAR NOTÍCIA</button>
+                    <button class="button is-primary is-fullwidth" type="submit">SALVAR ALTERAÇÕES</button>
                 </div>
             </div>
         </form>

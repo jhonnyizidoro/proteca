@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewPostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Storage;
 use File;
 use Auth;
@@ -13,9 +14,26 @@ class PostController extends Controller
 {
     public function showPosts()
     {
-        $posts = Post::get();
+        $posts = Post::orderBy('id', 'desc')->get();
         return view('admin.posts')->with('posts', $posts);
     }
+
+    public function showNewPostForm()
+    {
+        return view('admin.newpost');
+    }
+
+    public function showEditPostForm($id)
+    {
+        $post = Post::find($id);
+        if (Auth::user()->isAuthorOrAdmin($post)){
+            return view('admin.editpost')->with('post', $post);
+        }
+        return redirect()->back()->with('status', 'Você só pode editar uma notícia caso seja um administrador ou o autor da noticia.');
+    }
+
+
+
 
     public function createPost(NewPostRequest $request)
     {
@@ -34,11 +52,42 @@ class PostController extends Controller
         return redirect()->route('admin.posts')->with('status', 'Notícia publicada com sucesso.');
     }
 
-    public function showNewPostForm()
+    public function updatePost(UpdatePostRequest $request, $id)
     {
-        return view('admin.newpost');
+        $post = Post::find($id);
+        if (!Auth::user()->isAuthorOrAdmin($post)){
+            return redirect()->back();
+        }
+        $data = $request->all();
+        //Se tiver thumbnail no request, ele atualiza
+        if (isset($data['thumbnail'])) {
+            $thumbnail = $data['thumbnail'];
+            $name = $this->sanitizeFileName($thumbnail->getClientOriginalName());
+            $name = 'posts/thumbnail/'.date("Y-m-d_H-i-s").'_'.$name;
+            $thumbnail = File::get($thumbnail);
+            Storage::disk('public')->put($name, $thumbnail);
+            $data['thumbnail'] = $name;
+        }
+        //Gerar URL da notícia
+        $data['url'] = $this->slugify($data['title']);
+        $post->update($data);
+        return redirect()->route('admin.posts')->with('status', 'Notícia editada com sucesso.');
+
     }
 
+    public function deletePost($id)
+    {
+        $post = Post::find($id);
+        if (Auth::user()->isAuthorOrAdmin($post)){
+            $post->delete();
+            return redirect()->route('admin.posts')->with('status', 'Notícia excluída com sucesso.');
+        }
+        return redirect()->back()->with('status', 'Você só pode excluir uma notícia caso seja um administrador ou o autor da noticia.');
+    }
+
+
+    
+    
     /**
      * Faz parte da api! Recebe uma requisição post, faz o upload da imagem
      * Retorna o endereço da imagem como json, o endereço fica no atributo "location"
@@ -92,5 +141,6 @@ class PostController extends Controller
         $text = strtolower($text);
         return $text;
     }
+
 
 }
