@@ -57,4 +57,19 @@ const initCharCounter = (inputSelector, charCounterSelector) => {
     });
 }
 
-export {initModal, initNotification, initFileField, changeImageSrcWhenInputChanges, initCharCounter};
+//Todo botão para abrir uma quickview tem um atributo 'data-target' => esse atributo é o ID da quickview
+const initQuickview = quickviewTriggerSelector => {
+    const quickviewTriggers = document.querySelectorAll(quickviewTriggerSelector);
+    quickviewTriggers.forEach(trigger => {
+        const quickview = document.querySelector('#' + trigger.dataset.target);
+        const closeButton = quickview.querySelector('.delete');
+        trigger.addEventListener('click', ()=> {
+            quickview.classList.toggle('is-active');
+        });
+        closeButton.addEventListener('click', ()=> {
+            quickview.classList.remove('is-active');
+        });
+    });
+}
+
+export {initQuickview, initModal, initNotification, initFileField, changeImageSrcWhenInputChanges, initCharCounter};

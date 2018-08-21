@@ -6,6 +6,9 @@
 @import 'variables';
 //Bulma
 @import '~bulma/bulma';
+//Bulma extensions
+@import 'extensions/divider.sass';
+@import 'extensions/quickview.sass';
 // Helpers
 @import 'helpers';
 //Estilos globais

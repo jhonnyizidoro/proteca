@@ -3,8 +3,7 @@
         height: 45vh;
         object-fit: cover;
         width: 100%;
-        filter: blur(6px);
-        transform: scale(1.15); // -> Remove a borda branca causada pelo blur
+        transform: scaleY(1.1);
     }
     &.is-small {
         img {

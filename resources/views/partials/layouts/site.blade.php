@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="banner">
-            <img src="{{ asset('images/compressed/banner.jpg') }}" alt="Banner do projeto PROTECA">
+            <img src="{{ asset('images/compressed/blured-banner.jpg') }}" alt="Banner do projeto PROTECA">
         </div>
         <nav class="navbar">
             <div class="navbar-burger burger">

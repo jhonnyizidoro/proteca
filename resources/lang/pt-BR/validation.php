@@ -86,7 +86,7 @@ return [
     'timezone' => 'O campo :attribute deve conter um fuso horário válido.',
     'unique' => 'O valor informado para o campo :attribute já está em uso.',
     'uploaded' => 'Falha no Upload do arquivo :attribute.',
-    'url' => 'O formato da URL informada para o campo :attribute é inválido.',
+    'url' => 'O campo :attribute deve conter uma URL válida.',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,6 +102,9 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'presentation' => [
+            'required_if' => 'O campo apresentação é obrigatório para membros do time.',
         ],
     ],
 
@@ -151,6 +154,11 @@ return [
         'role' => 'nível de acesso',
         'category_id' => 'categoria',
         'file' => 'arquivo',
-        'abstract' => 'resumo'
+        'abstract' => 'resumo',
+        'current_password' => 'senha atual',
+        'type' => 'tipo',
+        'image' => 'imagem',
+        'apresentação',
+        'team', 'time'
     ],
 ];

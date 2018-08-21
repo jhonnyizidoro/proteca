@@ -11,6 +11,8 @@
         <div class="navbar-top">
             <div class="container">
                 <div class="right">
+                    <a href="{{ route('admin.profile') }}">Alterar minhas informações</i></a>
+                    <a class="divisor"></a>
                     <a target="_blank" href="{{ route('home') }}">Voltar ao site</i></a>
                     <a class="divisor"></a>
                     <a title="Sair" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
@@ -18,7 +20,7 @@
             </div>
         </div>
         <div class="banner is-small">
-            <img src="{{ asset('images/compressed/banner.jpg') }}" alt="Banner do projeto PROTECA">
+            <img src="{{ asset('images/compressed/blured-banner.jpg') }}" alt="Banner do projeto PROTECA">
         </div>
         <nav class="navbar">
             <div class="navbar-burger burger">
@@ -31,18 +33,20 @@
                     <a class="navbar-item" href="{{ route('admin.posts') }}">
                         Notícias
                     </a>
-                    <a class="navbar-item" href="{{ route('admin.users') }}">
-                        Usuários
-                    </a>
                     <a class="navbar-item" href="{{ route('admin.works') }}">
                         Biblioteca
                     </a>
-                    <a class="navbar-item" href="{{ route('admin.people') }}">
-                        Pessoas
-                    </a>
-                    <a class="navbar-item" href="{{ route('admin.people') }}">
+                    <a class="navbar-item" href="{{ route('admin.events') }}">
                         Eventos
                     </a>
+                    @if (auth()->user()->hasTheRole('admin'))
+                        <a class="navbar-item" href="{{ route('admin.users') }}">
+                            Usuários
+                        </a>
+                        <a class="navbar-item" href="{{ route('admin.people') }}">
+                            Pessoas
+                        </a>
+                    @endif
                 </div>
             </div>
         </nav>

@@ -2,9 +2,14 @@ body, html {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
     background: $white;
+}
+
+body {
+    overflow-y: hidden;
+    padding-bottom: 100px;
 }
 
 .button, ::placeholder {
@@ -15,4 +20,14 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
-  
+
+span.info {
+    display: block;
+    font-size: .9rem;
+    font-style: italic;
+    text-align: center;
+}
+
+.fa-rotate-60 {
+    transform: rotate(-60deg);
+}

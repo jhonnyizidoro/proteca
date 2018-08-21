@@ -29,23 +29,15 @@ class PostController extends Controller
         if (Auth::user()->isAuthorOrAdmin($post)){
             return view('admin.editpost')->with('post', $post);
         }
-        return redirect()->back()->with('status', 'Você só pode editar uma notícia caso seja um administrador ou o autor da noticia.');
+        return redirect()->route('admin.posts')->with('status', 'Você só pode editar uma notícia caso seja um administrador ou o autor da noticia.');
     }
-
-
-
 
     public function createPost(NewPostRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         //Thumbnail Upload
-        $thumbnail = $data['thumbnail'];
-        $name = $this->sanitizeFileName($thumbnail->getClientOriginalName());
-        $name = 'posts/thumbnail/'.date("Y-m-d_H-i-s").'_'.$name;
-        $thumbnail = File::get($thumbnail);
-        Storage::disk('public')->put($name, $thumbnail);
-        $data['thumbnail'] = $name;
+        $data['thumbnail'] = $this->uploadThumbnail($data['thumbnail']);
         //Gerar URL da notícia
         $data['url'] = $this->slugify($data['title']);
         Post::create($data);
@@ -56,17 +48,12 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if (!Auth::user()->isAuthorOrAdmin($post)){
-            return redirect()->back();
+            return redirect()->route('admin.posts')->with('status', 'Você só pode editar uma notícia caso seja um administrador ou o autor da noticia.');
         }
         $data = $request->all();
         //Se tiver thumbnail no request, ele atualiza
         if (isset($data['thumbnail'])) {
-            $thumbnail = $data['thumbnail'];
-            $name = $this->sanitizeFileName($thumbnail->getClientOriginalName());
-            $name = 'posts/thumbnail/'.date("Y-m-d_H-i-s").'_'.$name;
-            $thumbnail = File::get($thumbnail);
-            Storage::disk('public')->put($name, $thumbnail);
-            $data['thumbnail'] = $name;
+            $data['thumbnail'] = $this->uploadThumbnail($data['thumbnail']);
         }
         //Gerar URL da notícia
         $data['url'] = $this->slugify($data['title']);
@@ -82,12 +69,9 @@ class PostController extends Controller
             $post->delete();
             return redirect()->route('admin.posts')->with('status', 'Notícia excluída com sucesso.');
         }
-        return redirect()->back()->with('status', 'Você só pode excluir uma notícia caso seja um administrador ou o autor da noticia.');
+        return redirect()->route('admin.posts')->with('status', 'Você só pode excluir uma notícia caso seja um administrador ou o autor da noticia.');
     }
 
-
-    
-    
     /**
      * Faz parte da api! Recebe uma requisição post, faz o upload da imagem
      * Retorna o endereço da imagem como json, o endereço fica no atributo "location"
@@ -100,6 +84,18 @@ class PostController extends Controller
         $image = File::get($image);
         Storage::disk('public')->put($name, $image);
         return response()->json(['location' => $name]);
+    }
+
+    /**
+     * Recebe uma thumbnail em formato de arquivo e retorna a location dela
+     */
+    public function uploadThumbnail($thumbnail)
+    {
+        $name = $this->sanitizeFileName($thumbnail->getClientOriginalName());
+        $name = 'posts/thumbnail/'.date("Y-m-d_H-i-s").'_'.$name;
+        $thumbnail = File::get($thumbnail);
+        Storage::disk('public')->put($name, $thumbnail);
+        return $name;
     }
 
     /**

@@ -23,14 +23,9 @@ class SiteController extends Controller
         return redirect()->route('admin.posts');
     }
 
-    public function posts()
+    public function showEvents()
     {
-        return view('admin.posts');
-    }
-
-    public function people()
-    {
-        return view('admin.people');
+        return view('admin.events');
     }
 
 }

@@ -100,6 +100,7 @@ window.myFunctions = __webpack_require__(2);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initQuickview", function() { return initQuickview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initNotification", function() { return initNotification; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initFileField", function() { return initFileField; });
@@ -161,6 +162,21 @@ var initCharCounter = function initCharCounter(inputSelector, charCounterSelecto
             counter.classList.add('text-danger');
             counter.innerHTML = 0;
         }
+    });
+};
+
+//Todo botão para abrir uma quickview tem um atributo 'data-target' => esse atributo é o ID da quickview
+var initQuickview = function initQuickview(quickviewTriggerSelector) {
+    var quickviewTriggers = document.querySelectorAll(quickviewTriggerSelector);
+    quickviewTriggers.forEach(function (trigger) {
+        var quickview = document.querySelector('#' + trigger.dataset.target);
+        var closeButton = quickview.querySelector('.delete');
+        trigger.addEventListener('click', function () {
+            quickview.classList.toggle('is-active');
+        });
+        closeButton.addEventListener('click', function () {
+            quickview.classList.remove('is-active');
+        });
     });
 };
 

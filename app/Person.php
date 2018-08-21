@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Ocupation;
 
 class Person extends Model
 {
@@ -12,10 +11,5 @@ class Person extends Model
     ];
 
     public $timestamps = false;
-
-    public function ocupation()
-    {
-        return $this->hasMany(Ocupation::class);
-    }
 
 }

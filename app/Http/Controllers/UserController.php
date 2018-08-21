@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewUserRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,6 +15,11 @@ class UserController extends Controller
     {
         $users = User::get();
         return view('admin.users')->with('users', $users);
+    }
+
+    public function showProfileForm()
+    {
+        return view('admin.profile');
     }
 
     public function registerUser(NewUserRequest $request)
@@ -27,17 +34,21 @@ class UserController extends Controller
             $user->assignRole('admin');
         }
         $user->assignRole('author');
-        return redirect()->back()->with('status', "Usuário {$user->email} criado com sucesso, a senha para acessar o portal é: {$password}.");
+        return redirect()->back()->with('status', "Usuário {$user->email} criado com sucesso, a senha para acessar o portal é: <b>{$password}</b>.");
     }
 
-    private function generatePassword($length = 8) {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $count = mb_strlen($chars);
-        for ($i = 0, $result = ''; $i < $length; $i++) {
-            $index = rand(0, $count - 1);
-            $result .= mb_substr($chars, $index, 1);
+    public function updateProfile(UpdateUserProfileRequest $request)
+    {
+        if (Hash::check($request->current_password, Auth::user()->password)) {
+            $user = Auth::user();
+            $user->name = $request->name;
+            if ($request->password){
+                $user->password = bcrypt($request->password);
+            }
+            $user->update();
+            return redirect()->route('admin.posts')->with('status', 'Dados alterados com sucesso.');
         }
-        return $result;
+        return redirect()->back()->with('status', 'A senha atual digitada está incorreta.');
     }
 
     // Se o usuário está ativo, gero uma senha aleatória (para ele não logar) e desativo ele
@@ -72,6 +83,16 @@ class UserController extends Controller
         $user->password = bcrypt($password);
         $user->update();
         return redirect()->back()->with('status', "A nova senha de acesso para o usuário <b>{$user->email}</b> é: <b>{$password}</b>.");
+    }
+
+    private function generatePassword($length = 8) {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $count = mb_strlen($chars);
+        for ($i = 0, $result = ''; $i < $length; $i++) {
+            $index = rand(0, $count - 1);
+            $result .= mb_substr($chars, $index, 1);
+        }
+        return $result;
     }
 
 }

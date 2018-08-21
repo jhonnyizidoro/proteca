@@ -13,6 +13,16 @@
     &.is-centered {
         margin-top: 25vh;
     }
+    &.is-person {
+        img {
+            object-fit: cover;
+        }
+        .title {
+            font-size: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+    }
 }
   
 .post {
