@@ -26,6 +26,14 @@ class PersonController extends Controller
         return redirect()->route('admin.people')->with('status', "{$type} adicionado com sucesso!");
     }
 
+    public function deletePerson($id)
+    {
+        $person = Person::find($id);
+        $person->type == 'team' ? $type = 'Membro da equipe' : $type = 'Parceiro';
+        $person->delete();
+        return redirect()->route('admin.people')->with('status', "{$type} excluído com sucesso!");
+    }
+
     /**
      * Recebe uma thumbnail em formato de arquivo e retorna a location dela
      */

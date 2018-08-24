@@ -7,43 +7,99 @@
     <div class="columns">
         <div class="column is-6">
             <div class="is-divider" data-content="Quem somos"></div>
-            <div class="columns">
+            <div class="columns is-multiline">
                 @foreach ($members as $member)
                     <div class="column is-6">
                         <div class="card is-person">
-                            <div class="card-image">
-                                <figure class="image is-1by1">
-                                    <img src="/storage/{{ $member->image }}" alt="{{ $member->name }}">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <p class="title"><a class="quickview-trigger" data-target="quickview-{{ $member->id }}">{{ $member->name }}</a></p>
-                                <div class="content">
-                                    
+                            <a href="{{ route('admin.people.delete', $member->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a>
+                            <div class="quickview-trigger is-link" data-target="quickview-{{ $member->id }}">
+                                <div class="card-image">
+                                    <figure class="image is-1by1">
+                                        <img src="/storage/{{ $member->image }}" alt="{{ $member->name }}">
+                                    </figure>
                                 </div>
-                            </div>
-                            <div id="quickview-{{ $member->id }}" class="quickview">
-                                <header class="quickview-header">
+                                <div class="card-content">
                                     <p class="title">{{ $member->name }}</p>
-                                    <span class="delete"></span>
-                                </header>
-                                <div class="quickview-body">
-                                    <div class="quickview-block">
-                                        {{ $member->presentation }}
-                                    </div>
                                 </div>
-                                  
-                                <footer class="quickview-footer">
-                                    <a href="/">Excluir</a>
-                                </footer>
-                            </div>                                  
+                            </div>                      
                         </div>
                     </div>
+                    <div id="quickview-{{ $member->id }}" class="quickview">
+                        <div class="quickview-background"></div>
+                        <header class="quickview-header">
+                            <p class="title">{{ $member->name }}</p>
+                            <span class="delete"></span>
+                        </header>
+                        <div class="quickview-body">
+                            <div class="quickview-block">
+                                {{ $member->presentation }}
+                            </div>
+                        </div>
+                        <footer class="quickview-footer">
+                            @if ($member->email)
+                                <a class="tooltip" data-tooltip="{{ $member->email }}"><i class="fas fa-envelope"></i></a>
+                            @endif
+                            @if ($member->facebook)
+                                <a target="_blank" href="{{ $member->facebook }}"><i class="fab fa-facebook"></i></a>
+                            @endif
+                            @if ($member->linkedin)
+                                <a target="_blank" href="{{ $member->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                            @endif
+                            @if ($member->lattes)
+                                <a target="_blank" href="{{ $member->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
+                            @endif
+                        </footer>
+                    </div>  
                 @endforeach
             </div>
         </div>
         <div class="column is-6">
             <div class="is-divider" data-content="Parceiros"></div>
+            <div class="columns is-multiline">
+                    @foreach ($partners as $partner)
+                    <div class="column is-6">
+                        <div class="card is-person">
+                            <a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a>
+                            <div class="quickview-trigger is-link" data-target="quickview-{{ $partner->id }}">
+                                <div class="card-image">
+                                    <figure class="image is-1by1">
+                                        <img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <p class="title">{{ $partner->name }}</p>
+                                </div>
+                            </div>                      
+                        </div>
+                    </div>
+                    <div id="quickview-{{ $partner->id }}" class="quickview">
+                        <div class="quickview-background"></div>
+                        <header class="quickview-header">
+                            <p class="title">{{ $partner->name }}</p>
+                            <span class="delete"></span>
+                        </header>
+                        <div class="quickview-body">
+                            <div class="quickview-block">
+                                {{ $partner->presentation }}
+                            </div>
+                        </div>
+                        <footer class="quickview-footer">
+                            @if ($partner->email)
+                                <a class="tooltip" data-tooltip="{{ $partner->email }}"><i class="fas fa-envelope"></i></a>
+                            @endif
+                            @if ($partner->facebook)
+                                <a target="_blank" href="{{ $partner->facebook }}"><i class="fab fa-facebook"></i></a>
+                            @endif
+                            @if ($partner->linkedin)
+                                <a target="_blank" href="{{ $partner->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                            @endif
+                            @if ($partner->lattes)
+                                <a target="_blank" href="{{ $partner->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
+                            @endif
+                        </footer>
+                    </div>  
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
@@ -160,9 +216,11 @@
 
 @section('scripts')
 <script>
-    myFunctions.initModal('.modal', '.button.is-fixed', '.modal-close');
-    myFunctions.initQuickview('a.quickview-trigger');
-    myFunctions.initNotification();
-    myFunctions.initFileField('.file-input', 'span.file-label');
+    document.addEventListener('DOMContentLoaded', ()=> {
+        modal.initModal('.modal', '.button.is-fixed', '.modal-close');
+        quickview.initQuickview('.quickview-trigger');
+        notification.initNotification();
+        form.initFileField('.file-input', 'span.file-label');
+    });
 </script>
 @endsection

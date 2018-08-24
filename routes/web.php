@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
         Route::group(['prefix' => 'pessoas'], function(){
             Route::get('/', 'PersonController@showPeople')->name('admin.people');
             Route::post('/', 'PersonController@createPerson')->name('admin.people.create');
+            Route::get('/{id}', 'PersonController@deletePerson')->name('admin.people.delete');
         });
         
     });

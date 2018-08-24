@@ -98,7 +98,9 @@
 @endsection
 @section('scripts')
 <script>
-    myFunctions.initModal('.modal', '.button.is-fixed', '.modal-close');
-    myFunctions.initNotification();
+    document.addEventListener('DOMContentLoaded', ()=> {
+        modal.initModal('.modal', '.button.is-fixed', '.modal-close');
+        notification.initNotification();
+    });
 </script>
 @endsection

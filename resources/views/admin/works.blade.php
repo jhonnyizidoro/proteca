@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="column is-12">
-                                <textarea name="abstract">{!! old('abstract', 'Esqueva aqui um resumo da obra, algo que você quer que o usuário veja ao clicar nela.') !!}</textarea>
+                                <textarea class="wysiwyg" name="abstract">{!! old('abstract', 'Esqueva aqui um resumo da obra, algo que você quer que o usuário veja ao clicar nela.') !!}</textarea>
                             </div>
                         </div>
                     </div>
@@ -101,20 +101,11 @@
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-        myFunctions.initModal('.modal', '.button.is-fixed', '.modal-close');
-        myFunctions.initNotification();
-        myFunctions.initFileField('.file-input', 'span.file-label');
-        myFunctions.initCharCounter('input[name="title"]', '.char-counter');
-        tinymce.init({
-            selector: 'textarea[name="abstract"]',
-            language: 'pt_BR',
-            plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
-            mobile: { theme: 'mobile' },
-            images_upload_url: "/api/biblioteca/imagem",
-            images_upload_base_path: "/storage",
-            height : "300",
-            entity_encoding : "raw",
-        });
+        modal.initModal('.modal', '.button.is-fixed', '.modal-close');
+        notification.initNotification();
+        form.initFileField('.file-input', 'span.file-label');
+        form.initCharCounter('input[name="title"]', '.char-counter');
+        tinymce.init(tinymceConfig);
     });
 </script>
 @endsection

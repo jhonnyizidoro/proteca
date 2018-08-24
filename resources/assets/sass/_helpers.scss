@@ -19,3 +19,9 @@ $sides: (top, bottom, left, right);
 .text-danger {
     color: $danger;
 }
+
+.hide-on-tablet {
+    @media (max-width:768px){
+        display: none !important;
+    }
+}

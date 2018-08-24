@@ -37,7 +37,7 @@
                     @endif
                 </div>
                 <div class="column is-12">
-                    <textarea name="body">{!! old('body', $post->body) !!}</textarea>
+                    <textarea class="wysiwyg" name="body">{!! old('body', $post->body) !!}</textarea>
                 </div>
                 <div class="column is-4 is-offset-8">
                     <button class="button is-primary is-fullwidth" type="submit">SALVAR ALTERAÇÕES</button>
@@ -51,20 +51,11 @@
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-        myFunctions.initNotification();
-        myFunctions.initCharCounter('input[name="title"]', '.char-counter');
-        myFunctions.initFileField('.file-input', 'span.file-label');
-        myFunctions.changeImageSrcWhenInputChanges('input[name="thumbnail"]', ".thumbnail-preview");
-        tinymce.init({
-            selector: 'textarea[name="body"]',
-            language: 'pt_BR',
-            plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
-            mobile: { theme: 'mobile' },
-            images_upload_url: "/api/noticias/imagem",
-            images_upload_base_path: "/storage",
-            height : "300",
-            entity_encoding : "raw",
-        });
+        notification.initNotification();
+        form.initCharCounter('input[name="title"]', '.char-counter');
+        form.initFileField('.file-input', 'span.file-label');
+        form.changeImageSrcWhenInputChanges('input[name="thumbnail"]', ".thumbnail-preview");
+        tinymce.init(tinymceConfig);
     });
 </script>
 @endsection

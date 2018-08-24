@@ -26,6 +26,13 @@
             background: $light-primary;
         }
     }
+    &.is-danger {
+        background-color: $danger;
+        color: $white;
+        &:hover {
+            transition: 100ms;
+        }
+    }
     &.is-white {
         background-color: $white;
         color: $primary;

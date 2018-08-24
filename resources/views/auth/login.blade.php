@@ -34,7 +34,7 @@
             </div>
         </form>
         <div class="has-text-centered m-t-10">
-            <a href="#">Entre em contato conosco<a/>
+            <a href="#">Entre em contato conosco</a>
         </div>
     </div>
 </div>

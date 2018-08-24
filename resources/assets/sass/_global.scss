@@ -16,7 +16,7 @@ body {
     font-family: 'Montserrat', sans-serif !important;
 }
 
-a {
+a, .is-link {
     text-decoration: none;
     cursor: pointer;
 }
@@ -26,8 +26,4 @@ span.info {
     font-size: .9rem;
     font-style: italic;
     text-align: center;
-}
-
-.fa-rotate-60 {
-    transform: rotate(-60deg);
 }

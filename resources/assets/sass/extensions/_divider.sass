@@ -67,3 +67,10 @@ $divider-color: $primary !default
       -webkit-transform: translateY(-50%) translateX(-50%)
       -ms-transform: translateY(-50%) translateX(-50%)
       transform: translateY(-50%) translateX(-50%)
+  &.is-muted
+    &::before
+      border-left: $divider-thickness solid $muted
+      opacity: .5
+  &.is-transparent
+    &::before
+      opacity: 0

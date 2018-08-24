@@ -68,31 +68,34 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-document.addEventListener('DOMContentLoaded', function () {
-    var burger = document.querySelector('.burger');
-    var menu = document.querySelector('.navbar-menu');
-    var navbarLinks = document.querySelectorAll('.navbar-item');
-    if (burger) {
-        burger.addEventListener('click', function () {
-            menu.classList.toggle('is-active');
-            burger.classList.toggle('is-active');
-        });
-    }
-    navbarLinks.forEach(function (link) {
-        if (link.href == document.URL) {
-            link.classList.add('is-active');
-        }
-    });
-});
+window.navbar = __webpack_require__(2);
+window.notification = __webpack_require__(3);
+window.form = __webpack_require__(4);
+window.quickview = __webpack_require__(5);
+window.modal = __webpack_require__(6);
 
-window.myFunctions = __webpack_require__(2);
+window.tinymceConfig = {
+    selector: '.wysiwyg',
+    language: 'pt_BR',
+    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
+    mobile: { theme: 'mobile' },
+    images_upload_url: "/api/noticias/imagem",
+    images_upload_base_path: "/storage",
+    height: "300",
+    entity_encoding: "raw"
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    navbar.activateNavbarLink();
+    navbar.activateNavbarResponsiveness();
+});
 
 /***/ }),
 /* 2 */
@@ -100,24 +103,37 @@ window.myFunctions = __webpack_require__(2);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initQuickview", function() { return initQuickview; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initNotification", function() { return initNotification; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initFileField", function() { return initFileField; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImageSrcWhenInputChanges", function() { return changeImageSrcWhenInputChanges; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCharCounter", function() { return initCharCounter; });
-var initModal = function initModal(modalSelector, openModalButtonSelector, closeModalButtonSelector) {
-    var modal = document.querySelector(modalSelector);
-    var openModalButton = document.querySelector(openModalButtonSelector);
-    var closeModalButton = document.querySelector(closeModalButtonSelector);
-    openModalButton.addEventListener('click', function () {
-        modal.classList.add('is-active');
-    });
-    closeModalButton.addEventListener('click', function () {
-        modal.classList.remove('is-active');
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarLink", function() { return activateNavbarLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarResponsiveness", function() { return activateNavbarResponsiveness; });
+var activateNavbarLink = function activateNavbarLink() {
+    var navbarLinks = document.querySelectorAll('.navbar-item');
+    navbarLinks.forEach(function (link) {
+        if (link.href == document.URL) {
+            link.classList.add('is-active');
+        }
     });
 };
 
+var activateNavbarResponsiveness = function activateNavbarResponsiveness() {
+    var burger = document.querySelector('.burger');
+    var menu = document.querySelector('.navbar-menu');
+    if (burger) {
+        burger.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            burger.classList.toggle('is-active');
+        });
+    }
+};
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initNotification", function() { return initNotification; });
 var initNotification = function initNotification() {
     var notifications = document.querySelectorAll('.notification');
     notifications.forEach(function (notification) {
@@ -127,6 +143,17 @@ var initNotification = function initNotification() {
     });
 };
 
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initFileField", function() { return initFileField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCharCounter", function() { return initCharCounter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImageSrcWhenInputChanges", function() { return changeImageSrcWhenInputChanges; });
 var initFileField = function initFileField(inputSelector, labelSelector) {
     var input = document.querySelector(inputSelector);
     var label = document.querySelector(labelSelector);
@@ -165,13 +192,28 @@ var initCharCounter = function initCharCounter(inputSelector, charCounterSelecto
     });
 };
 
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initQuickview", function() { return initQuickview; });
 //Todo botão para abrir uma quickview tem um atributo 'data-target' => esse atributo é o ID da quickview
 var initQuickview = function initQuickview(quickviewTriggerSelector) {
     var quickviewTriggers = document.querySelectorAll(quickviewTriggerSelector);
+    var quickviews = document.querySelectorAll('.quickview');
     quickviewTriggers.forEach(function (trigger) {
-        var quickview = document.querySelector('#' + trigger.dataset.target);
+        var quickview = document.getElementById(trigger.dataset.target);
         var closeButton = quickview.querySelector('.delete');
         trigger.addEventListener('click', function () {
+            quickviews.forEach(function (el) {
+                if (el != quickview) {
+                    el.classList.remove('is-active');
+                }
+            });
             quickview.classList.toggle('is-active');
         });
         closeButton.addEventListener('click', function () {
@@ -183,7 +225,28 @@ var initQuickview = function initQuickview(quickviewTriggerSelector) {
 
 
 /***/ }),
-/* 3 */
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
+var initModal = function initModal(modalSelector, openModalButtonSelector, closeModalButtonSelector) {
+    var modal = document.querySelector(modalSelector);
+    var openModalButton = document.querySelector(openModalButtonSelector);
+    var closeModalButton = document.querySelector(closeModalButtonSelector);
+    openModalButton.addEventListener('click', function () {
+        modal.classList.add('is-active');
+    });
+    closeModalButton.addEventListener('click', function () {
+        modal.classList.remove('is-active');
+    });
+};
+
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

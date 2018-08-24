@@ -53,7 +53,7 @@
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-        myFunctions.initNotification();
+        notification.initNotification();
     });
 </script>
 @endsection
