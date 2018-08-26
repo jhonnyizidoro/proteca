@@ -9,7 +9,7 @@
             @csrf
             <div class="columns is-centered is-multiline">
                 <div class="column is-12">
-                    <img class="thumbnail-preview" src="{{ asset('images/compressed/thumbnail.png') }}">
+                    <img class="thumbnail-preview" src="{{ asset('images/thumbnail.png') }}">
                 </div>
                 <div class="column is-8">
                     <div class="control has-icons-left">

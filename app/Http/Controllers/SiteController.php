@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Post;
 
 class SiteController extends Controller
 {
     public function home()
     {
-        return view('site.home');
+        $featureds = Post::orderBy('created_at', 'desc')->take(3)->get();
+        $newposts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        return view('site.home')
+            ->with('featureds', $featureds)
+            ->with('newposts', $newposts);
     }
 
     public function logout()
@@ -20,13 +25,7 @@ class SiteController extends Controller
 
     public function admin()
     {
-
         return redirect()->route('admin.posts');
-    }
-
-    public function showEvents()
-    {
-        return view('admin.events');
     }
 
 }

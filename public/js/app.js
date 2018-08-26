@@ -154,6 +154,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initFileField", function() { return initFileField; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCharCounter", function() { return initCharCounter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImageSrcWhenInputChanges", function() { return changeImageSrcWhenInputChanges; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMaskedDateForm", function() { return initMaskedDateForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMaskedTimeForm", function() { return initMaskedTimeForm; });
 var initFileField = function initFileField(inputSelector, labelSelector) {
     var input = document.querySelector(inputSelector);
     var label = document.querySelector(labelSelector);
@@ -183,11 +185,52 @@ var initCharCounter = function initCharCounter(inputSelector, charCounterSelecto
     counter.innerHTML = maxLength - input.value.length;
     input.addEventListener('keyup', function () {
         if (counter.innerHTML = maxLength - input.value.length >= 0) {
+            input.classList.remove('is-invalid');
             counter.classList.remove('text-danger');
             counter.innerHTML = maxLength - input.value.length;
         } else {
+            input.classList.add('is-invalid');
             counter.classList.add('text-danger');
             counter.innerHTML = 0;
+        }
+    });
+};
+
+var initMaskedDateForm = function initMaskedDateForm(inputSelector) {
+    var input = document.querySelector(inputSelector);
+    var isNumericRegex = /^[0-9]+$/;
+    var dateRegex = {
+        ddmm: /^\d{2}$/,
+        yyyy: /^\d{2}\/\d{2}$/
+    };
+    input.addEventListener('keypress', function (e) {
+        if (input.value.length > 9 || !e.key.match(isNumericRegex)) {
+            e.preventDefault();
+        } else if (input.value.match(dateRegex.ddmm) || input.value.match(dateRegex.yyyy)) {
+            input.value = input.value + '/';
+        }
+    });
+};
+
+var initMaskedTimeForm = function initMaskedTimeForm(inputSelector) {
+    var input = document.querySelector(inputSelector);
+    var isNumericRegex = /^[0-9]+$/;
+    var timeRegex = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/;
+    input.addEventListener('keypress', function (e) {
+        if (input.value.length >= 5 || !e.key.match(isNumericRegex)) {
+            e.preventDefault();
+        }
+        if (input.value.length == 2) {
+            input.value = input.value + ':';
+        }
+    });
+    input.addEventListener('keyup', function (e) {
+        if (input.value.length == 5) {
+            if (timeRegex.test(input.value)) {
+                input.classList.remove('is-invalid');
+            } else {
+                input.classList.add('is-invalid');
+            }
         }
     });
 };

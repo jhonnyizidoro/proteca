@@ -25,3 +25,11 @@ $sides: (top, bottom, left, right);
         display: none !important;
     }
 }
+
+.is-half-width {
+    width: 100%;
+}
+
+.is-rotated-180 {
+    transform: rotate(180deg);
+}

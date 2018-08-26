@@ -13941,6 +13941,15 @@ label.panel-block:hover {
   }
 }
 
+.is-half-width {
+  width: 100%;
+}
+
+.is-rotated-180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 body,
 html {
   font-family: 'Montserrat', sans-serif;
@@ -13990,7 +13999,7 @@ span.info {
 }
 
 .banner img {
-  height: 45vh;
+  height: 35vh;
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
@@ -14007,8 +14016,8 @@ span.info {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
-  -o-object-position: 100% 20%;
-     object-position: 100% 20%;
+  -o-object-position: 100% 30%;
+     object-position: 100% 30%;
   min-height: 230px;
 }
 
@@ -14307,6 +14316,8 @@ span.info {
   vertical-align: middle;
   -webkit-transition: margin .3s, opacity .3s;
   transition: margin .3s, opacity .3s;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 .post .description .read-more:hover i {
@@ -14418,6 +14429,11 @@ span.info {
   padding-right: 45px;
 }
 
+.input.is-invalid,
+.textarea.is-invalid {
+  border: 1px solid red;
+}
+
 select,
 .select {
   border-radius: 0px !important;
@@ -14525,5 +14541,11 @@ td:last-child {
 
 .modal .modal-content.is-large {
   width: 70%;
+}
+
+@media only screen and (max-width: 1088px) {
+  .modal .modal-content.is-large {
+    width: 90%;
+  }
 }
 

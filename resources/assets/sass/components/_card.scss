@@ -132,6 +132,7 @@
                 opacity: 0;
                 vertical-align: middle;
                 transition: margin .3s, opacity .3s;
+                transform: translateY(-1px);
             }
             &:hover i {
                 margin-left: 5px;

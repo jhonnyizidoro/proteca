@@ -6,6 +6,9 @@
     &.has-char-counter {
         padding-right: 45px;
     }
+    &.is-invalid {
+        border: 1px solid red;
+    }
 }
 
 select, .select {

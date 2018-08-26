@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="banner is-small">
-            <img src="{{ asset('images/compressed/blured-banner.jpg') }}" alt="Banner do projeto PROTECA">
+            <img src="{{ asset('images/blured-banner.jpg') }}" alt="Banner do projeto PROTECA">
         </div>
         <nav class="navbar">
             <div class="navbar-burger burger">

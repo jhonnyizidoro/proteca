@@ -158,7 +158,12 @@ return [
         'current_password' => 'senha atual',
         'type' => 'tipo',
         'image' => 'imagem',
-        'apresentação',
-        'team', 'time'
+        'presentation' => 'apresentação',
+        'team' => 'time',
+        'location' => 'localização',
+        'organizer' => 'organizador',
+        'details' => 'detalhes',
+        'starts_at' => 'início',
+        'ends_at' => 'fim',
     ],
 ];
