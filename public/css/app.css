@@ -13863,6 +13863,38 @@ label.panel-block:hover {
   padding-right: 50px !important;
 }
 
+.m-t-55 {
+  margin-top: 55px !important;
+}
+
+.p-t-55 {
+  padding-top: 55px !important;
+}
+
+.m-b-55 {
+  margin-bottom: 55px !important;
+}
+
+.p-b-55 {
+  padding-bottom: 55px !important;
+}
+
+.m-l-55 {
+  margin-left: 55px !important;
+}
+
+.p-l-55 {
+  padding-left: 55px !important;
+}
+
+.m-r-55 {
+  margin-right: 55px !important;
+}
+
+.p-r-55 {
+  padding-right: 55px !important;
+}
+
 .m-t-75 {
   margin-top: 75px !important;
 }
@@ -14084,7 +14116,6 @@ span.info {
   line-height: 25px;
   font-size: 0.9rem;
   color: #FEFFFF;
-  text-transform: uppercase;
 }
 
 .navbar-top a:hover {
@@ -14451,6 +14482,11 @@ select,
   top: 8px;
 }
 
+.field.has-addons .button {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 table {
   border: 1px solid #EBEBEB;
 }
@@ -14547,5 +14583,48 @@ td:last-child {
   .modal .modal-content.is-large {
     width: 90%;
   }
+}
+
+.pagination a {
+  border-radius: 0;
+  background: #3AAFA9;
+  color: #FEFFFF;
+  border: none;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  -webkit-box-shadow: 1px 1px 1px #707070;
+          box-shadow: 1px 1px 1px #707070;
+}
+
+.pagination a.is-current {
+  background: #14252A;
+}
+
+.pagination a:hover {
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  background: #2B7A78;
+  color: #FEFFFF;
+}
+
+.pagination a.is-disabled {
+  background: #707070;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  pointer-events: none;
+}
+
+.pagination a.is-disabled:hover {
+  background: #707070;
+}
+
+.pagination a.pagination-link,
+.pagination a li {
+  -webkit-transform: scaleX(0.85);
+          transform: scaleX(0.85);
+}
+
+.pagination a:disabled {
+  background: #DEF2F1;
 }
 

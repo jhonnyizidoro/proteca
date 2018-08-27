@@ -1,9 +1,30 @@
 @extends('partials.layouts.admin')
 @section('content')
-<div class="columns is-centered">
+<div class="columns is-centered is-multiline">
     <div class="column is-10">
         @include('partials.alerts.status')
         <button title="Adicionar evento" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
+        <form action="{{ route('admin.events') }}">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="evento" placeholder="Filtrar por nome do evento" value="{{ Request::get('evento') }}">
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <select name="data">
+                            <option value="">Todas as datas</option>
+                            <option {{ Request::get('data') == 'passados' ? 'selected' : '' }} value="passados">Eventos passados</option>
+                            <option {{ Request::get('data') == 'futuros' ? 'selected' : '' }} value="futuros">Eventos futuros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-10">
         <div class="scrollable-table">
             <table class="table is-fullwidth">
                 <thead>
@@ -19,7 +40,7 @@
                     @foreach($events as $event)
                         <tr>
                             <td>{{ $event->name }}</td>
-                            <td>{{ $event->created_at }}</td>
+                            <td>{{ $event->date }}</td>
                             <td>{{ $event->starts_at }} - {{ $event->ends_at }}</td>
                             <td><a data-tooltip="{{ $event->location }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
                             <td>
@@ -30,6 +51,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="column is-10">
+        {{ $events->links() }}
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}

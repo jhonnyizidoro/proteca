@@ -11,10 +11,23 @@ use File;
 
 class WorkController extends Controller
 {
-    public function showWorks()
+
+    private $pageSize = 15;
+
+    public function showWorks(Request $request)
     {
-        $works = Work::get();
-        $categories = Category::get();
+        $works = new Work;
+        if ($request->has('titulo')){
+            $works = $works->where('title', 'like', "%{$request->titulo}%");
+        }
+        if ($request->has('categoria')){
+            $works = $works->where('category_id', "like", "%{$request->categoria}%");
+        }
+        $works = $works->orderBy('created_at', 'desc')->paginate($this->pageSize)->appends([
+            'titulo' => $request->titulo,
+            'categoria' => $request->categoria,
+        ]);
+        $categories = Category::orderBy('category')->get();
         return view('admin.works')->with('works', $works)->with('categories', $categories);
     }
 

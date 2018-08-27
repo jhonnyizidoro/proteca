@@ -28,3 +28,9 @@ select, .select {
     right: 8px;
     top: 8px;
 }
+
+.field.has-addons {
+    .button {
+        box-shadow: none;
+    }
+}

@@ -7,13 +7,37 @@ use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use App\User;
 use Auth;
+use App\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function showUsers()
+
+    private $pageSize = 15;
+
+    public function showUsers(Request $request)
     {
-        $users = User::get();
+        $users = new User;
+        if ($request->has('nome')){
+            $users = $users->where('name', 'like', "%{$request->nome}%");
+        }
+        if ($request->has('status') && $request->status){
+            $request->status == 'ativos' ? $status = true : $status = false;
+            $users = $users->where('active', $status);
+        }
+        $users = $users->orderBy('name')->paginate($this->pageSize)->appends([
+            'nome' => $request->nome,
+            'status' => $request->status,
+            'acesso' => $request->acesso,
+        ]);
+        if ($request->has('acesso') && $request->acesso){
+            $request->acesso == 'admin' ? $unsetIfHasAdminRole = false : $unsetIfHasAdminRole = true;
+            foreach ($users as $key => $user){
+                if ($user->hasTheRole('admin') == $unsetIfHasAdminRole){
+                    unset($users[$key]);
+                }
+            }
+        }
         return view('admin.users')->with('users', $users);
     }
 

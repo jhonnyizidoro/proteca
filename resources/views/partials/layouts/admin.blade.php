@@ -11,11 +11,11 @@
         <div class="navbar-top">
             <div class="container">
                 <div class="right">
-                    <a href="{{ route('admin.profile') }}">Alterar minhas informações</i></a>
+                    <a data-tooltip="Alterar nome ou senha" class="tooltip is-tooltip-bottom" href="{{ route('admin.profile') }}"><i class="fas fa-user-cog"></i></a>
                     <a class="divisor"></a>
-                    <a target="_blank" href="{{ route('home') }}">Voltar ao site</i></a>
+                    <a data-tooltip="Como utilizar o Painel de Admnistração PROTECA" class="tooltip is-tooltip-bottom"><i class="fas fa-question-circle"></i></a>
                     <a class="divisor"></a>
-                    <a title="Sair" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+                    <a data-tooltip="Sair e retornar para o PROTECA" class="tooltip is-tooltip-bottom" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
         </div>

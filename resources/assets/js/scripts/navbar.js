@@ -1,7 +1,8 @@
 const activateNavbarLink = ()=> {
     const navbarLinks = document.querySelectorAll('.navbar-item');
+    const currentURL = document.URL.split('?');
     navbarLinks.forEach(link => {
-        if (link.href == document.URL){
+        if (link.href == currentURL[0]){
             link.classList.add('is-active');
         }
     });

@@ -8,9 +8,23 @@ use App\Event;
 
 class EventController extends Controller
 {
-    public function showEvents()
+
+    private $pageSize = 15;
+
+    public function showEvents(Request $request)
     {
-        $events = Event::get();
+        $events = new Event;
+        if ($request->has('evento')){
+            $events = $events->where('name', 'like', "%{$request->evento}%");
+        }
+        if ($request->has('data') && $request->data){
+            $request->data == 'passados' ? $operation = '<' : $operation = '>';
+            $events = $events->where('date', $operation, date("Y-m-d"));
+        }
+        $events = $events->orderBy('date', 'desc')->paginate($this->pageSize)->appends([
+            'evento' => $request->evento,
+            'data' => $request->data,
+        ]);
         return view('admin.events')->with('events', $events);
     }
 

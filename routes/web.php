@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
     Route::group(['prefix' => 'eventos'], function(){
         Route::get('/', 'EventController@showEvents')->name('admin.events');
         Route::post('/', 'EventController@createEvent')->name('admin.events.create');
-        Route::get('/{id}', 'EventController@deleteEvent')->name('admin.events.delete');
+        Route::get('/excluir/{id}', 'EventController@deleteEvent')->name('admin.events.delete');
     });
 
     //ROTAS QUE REQUEREM A ROLE ADMIN

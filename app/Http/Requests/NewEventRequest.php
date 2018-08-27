@@ -30,7 +30,7 @@ class NewEventRequest extends FormRequest
             'starts_at' => 'required|date_format:H:i',
             'ends_at' => 'required|date_format:H:i',
             'url' => 'nullable|url|max:191',
-            'organizer' => 'required|string|max:191|min:3',
+            'organizer' => 'nullable|string|max:191|min:3',
             'details' => 'required|string|max:65535',
         ];
     }

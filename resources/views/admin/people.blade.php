@@ -5,7 +5,7 @@
     @include('partials.alerts.status')
     <button title="Adicionar uma pessoa" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
     <div class="columns">
-        <div class="column is-6">
+        <div class="column is-6 p-r-55">
             <div class="is-divider" data-content="Quem somos"></div>
             <div class="columns is-multiline">
                 @foreach ($members as $member)
@@ -53,7 +53,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="column is-6">
+        <div class="column is-6 p-l-55">
             <div class="is-divider" data-content="Parceiros"></div>
             <div class="columns is-multiline">
                     @foreach ($partners as $partner)

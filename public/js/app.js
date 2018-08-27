@@ -107,8 +107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarResponsiveness", function() { return activateNavbarResponsiveness; });
 var activateNavbarLink = function activateNavbarLink() {
     var navbarLinks = document.querySelectorAll('.navbar-item');
+    var currentURL = document.URL.split('?');
     navbarLinks.forEach(function (link) {
-        if (link.href == document.URL) {
+        if (link.href == currentURL[0]) {
             link.classList.add('is-active');
         }
     });

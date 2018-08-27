@@ -16,6 +16,11 @@ class Event extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y');
     }
 
+    public function getDateAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+    }
+
     public function getStartsAtAttribute($time)
     {
         return substr($time, 0, 5);

@@ -1,8 +1,30 @@
 @extends('partials.layouts.admin')
 @section('content')
-<div class="columns is-centered">
+<div class="columns is-centered is-multiline">
     <div class="column is-10">
         @include('partials.alerts.status')
+        <form action="{{ route('admin.works') }}">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="titulo" placeholder="Filtrar por título" value="{{ Request::get('titulo') }}">
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <select name="categoria">
+                            <option value="">Todas as categorias</option>
+                            @foreach ($categories as $category )
+                                <option {{ Request::get('categoria') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->category }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-10">
         <button title="Adicionar item à biblioteca" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
         <div class="scrollable-table">
             <table class="table is-fullwidth">
@@ -27,6 +49,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="column is-10">
+        {{ $works->links() }}
     </div>
 </div>
 {{-- Modal para registrar novo trabalho --}}
@@ -54,7 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="column is-9">
+                            <div class="column is-8">
                                 <div class="file is-fullwidth ">
                                     <label class="file-label">
                                         <input class="file-input" type="file" name="file">
@@ -70,7 +95,7 @@
                                     <small class="text-white">Clique no botão acima para selecionar um arquivo.</small>
                                 @endif
                             </div>
-                            <div class="column is-3">
+                            <div class="column is-4">
                                 <div class="field">
                                     <div class="control">
                                         <div class="select is-fullwidth">

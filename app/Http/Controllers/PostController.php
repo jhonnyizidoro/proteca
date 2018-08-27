@@ -12,9 +12,18 @@ use App\Post;
 
 class PostController extends Controller
 {
-    public function showPosts()
+
+    private $pageSize = 5;
+
+    public function showPosts(Request $request)
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = new Post;
+        if ($request->has('titulo')){
+            $posts = $posts->where('title', 'like', "%{$request->titulo}%");
+        }
+        $posts = $posts->orderBy('created_at', 'desc')->paginate($this->pageSize)->appends([
+            'titulo' => $request->titulo,
+        ]);
         return view('admin.posts')->with('posts', $posts);
     }
 

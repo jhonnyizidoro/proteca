@@ -1,9 +1,39 @@
 @extends('partials.layouts.admin')
 @section('content')
-<div class="columns is-centered">
+<div class="columns is-centered is-multiline">
     <div class="column is-10">
         @include('partials.alerts.status')
         <button title="Adicionar usuário" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
+        <form action="{{ route('admin.users') }}">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="nome" placeholder="Filtrar por nome" value="{{ Request::get('nome') }}">
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <select name="acesso">
+                            <option value="">Todos os acessos</option>
+                            <option {{ Request::get('acesso') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
+                            <option {{ Request::get('acesso') == 'autor' ? 'selected' : '' }} value="autor">Autor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <select name="status">
+                            <option value="">Todos os status</option>
+                            <option {{ Request::get('status') == 'ativos' ? 'selected' : '' }} value="ativos">Usuários ativos</option>
+                            <option {{ Request::get('status') == 'inativos' ? 'selected' : '' }} value="inativos">Usuários inativos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-10">
         <div class="scrollable-table">
             <table class="table is-fullwidth">
                 <thead>
@@ -11,7 +41,7 @@
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Acesso</th>
-                        <th>Criado em</th>
+                        <th>Status</th>
                         <th>Gerenciar</th>
                     </tr>
                 </thead>
@@ -27,7 +57,13 @@
                                     Autor
                                 @endif
                             </td>
-                            <td>{{ $user->created_at }}</td>
+                            <td>
+                                @if ($user->active)
+                                    <span class="has-text-weight-semibold has-text-success">Ativo</span>
+                                @else
+                                    <span class="has-text-weight-semibold has-text-danger">Inativo</span>
+                                @endif
+                            </td>
                             <td>
                                 <a href='{{ route('admin.users.activate', $user->id) }}'>{{ $user->active ? 'Desativar' : 'Ativar' }}</a> | 
                                 <a href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
@@ -37,6 +73,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="column is-10">
+        {{ $users->links() }}
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}

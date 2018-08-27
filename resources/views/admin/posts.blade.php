@@ -4,6 +4,16 @@
     <div class="column is-8">
         @include('partials.alerts.status')
         <a title="Adicionar notícia" class="button is-fixed is-primary" href="{{ route('admin.posts.new') }}"><i class="fas fa-plus"></i></a>
+        <form action="{{ route('admin.posts') }}">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="titulo" placeholder="Filtrar por título" value="{{ Request::get('titulo') }}">
+                </div>
+                <div class="control">
+                    <button class="button is-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
     </div>
     @foreach ($posts as $key => $post)
         <div class="column is-8">
@@ -28,6 +38,9 @@
             </div>
         </div>
     @endforeach
+    <div class="column is-8">
+        {!! $posts->links() !!}
+    </div>
 </div>
 @endsection
 @section('scripts')
