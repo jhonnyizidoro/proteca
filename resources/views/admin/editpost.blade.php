@@ -14,27 +14,19 @@
                 <div class="column is-8">
                     <div class="control has-icons-left">
                         <input class="input has-char-counter" maxlength="191" type="text" placeholder="Título da notícia" name="title" value="{{ old('title', $post->title) }}">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-newspaper"></i>
-                        </span>
+                        <span class="icon is-small is-left"><i class="fas fa-newspaper"></i></span>
                         <span class="char-counter">191</span>
                     </div>
                 </div>
                 <div class="column is-4">
-                    <div class="file is-fullwidth ">
-                        <label class="file-label">
-                            <input class="file-input" accept=".jpeg,.png,.jpg" type="file" name="thumbnail">
-                            <span class="file-cta">
-                                <span class="file-icon"><i class="fas fa-upload"></i></span>
-                                <span class="file-label">Escolher outra thumbnail</span>
-                            </span>
-                        </label>
-                    </div>
-                    @if (!$errors->isEmpty() && !$errors->has('thumbnail'))
-                        <small class="text-danger">Não se esqueça de selecionar o arquivo novamente.</small>
-                    @elseif (!$errors->isEmpty() && $errors->has('thumbnail'))
-                        <small class="text-danger">Clique no botão acima para selecionar um arquivo.</small>
-                    @endif
+                    <label class="file-label file is-fullwidth">
+                        <input class="file-input" accept=".jpeg,.png,.jpg" type="file" name="thumbnail">
+                        <span class="file-cta">
+                            <span class="file-icon"><i class="fas fa-upload"></i></span>
+                            <span class="file-label">Escolher outra thumbnail</span>
+                        </span>
+                    </label>
+                    @include('partials.alerts.thumbnail')
                 </div>
                 <div class="column is-12">
                     <textarea class="wysiwyg" name="body">{!! old('body', $post->body) !!}</textarea>

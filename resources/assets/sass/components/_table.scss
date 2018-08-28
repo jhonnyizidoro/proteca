@@ -1,5 +1,17 @@
 table {
     border: 1px solid #EBEBEB;
+    .is-location {
+        padding-left: 32px;
+        i {
+            color: #DD4B3E;
+        }
+    }
+    .is-file {
+        padding-left: 36px;
+        i {
+            color: #459EC7;
+        }
+    }
 }
 
 th {
@@ -57,6 +69,3 @@ td:last-child {
     border-right: 0px;
 }
 
-.scrollable-table {
-    overflow-x: auto;
-}

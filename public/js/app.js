@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(7);
+module.exports = __webpack_require__(8);
 
 
 /***/ }),
@@ -80,6 +80,7 @@ window.notification = __webpack_require__(3);
 window.form = __webpack_require__(4);
 window.quickview = __webpack_require__(5);
 window.modal = __webpack_require__(6);
+window.steps = __webpack_require__(7);
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
@@ -291,6 +292,87 @@ var initModal = function initModal(modalSelector, openModalButtonSelector, close
 
 /***/ }),
 /* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initSteps", function() { return initSteps; });
+var initSteps = function initSteps(stepsSelector) {
+    var stepsTitle = document.querySelectorAll(stepsSelector + ' .step-item');
+    var stepsContent = document.querySelectorAll(stepsSelector + ' .step-content');
+    var nextButton = document.querySelector(stepsSelector + ' .next-step');
+    var previousButton = document.querySelector(stepsSelector + ' .previous-step');
+    var maxSteps = stepsTitle.length - 1;
+    var activeStep = 0;
+
+    /**
+     * Um do título ('.step-item') deve ter a classe 'is-active', esse trecho de código adiciona
+     * a classe 'is-active' no conteúdo do step referente ao título ativo.
+     * Exemplo: se o step 2 está com a classe 'is.active', o segunto step também terá essa classe
+     * esse código também adiciona a classe 'is-completed' nos títulos enquanto não encontrar no título ativo
+     */
+    var found = false;
+    stepsTitle.forEach(function (stepTitle) {
+        if (stepTitle.classList.contains('is-active') && !found) {
+            found = true;
+        } else if (!found) {
+            stepTitle.classList.add('is-completed');
+            activeStep++;
+        }
+    });
+    if (!found) {
+        activeStep = 0;
+        stepsTitle[activeStep].classList.add('is-active');
+        stepsTitle.forEach(function (stepTitle) {
+            stepTitle.classList.remove('is-completed');
+        });
+    }
+    stepsContent[activeStep].classList.add('is-active');
+
+    //Adiciona a classe is-disabled nos botões caso esteja no primeiro ou no último step
+    if (activeStep == maxSteps) {
+        nextButton.classList.add('is-disabled');
+    } else if (activeStep == 0) {
+        previousButton.classList.add('is-disabled');
+    }
+
+    //Evento botão next
+    nextButton.addEventListener('click', function () {
+        previousButton.classList.remove('is-disabled');
+        if (activeStep < maxSteps) {
+            stepsTitle[activeStep].classList.remove('is-active');
+            stepsContent[activeStep].classList.remove('is-active');
+            stepsTitle[activeStep].classList.add('is-completed');
+            activeStep++;
+            stepsTitle[activeStep].classList.add('is-active');
+            stepsContent[activeStep].classList.add('is-active');
+        }
+        if (activeStep == maxSteps) {
+            nextButton.classList.add('is-disabled');
+        }
+    });
+
+    //Evento botão previous
+    previousButton.addEventListener('click', function () {
+        nextButton.classList.remove('is-disabled');
+        if (activeStep > 0) {
+            stepsTitle[activeStep].classList.remove('is-active');
+            stepsContent[activeStep].classList.remove('is-active');
+            stepsTitle[activeStep].classList.remove('is-completed');
+            activeStep--;
+            stepsTitle[activeStep].classList.add('is-active');
+            stepsContent[activeStep].classList.add('is-active');
+        }
+        if (activeStep == 0) {
+            previousButton.classList.add('is-disabled');
+        }
+    });
+};
+
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

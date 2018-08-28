@@ -33,3 +33,7 @@ $sides: (top, bottom, left, right);
 .is-rotated-180 {
     transform: rotate(180deg);
 }
+
+img.cover {
+    object-fit: cover;
+}

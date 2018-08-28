@@ -70,9 +70,9 @@ class UserController extends Controller
                 $user->password = bcrypt($request->password);
             }
             $user->update();
-            return redirect()->route('admin.posts')->with('status', 'Dados alterados com sucesso.');
+            return redirect()->route('admin.profile')->with('status', 'Dados alterados com sucesso.');
         }
-        return redirect()->back()->with('status', 'A senha atual digitada está incorreta.');
+        return redirect()->back()->with('status', 'A senha atual está incorreta.');
     }
 
     // Se o usuário está ativo, gero uma senha aleatória (para ele não logar) e desativo ele

@@ -3,6 +3,7 @@ window.notification = require('./scripts/notification');
 window.form = require('./scripts/form');
 window.quickview = require('./scripts/quickview');
 window.modal = require('./scripts/modal');
+window.steps = require('./scripts/steps');
 
 window.tinymceConfig = {
     selector: '.wysiwyg',

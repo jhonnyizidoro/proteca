@@ -9,23 +9,19 @@
                 <div class="control is-expanded">
                     <input class="input" type="text" name="nome" placeholder="Filtrar por nome" value="{{ Request::get('nome') }}">
                 </div>
-                <div class="control">
-                    <div class="select">
-                        <select name="acesso">
-                            <option value="">Todos os acessos</option>
-                            <option {{ Request::get('acesso') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
-                            <option {{ Request::get('acesso') == 'autor' ? 'selected' : '' }} value="autor">Autor</option>
-                        </select>
-                    </div>
+                <div class="control select">
+                    <select name="acesso">
+                        <option value="">Todos os acessos</option>
+                        <option {{ Request::get('acesso') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
+                        <option {{ Request::get('acesso') == 'autor' ? 'selected' : '' }} value="autor">Autor</option>
+                    </select>
                 </div>
-                <div class="control">
-                    <div class="select">
-                        <select name="status">
-                            <option value="">Todos os status</option>
-                            <option {{ Request::get('status') == 'ativos' ? 'selected' : '' }} value="ativos">Usuários ativos</option>
-                            <option {{ Request::get('status') == 'inativos' ? 'selected' : '' }} value="inativos">Usuários inativos</option>
-                        </select>
-                    </div>
+                <div class="control select">
+                    <select name="status">
+                        <option value="">Todos os status</option>
+                        <option {{ Request::get('status') == 'ativos' ? 'selected' : '' }} value="ativos">Usuários ativos</option>
+                        <option {{ Request::get('status') == 'inativos' ? 'selected' : '' }} value="inativos">Usuários inativos</option>
+                    </select>
                 </div>
                 <div class="control">
                     <button class="button is-primary"><i class="fas fa-search"></i></button>
@@ -34,45 +30,37 @@
         </form>
     </div>
     <div class="column is-10">
-        <div class="scrollable-table">
-            <table class="table is-fullwidth">
-                <thead>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Acesso</th>
+                    <th>Status</th>
+                    <th>Gerenciar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
                     <tr>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Acesso</th>
-                        <th>Status</th>
-                        <th>Gerenciar</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->hasTheRole('admin') ? 'Administrador' : 'Autor' }}</td>
+                        <td>
+                            @if ($user->active)
+                                <span class="has-text-weight-semibold has-text-success">Ativo</span>
+                            @else
+                                <span class="has-text-weight-semibold has-text-danger">Inativo</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href='{{ route('admin.users.activate', $user->id) }}'>{{ $user->active ? 'Desativar' : 'Ativar' }}</a> | 
+                            <a href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @if ($user->hasTheRole('admin'))
-                                    Administrador
-                                @else
-                                    Autor
-                                @endif
-                            </td>
-                            <td>
-                                @if ($user->active)
-                                    <span class="has-text-weight-semibold has-text-success">Ativo</span>
-                                @else
-                                    <span class="has-text-weight-semibold has-text-danger">Inativo</span>
-                                @endif
-                            </td>
-                            <td>
-                                <a href='{{ route('admin.users.activate', $user->id) }}'>{{ $user->active ? 'Desativar' : 'Ativar' }}</a> | 
-                                <a href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     <div class="column is-10">
         {{ $users->links() }}
@@ -93,36 +81,24 @@
                     <div class="content">
                         <div class="columns is-multiline">
                             <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" placeholder="Nome completo" name="name" value="{{ old('name') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-user"></i>
-                                        </span>
-                                    </div>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" placeholder="Nome completo" name="name" value="{{ old('name') }}">
+                                    <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
                                 </div>
                             </div>
                             <div class="column is-8">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="email" placeholder="E-mail" name="email" value="{{ old('email') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-envelope"></i>
-                                        </span>
-                                    </div>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" placeholder="E-mail" name="email" value="{{ old('email') }}">
+                                    <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
                                 </div>
                             </div>
                             <div class="column is-4">
-                                <div class="field">
-                                    <div class="control">
-                                        <div class="select is-fullwidth">
-                                            <select name="role">
-                                                <option>Nível de acesso</option>
-                                                <option {{ old('role') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
-                                                <option {{ old('role') == 'author' ? 'selected' : '' }} value="author">Autor</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="control select is-fullwidth">
+                                    <select name="role">
+                                        <option>Nível de acesso</option>
+                                        <option {{ old('role') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
+                                        <option {{ old('role') == 'author' ? 'selected' : '' }} value="author">Autor</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

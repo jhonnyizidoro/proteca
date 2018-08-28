@@ -4,11 +4,15 @@
         .card-header-title {
             color: $white;
         }
+        .card-header {
+            box-shadow: none;
+        }
     }
     .card-header-title {
         font-size: 1.5rem;
         letter-spacing: 1px;
         font-weight: 500;
+        text-transform: uppercase;
     }
     &.is-centered {
         margin-top: 25vh;
@@ -43,6 +47,9 @@
                 transform: scale(1.1);
             }
         }
+    }
+    figure {
+        margin: 0 !important;
     }
 }
 

@@ -44,7 +44,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
         notification.initNotification();

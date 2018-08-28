@@ -1,6 +1,5 @@
 @extends('partials.layouts.admin')
 @section('content')
-
 <div class="container">
     @include('partials.alerts.status')
     <button title="Adicionar uma pessoa" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
@@ -25,16 +24,11 @@
                         </div>
                     </div>
                     <div id="quickview-{{ $member->id }}" class="quickview">
-                        <div class="quickview-background"></div>
                         <header class="quickview-header">
                             <p class="title">{{ $member->name }}</p>
                             <span class="delete"></span>
                         </header>
-                        <div class="quickview-body">
-                            <div class="quickview-block">
-                                {{ $member->presentation }}
-                            </div>
-                        </div>
+                        <div class="quickview-body">{!! $member->presentation !!}</div>
                         <footer class="quickview-footer">
                             @if ($member->email)
                                 <a class="tooltip" data-tooltip="{{ $member->email }}"><i class="fas fa-envelope"></i></a>
@@ -56,7 +50,7 @@
         <div class="column is-6 p-l-55">
             <div class="is-divider" data-content="Parceiros"></div>
             <div class="columns is-multiline">
-                    @foreach ($partners as $partner)
+                @foreach ($partners as $partner)
                     <div class="column is-6">
                         <div class="card is-person">
                             <a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a>
@@ -73,16 +67,11 @@
                         </div>
                     </div>
                     <div id="quickview-{{ $partner->id }}" class="quickview">
-                        <div class="quickview-background"></div>
                         <header class="quickview-header">
                             <p class="title">{{ $partner->name }}</p>
                             <span class="delete"></span>
                         </header>
-                        <div class="quickview-body">
-                            <div class="quickview-block">
-                                {{ $partner->presentation }}
-                            </div>
-                        </div>
+                        <div class="quickview-body">{!! $partner->presentation !!}</div>
                         <footer class="quickview-footer">
                             @if ($partner->email)
                                 <a class="tooltip" data-tooltip="{{ $partner->email }}"><i class="fas fa-envelope"></i></a>
@@ -116,96 +105,101 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        <div class="columns is-multiline">
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" placeholder="Nome de exibição" name="name" value="{{ old('name') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-user"></i>
-                                        </span>
+                        <div class="steps">
+                            <div class="step-item">
+                                <div class="step-marker">1</div>
+                                <div class="step-details"><p class="step-title">Dados Pessoais</p></div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-marker">2</div>
+                                <div class="step-details"><p class="step-title">Imagem</p></div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-marker">3</div>
+                                <div class="step-details"><p class="step-title">Participação</p></div>
+                            </div>
+                            <div class="steps-content">
+                                <div class="step-content">
+                                    <div class="columns is-multiline">
+                                        <div class="column is-8">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" placeholder="Nome de exibição" name="name" value="{{ old('name') }}">
+                                                <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="column is-4">
+                                            <div class="select control is-fullwidth">
+                                                <select name="type">
+                                                    <option>Selecione o tipo</option>
+                                                    <option {{ old('type') == 'partner' ? 'selected' : '' }} value="partner">Parceiro</option>
+                                                    <option {{ old('type') == 'team' ? 'selected' : '' }} value="team">Membro do time</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="column is-12">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" placeholder="E-mail para contato" name="email" value="{{ old('email') }}">
+                                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="column is-12">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" placeholder="Facebook (opcional)" name="facebook" value="{{ old('facebook') }}">
+                                                <span class="icon is-small is-left"><i class="fab fa-facebook-square"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="column is-12">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" placeholder="Linkedin (opcional)" name="linkedin" value="{{ old('linkedin') }}">
+                                                <span class="icon is-small is-left"><i class="fab fa-linkedin"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="column is-12">
+                                            <div class="control has-icons-left">
+                                                <input class="input" type="text" placeholder="Lattes (opcional)" name="lattes" value="{{ old('lattes') }}">
+                                                <span class="icon is-small is-left"><i class="fas fa-eye fa-rotate-60"></i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="email" placeholder="E-mail para contato" name="email" value="{{ old('email') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-envelope"></i>
-                                        </span>
+                                <div class="step-content">
+                                    <div class="columns is-multiline is-centered">
+                                        <div class="column is-6">
+                                            <figure class="image is-1by1">
+                                                <img class="image-preview cover is-fullwidth" src="{{ asset('images/person.png') }}">
+                                            </figure>
+                                        </div>
+                                        <div class="column is-8">
+                                            <label class="file-label file is-fullwidth">
+                                                <input class="file-input" accept=".jpeg,.png,.jpg" type="file" name="image">
+                                                <span class="file-cta">
+                                                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                                                    <span class="file-label">Escolha uma imagem para exibição</span>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="column is-8">
-                                <div class="file is-fullwidth ">
-                                    <label class="file-label">
-                                        <input class="file-input" accept=".jpeg,.png,.jpg" type="file" name="image">
-                                        <span class="file-cta">
-                                            <span class="file-icon"><i class="fas fa-upload"></i></span>
-                                            <span class="file-label">Escolha uma imagem para exibição</span>
-                                        </span>
-                                    </label>
-                                </div>
-                                @if (!$errors->isEmpty() && !$errors->has('image'))
-                                    <small class="text-white">Não se esqueça de selecionar o arquivo novamente.</small>
-                                @elseif (!$errors->isEmpty() && $errors->has('image'))
-                                    <small class="text-white">Clique no botão acima para selecionar um arquivo.</small>
-                                @endif
-                            </div>
-                            <div class="column is-4">
-                                <div class="field">
-                                    <div class="control">
-                                        <div class="select is-fullwidth">
-                                            <select name="type">
-                                                <option>Selecione o tipo</option>
-                                                <option {{ old('type') == 'partner' ? 'selected' : '' }} value="partner">Parceiro</option>
-                                                <option {{ old('type') == 'team' ? 'selected' : '' }} value="team">Membro do time</option>
-                                            </select>
+                                <div class="step-content">
+                                    <div class="columns is-multiline">
+                                        <div class="column is-12">
+                                            <textarea class="wysiwyg" name="presentation">{!! old('presentation', 'Esqueva aqui a participação dessa pessoa no projeto.') !!}</textarea>
+                                            <button type="submit" class="button is-fullwidth is-white m-t-30">Adicionar pessoa</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" placeholder="Facebook" name="facebook" value="{{ old('facebook') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fab fa-facebook-square"></i>
-                                        </span>
-                                    </div>
+                            <div class="steps-actions">
+                                <div class="steps-action">
+                                    <a class="button is-white previous-step">Voltar</a>
                                 </div>
-                            </div>
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" placeholder="Linkedin" name="linkedin" value="{{ old('linkedin') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fab fa-linkedin"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" placeholder="Lattes" name="lattes" value="{{ old('lattes') }}">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-eye fa-rotate-60"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column is-12">
-                                <div class="field">
-                                    <div class="control">
-                                        <textarea class="textarea" name="presentation" type="text" placeholder="Escreva aqui uma breve apresentação sobre a pessoa que está sendo adicionada (obrigatório apenas para membros do time).">{{ old('presentation') }}</textarea>
-                                    </div>
+                                <div class="steps-action">
+                                    <a class="button is-white next-step">Avançar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="button is-fullwidth is-white m-b-10">Adicionar pessoa</button>
+                    @include('partials.alerts.image')
                     @include('partials.alerts.errors')
                 </div>
             </div>
@@ -215,12 +209,17 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
         modal.initModal('.modal', '.button.is-fixed', '.modal-close');
         quickview.initQuickview('.quickview-trigger');
         notification.initNotification();
         form.initFileField('.file-input', 'span.file-label');
+        steps.initSteps('.steps');
+        form.changeImageSrcWhenInputChanges('input[name="image"]', ".image-preview");
+        tinymceConfig.height = "150";
+        tinymce.init(tinymceConfig);
     });
 </script>
 @endsection
