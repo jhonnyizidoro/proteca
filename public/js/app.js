@@ -81,6 +81,7 @@ window.form = __webpack_require__(4);
 window.quickview = __webpack_require__(5);
 window.modal = __webpack_require__(6);
 window.steps = __webpack_require__(7);
+window.confirmation = __webpack_require__(13);
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
@@ -376,6 +377,53 @@ var initSteps = function initSteps(stepsSelector) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initConfirmation", function() { return initConfirmation; });
+var initConfirmation = function initConfirmation(confirmationSelector, triggersSelector) {
+
+    var triggers = document.querySelectorAll(triggersSelector);
+    var confirmationWindow = document.querySelector(confirmationSelector);
+    var trueButton = document.querySelector(confirmationSelector + ' .true');
+    var falseButton = document.querySelector(confirmationSelector + ' .false');
+    var closeButton = document.querySelector(confirmationSelector + ' .confirmation-close');
+    var clickEvent = void 0;
+
+    closeButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+    });
+    falseButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+    });
+
+    triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            confirmationWindow.classList.add('is-active');
+            clickEvent = e;
+        });
+    });
+
+    trueButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+        try {
+            window.location.replace(clickEvent.target.href);
+        } catch (error) {
+            location.reload();
+        }
+    });
+};
+
+
 
 /***/ })
 /******/ ]);

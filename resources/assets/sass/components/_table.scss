@@ -12,6 +12,13 @@ table {
             color: #459EC7;
         }
     }
+    .status {
+        transform: translateY(1px);
+        margin-right: 5px;
+        &.is-active {
+            color: $success;
+        }
+    }
 }
 
 th {

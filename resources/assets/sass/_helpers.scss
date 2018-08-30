@@ -11,29 +11,20 @@ $sides: (top, bottom, left, right);
         }
     }
 }
-
 .text-white {
     color: $white;
 }
-
 .text-danger {
     color: $danger;
 }
-
 .hide-on-tablet {
     @media (max-width:768px){
         display: none !important;
     }
 }
-
-.is-half-width {
-    width: 100%;
-}
-
 .is-rotated-180 {
     transform: rotate(180deg);
 }
-
 img.cover {
     object-fit: cover;
 }

@@ -41,7 +41,7 @@
                         <td>{{ $work->category->category }}</td>
                         <td class="is-file"><a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="/storage/{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a></td>
                         <td>{{ $work->created_at }}</td>
-                        <td><a href="{{ route('admin.works.delete', $work->id) }}">Excluir</a></td>
+                        <td><a class="delete-work" href="{{ route('admin.works.delete', $work->id) }}">Excluir</a></td>
                 @endforeach
             </tbody>
         </table>
@@ -103,6 +103,17 @@
         </form>
     </div>
 </div>
+{{-- Confirmation window para excluir um item --}}
+<div class="confirmation">
+    <div class="confirmation-container">
+        <p>Você tem certeza que deseja excluir esse item da biblioteca permanetemente?</p>
+        <ul class="confirmation-buttons">
+            <li><a class="true">Sim</a></li>
+            <li><a class="false">Não</a></li>
+        </ul>
+        <a class="confirmation-close img-replace">Close</a>
+    </div>
+</div>
 @endsection
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
@@ -112,6 +123,7 @@
         notification.initNotification();
         form.initFileField('.file-input', 'span.file-label');
         form.initCharCounter('input[name="title"]', '.char-counter');
+        confirmation.initConfirmation('.confirmation', '.delete-work');
         tinymce.init(tinymceConfig);
     });
 </script>

@@ -4,6 +4,7 @@ window.form = require('./scripts/form');
 window.quickview = require('./scripts/quickview');
 window.modal = require('./scripts/modal');
 window.steps = require('./scripts/steps');
+window.confirmation = require('./scripts/confirmation');
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
@@ -18,5 +19,5 @@ window.tinymceConfig = {
 
 document.addEventListener('DOMContentLoaded', ()=> {
     navbar.activateNavbarLink();
-    navbar.activateNavbarResponsiveness();    
+    navbar.activateNavbarResponsiveness();
 });

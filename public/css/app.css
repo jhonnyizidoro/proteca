@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);@import url(https://use.fontawesome.com/releases/v5.2.0/css/all.css);/*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);@import url(https://use.fontawesome.com/releases/v5.2.0/css/all.css);/** Z-Index variables */
+
+/*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
   from {
@@ -14527,10 +14529,6 @@ label.panel-block:hover {
   }
 }
 
-.is-half-width {
-  width: 100%;
-}
-
 .is-rotated-180 {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
@@ -15087,6 +15085,16 @@ table .is-file i {
   color: #459EC7;
 }
 
+table .status {
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+  margin-right: 5px;
+}
+
+table .status.is-active {
+  color: #23d160;
+}
+
 th {
   color: #FEFFFF !important;
   background: #14252A;
@@ -15164,7 +15172,7 @@ td:last-child {
 }
 
 .modal {
-  z-index: 999;
+  z-index: 998;
 }
 
 .modal .modal-content.is-large {
@@ -15218,5 +15226,139 @@ td:last-child {
 
 .pagination a:disabled {
   background: #DEF2F1;
+}
+
+.confirmation {
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(20, 37, 42, 0.91);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+
+.confirmation.is-active {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.confirmation .confirmation-container p {
+  padding: 3em 1em;
+}
+
+.confirmation .confirmation-container .confirmation-buttons:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.confirmation .confirmation-container .confirmation-buttons li {
+  float: left;
+  width: 50%;
+  list-style: none;
+}
+
+.confirmation .confirmation-container .confirmation-buttons a {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #FEFFFF;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.confirmation .confirmation-container .confirmation-buttons li:first-child a {
+  background: #fc7169;
+  border-radius: none;
+}
+
+.confirmation .img-replace {
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 100%;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.confirmation-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: 4em auto;
+  background: #FEFFFF;
+  border-radius: none;
+  text-align: center;
+  -webkit-box-shadow: 0 0 8px rgba(179, 179, 179, 0.404);
+          box-shadow: 0 0 8px rgba(179, 179, 179, 0.404);
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.no-touch .confirmation-container .confirmation-buttons li:first-child a:hover {
+  background-color: #ff3860;
+}
+
+.confirmation-container .confirmation-buttons li:last-child a {
+  background: #b6bece;
+  border-radius: none;
+}
+
+.no-touch .confirmation-container .confirmation-buttons li:last-child a:hover {
+  background-color: #c5ccd8;
+}
+
+.confirmation-container .confirmation-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+}
+
+.confirmation-container .confirmation-close::before,
+.confirmation-container .confirmation-close::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 14px;
+  height: 3px;
+  background-color: #14252A;
+}
+
+.confirmation-container .confirmation-close::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  left: 8px;
+}
+
+.confirmation-container .confirmation-close::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  right: 8px;
+}
+
+.is-active .confirmation-container {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+@media only screen and (min-width: 1170px) {
+  .confirmation-container {
+    margin: 8em auto;
+  }
 }
 

@@ -40,7 +40,7 @@
                         <td>{{ $event->date }}</td>
                         <td>{{ $event->starts_at }} - {{ $event->ends_at }}</td>
                         <td class="is-location"><a data-tooltip="{{ $event->location }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
-                        <td><a href='{{ route('admin.events.delete', $event->id) }}'>Excluir</a></td>
+                        <td><a class="delete-event" href='{{ route('admin.events.delete', $event->id) }}'>Excluir</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -145,6 +145,17 @@
         </form>
     </div>
 </div>
+{{-- Confirmation window para excluir um item --}}
+<div class="confirmation">
+    <div class="confirmation-container">
+        <p>Você tem certeza que deseja excluir esse evento permanetemente?</p>
+        <ul class="confirmation-buttons">
+            <li><a class="true">Sim</a></li>
+            <li><a class="false">Não</a></li>
+        </ul>
+        <a class="confirmation-close img-replace">Close</a>
+    </div>
+</div>
 @endsection
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
@@ -157,6 +168,7 @@
         form.initMaskedTimeForm('input[name="starts_at"]');
         form.initMaskedTimeForm('input[name="ends_at"]');
         steps.initSteps('.steps');
+        confirmation.initConfirmation('.confirmation', '.delete-event');
         tinymceConfig.height = "130"; 
         tinymce.init(tinymceConfig);
     });

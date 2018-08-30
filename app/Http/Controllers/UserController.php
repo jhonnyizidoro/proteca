@@ -25,7 +25,7 @@ class UserController extends Controller
             $request->status == 'ativos' ? $status = true : $status = false;
             $users = $users->where('active', $status);
         }
-        $users = $users->orderBy('name')->paginate($this->pageSize)->appends([
+        $users = $users->where('id', '!=', Auth::user()->id)->orderBy('name')->paginate($this->pageSize)->appends([
             'nome' => $request->nome,
             'status' => $request->status,
             'acesso' => $request->acesso,

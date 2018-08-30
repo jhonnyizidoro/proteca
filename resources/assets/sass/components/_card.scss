@@ -39,7 +39,7 @@
     .button {
         &.is-floating {
             position: absolute;
-            z-index: 99;
+            z-index: $fixed-button-z-index;
             border-radius: 50%;
             top: -8px;
             left: -8px;
@@ -62,7 +62,7 @@
     line-height: 1.4;
     overflow: hidden;
     width: 100%;
-    z-index: 0;
+    z-index: $post-z-index;
     //Animação da imagem
     &:hover {
         .photo {
@@ -72,7 +72,7 @@
     }
     .meta {
         position: relative;
-        z-index: 0;
+        z-index: $post-z-index;
         height: 200px;
     }
     .photo {
@@ -115,7 +115,7 @@
         padding: 1rem;
         background: $white;
         position: relative;
-        z-index: 1;
+        z-index: $post-z-index + 1;
         h1 {
             line-height: 1;
             margin: 0;

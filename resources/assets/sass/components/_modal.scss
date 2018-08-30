@@ -1,5 +1,5 @@
 .modal {
-    z-index: 999;
+    z-index: $modal-z-index;
     .modal-content.is-large {
         width: 70%;
     }

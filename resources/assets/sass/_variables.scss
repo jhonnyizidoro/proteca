@@ -1,6 +1,13 @@
 $primary: #14252A;
-$light-primary: #2B7A78; 
+$light-primary: #2B7A78;
 $light-inverse: #DEF2F1;
 $inverse: #3AAFA9;
 $white: #FEFFFF;
 $muted: #707070;
+$rgba-primary: rgba(20, 37, 42, 0.91);
+
+/** Z-Index variables */
+$fixed-button-z-index: 99;
+$confirmation-window-z-index: 999;
+$modal-z-index: 998;
+$post-z-index: 0;

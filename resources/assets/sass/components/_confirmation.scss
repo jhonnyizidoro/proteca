@@ -1,0 +1,104 @@
+.confirmation {
+    z-index: $confirmation-window-z-index;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $rgba-primary;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s 0s, visibility 0s 0s;
+    }
+    .confirmation-container p {
+        padding: 3em 1em;
+    }
+    .confirmation-container .confirmation-buttons:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .confirmation-container .confirmation-buttons li {
+        float: left;
+        width: 50%;
+        list-style: none;
+    }
+    .confirmation-container .confirmation-buttons a {
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        text-transform: uppercase;
+        color: $white;
+        transition: background-color 0.2s;
+    }
+    .confirmation-container .confirmation-buttons li:first-child a {
+        background: #fc7169;
+        border-radius: none;
+    }
+    .img-replace {
+        display: inline-block;
+        overflow: hidden;
+        text-indent: 100%;
+        color: transparent;
+        white-space: nowrap;
+    }
+}
+.confirmation-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 4em auto;
+    background: $white;
+    border-radius: none;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(179, 179, 179, 0.404);
+    transform: translateY(-40px);
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
+
+.no-touch .confirmation-container .confirmation-buttons li:first-child a:hover {
+    background-color: $danger;
+}
+.confirmation-container .confirmation-buttons li:last-child a {
+    background: #b6bece;
+    border-radius: none;
+}
+.no-touch .confirmation-container .confirmation-buttons li:last-child a:hover {
+    background-color: #c5ccd8;
+}
+.confirmation-container .confirmation-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+}
+.confirmation-container .confirmation-close::before, .confirmation-container .confirmation-close::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    width: 14px;
+    height: 3px;
+    background-color: $primary;
+}
+.confirmation-container .confirmation-close::before {
+    transform: rotate(45deg);
+    left: 8px;
+}
+.confirmation-container .confirmation-close::after {
+    transform: rotate(-45deg);
+    right: 8px;
+}
+.is-active .confirmation-container {
+    transform: translateY(0);
+}
+@media only screen and (min-width: 1170px) {
+    .confirmation-container {
+        margin: 8em auto;
+    }
+}

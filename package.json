@@ -16,7 +16,6 @@
         "lodash": "^4.17.4"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.2.0",
         "bulma": "^0.7.1",
         "bulma-extensions": "^2.2.1"
     }
