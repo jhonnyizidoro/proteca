@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 use App\Role;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,7 +48,7 @@ class UserController extends Controller
 
     public function registerUser(NewUserRequest $request)
     {
-        $password = $this->generatePassword();
+        $password = FileController::generateString();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -89,7 +89,7 @@ class UserController extends Controller
             $user->update();
             return redirect()->back()->with('status', "Usuário <b>{$user->email}</b> desativado com sucesso.");
         } else {
-            $password = $this->generatePassword();
+            $password = FileController::generateString();
             $user->password = bcrypt($password);
             $user->active = true;
             $user->update();
@@ -103,20 +103,10 @@ class UserController extends Controller
         if (Auth::user() == $user) {
             return redirect()->back()->with('status', 'Para alterar sua senha, use a função localizada na barra superior.');
         }
-        $password = $this->generatePassword();
+        $password = FileController::generateString();
         $user->password = bcrypt($password);
         $user->update();
         return redirect()->back()->with('status', "A nova senha de acesso para o usuário <b>{$user->email}</b> é: <b>{$password}</b>.");
-    }
-
-    private function generatePassword($length = 8) {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $count = mb_strlen($chars);
-        for ($i = 0, $result = ''; $i < $length; $i++) {
-            $index = rand(0, $count - 1);
-            $result .= mb_substr($chars, $index, 1);
-        }
-        return $result;
     }
 
 }

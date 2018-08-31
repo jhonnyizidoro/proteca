@@ -14605,8 +14605,8 @@ span.info {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
-  -o-object-position: 100% 30%;
-     object-position: 100% 30%;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
   min-height: 230px;
 }
 

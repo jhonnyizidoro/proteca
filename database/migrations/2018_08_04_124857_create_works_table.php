@@ -18,7 +18,7 @@ class CreateWorksTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('file');
-            $table->text('abstract');
+            $table->mediumText('abstract');
             $table->boolean('show_abstract')->default(true);
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

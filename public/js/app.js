@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(9);
 
 
 /***/ }),
@@ -81,14 +81,14 @@ window.form = __webpack_require__(4);
 window.quickview = __webpack_require__(5);
 window.modal = __webpack_require__(6);
 window.steps = __webpack_require__(7);
-window.confirmation = __webpack_require__(13);
+window.confirmation = __webpack_require__(8);
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
     language: 'pt_BR',
     plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
     mobile: { theme: 'mobile' },
-    images_upload_url: "/api/noticias/imagem",
+    images_upload_url: "/api/biblioteca/imagem",
     images_upload_base_path: "/storage",
     height: "300",
     entity_encoding: "raw"
@@ -374,16 +374,6 @@ var initSteps = function initSteps(stepsSelector) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -424,6 +414,12 @@ var initConfirmation = function initConfirmation(confirmationSelector, triggersS
 };
 
 
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

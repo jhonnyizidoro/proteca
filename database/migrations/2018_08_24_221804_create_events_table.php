@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->date('date');
             $table->time('starts_at');
             $table->time('ends_at');
-            $table->text('details');
+            $table->mediumText('details');
             $table->timestamps();
         });
     }

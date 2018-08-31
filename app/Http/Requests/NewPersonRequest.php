@@ -31,7 +31,7 @@ class NewPersonRequest extends FormRequest
             'facebook' => 'nullable|url|max:191',
             'linkedin' => 'nullable|url|max:191',
             'lattes' => 'nullable|url|max:191',
-            'presentation' => 'required|string|max:65535',
+            'presentation' => 'required|string|max:65000',
         ];
     }
     

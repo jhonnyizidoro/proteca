@@ -26,7 +26,7 @@ class NewPostRequest extends FormRequest
         return [
             'title' => 'required|string|max:191|min:6',
             'thumbnail' => 'required|mimes:jpeg,jpg,png',
-            'body' => 'required|string|max:65535',
+            'body' => 'required|string|max:65000',
         ];
     }
 }

@@ -11,7 +11,7 @@ window.tinymceConfig = {
     language: 'pt_BR',
     plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
     mobile: { theme: 'mobile' },
-    images_upload_url: "/api/noticias/imagem",
+    images_upload_url: "/api/biblioteca/imagem",
     images_upload_base_path: "/storage",
     height : "300",
     entity_encoding : "raw",

@@ -26,7 +26,7 @@ class NewWorkRequest extends FormRequest
         return [
             'title' => 'required|string|max:191|min:6',
             'file' => 'required|file',
-            'abstract' => 'required|string|max:16000000',
+            'abstract' => 'required|string|max:65000',
             'category_id' => 'required|exists:categories,id',
         ];
     }
