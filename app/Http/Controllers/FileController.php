@@ -14,7 +14,8 @@ class FileController extends Controller
      * @param String o segundo parâmetro é a pasta que o arquivo vai ficar, por default é images, pois é o mais usado
      * @return String localização do arquivo na pasta public do servidor
      */
-    public static function uploadFile($image, String $basePath = 'images'){
+    public static function uploadFile($image, String $basePath = 'images')
+    {
         $name = FileController::sanitizeFileName($image->getClientOriginalName());
         $name = "{$basePath}/".date("Y-m-d_H-i-s_").$name;
         $image = File::get($image);
@@ -33,7 +34,7 @@ class FileController extends Controller
     {
         $image = $request->$label;
         $name = FileController::sanitizeFileName($image->getClientOriginalName());
-        $name = 'images/'.date("Y-m-d_H-i-s").'_'.$name;
+        $name = 'images/'.date("Y-m-d_H-i-s_").$name;
         $image = File::get($image);
         Storage::disk('public')->put($name, $image);
         return response()->json(['location' => $name]);
@@ -90,7 +91,8 @@ class FileController extends Controller
      * @param int recebe o tamanho da String, por default é 8
      * @return String retorn a string gerada
      */
-    public static function generateString($length = 8) {
+    public static function generateString($length = 8) 
+    {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $count = mb_strlen($chars);
         for ($i = 0, $result = ''; $i < $length; $i++) {
@@ -99,4 +101,7 @@ class FileController extends Controller
         }
         return $result;
     }
+
+    
+
 }

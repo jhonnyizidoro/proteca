@@ -1,53 +1,55 @@
 @extends('partials.layouts.admin')
 @section('content')
-<div class="columns is-centered is-multiline">
-    <div class="column is-10">
-        @include('partials.alerts.status')
-        <button title="Adicionar evento" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
-        <form action="{{ route('admin.events') }}" method="get">
-            <div class="field has-addons">
-                <div class="control is-expanded">
-                    <input class="input" type="text" name="evento" placeholder="Filtrar por nome do evento" value="{{ Request::get('evento') }}">
+<div class="container">
+    <div class="columns is-centered is-multiline">
+        <div class="column is-12">
+            @include('partials.alerts.status')
+            <button title="Adicionar evento" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
+            <form action="{{ route('admin.events') }}" method="get">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" name="evento" placeholder="Filtrar por nome do evento" value="{{ Request::get('evento') }}">
+                    </div>
+                    <div class="select control">
+                        <select name="data">
+                            <option value="">Todas as datas</option>
+                            <option {{ Request::get('data') == 'passados' ? 'selected' : '' }} value="passados">Eventos passados</option>
+                            <option {{ Request::get('data') == 'futuros' ? 'selected' : '' }} value="futuros">Eventos futuros</option>
+                        </select>
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary"><i class="fas fa-search"></i></button>
+                    </div>
                 </div>
-                <div class="select control">
-                    <select name="data">
-                        <option value="">Todas as datas</option>
-                        <option {{ Request::get('data') == 'passados' ? 'selected' : '' }} value="passados">Eventos passados</option>
-                        <option {{ Request::get('data') == 'futuros' ? 'selected' : '' }} value="futuros">Eventos futuros</option>
-                    </select>
-                </div>
-                <div class="control">
-                    <button class="button is-primary"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="column is-10">
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Evento</th>
-                    <th>Data</th>
-                    <th>Horário</th>
-                    <th>Local</th>
-                    <th>Gerenciar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($events as $event)
+            </form>
+        </div>
+        <div class="column is-12">
+            <table class="table is-fullwidth">
+                <thead>
                     <tr>
-                        <td>{{ $event->name }}</td>
-                        <td>{{ $event->date }}</td>
-                        <td>{{ $event->starts_at }} - {{ $event->ends_at }}</td>
-                        <td class="is-location"><a data-tooltip="{{ $event->location }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
-                        <td><a class="delete-event" href='{{ route('admin.events.delete', $event->id) }}'>Excluir</a></td>
+                        <th>Evento</th>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Local</th>
+                        <th>Gerenciar</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="column is-10">
-        {{ $events->links() }}
+                </thead>
+                <tbody>
+                    @foreach($events as $event)
+                        <tr>
+                            <td>{{ $event->name }}</td>
+                            <td>{{ $event->date }}</td>
+                            <td>{{ $event->starts_at }} - {{ $event->ends_at }}</td>
+                            <td class="is-location"><a data-tooltip="{{ $event->location }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
+                            <td><a class="delete-event" href='{{ route('admin.events.delete', $event->id) }}'>Excluir</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="column is-12">
+            {{ $events->links() }}
+        </div>
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}

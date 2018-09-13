@@ -19,4 +19,14 @@ const activateNavbarResponsiveness = ()=> {
     }
 }
 
-export {activateNavbarLink, activateNavbarResponsiveness};
+const scrollToNavbar = ()=> {
+    const navbar = document.querySelector('.navbar');
+    setTimeout(function() {
+        window.scroll({
+            top: navbar.offsetTop,
+            behavior: "smooth"
+          });
+    },1000)
+}
+
+export {activateNavbarLink, activateNavbarResponsiveness, scrollToNavbar};

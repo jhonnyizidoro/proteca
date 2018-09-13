@@ -1,73 +1,75 @@
 @extends('partials.layouts.admin')
 @section('content')
-<div class="columns is-centered is-multiline">
-    <div class="column is-10">
-        @include('partials.alerts.status')
-        <button title="Adicionar usuário" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
-        <form action="{{ route('admin.users') }}">
-            <div class="field has-addons">
-                <div class="control is-expanded">
-                    <input class="input" type="text" name="nome" placeholder="Filtrar por nome" value="{{ Request::get('nome') }}">
+<div class="container">
+    <div class="columns is-centered is-multiline">
+        <div class="column is-12">
+            @include('partials.alerts.status')
+            <button title="Adicionar usuário" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
+            <form action="{{ route('admin.users') }}">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" name="nome" placeholder="Filtrar por nome" value="{{ Request::get('nome') }}">
+                    </div>
+                    <div class="control select">
+                        <select name="acesso">
+                            <option value="">Todos os acessos</option>
+                            <option {{ Request::get('acesso') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
+                            <option {{ Request::get('acesso') == 'autor' ? 'selected' : '' }} value="autor">Autor</option>
+                        </select>
+                    </div>
+                    <div class="control select">
+                        <select name="status">
+                            <option value="">Todos os status</option>
+                            <option {{ Request::get('status') == 'ativos' ? 'selected' : '' }} value="ativos">Usuários ativos</option>
+                            <option {{ Request::get('status') == 'inativos' ? 'selected' : '' }} value="inativos">Usuários inativos</option>
+                        </select>
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary"><i class="fas fa-search"></i></button>
+                    </div>
                 </div>
-                <div class="control select">
-                    <select name="acesso">
-                        <option value="">Todos os acessos</option>
-                        <option {{ Request::get('acesso') == 'admin' ? 'selected' : '' }} value="admin">Administrador</option>
-                        <option {{ Request::get('acesso') == 'autor' ? 'selected' : '' }} value="autor">Autor</option>
-                    </select>
-                </div>
-                <div class="control select">
-                    <select name="status">
-                        <option value="">Todos os status</option>
-                        <option {{ Request::get('status') == 'ativos' ? 'selected' : '' }} value="ativos">Usuários ativos</option>
-                        <option {{ Request::get('status') == 'inativos' ? 'selected' : '' }} value="inativos">Usuários inativos</option>
-                    </select>
-                </div>
-                <div class="control">
-                    <button class="button is-primary"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="column is-10">
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Acesso</th>
-                    <th>Status</th>
-                    <th>Gerenciar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
+            </form>
+        </div>
+        <div class="column is-12">
+            <table class="table is-fullwidth">
+                <thead>
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->hasTheRole('admin') ? 'Administrador' : 'Autor' }}</td>
-                        <td>
-                            @if ($user->active)
-                                <i class="fas fa-toggle-on status is-active"></i>Ativo
-                            @else
-                                <i class="fas fa-toggle-off status"></i>Inativo
-                            @endif
-                        </td>
-                        <td>
-                            @if ($user->active)
-                                <a class="activate-user deactivate-user" href='{{ route('admin.users.activate', $user->id) }}'>Desativar</a> | 
-                            @else
-                                <a class="activate-user" href='{{ route('admin.users.activate', $user->id) }}'>Ativar</a> | 
-                            @endif
-                            <a class="generate-password" href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
-                        </td>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Acesso</th>
+                        <th>Status</th>
+                        <th>Gerenciar</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="column is-10">
-        {{ $users->links() }}
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->hasTheRole('admin') ? 'Administrador' : 'Autor' }}</td>
+                            <td>
+                                @if ($user->active)
+                                    <i class="fas fa-toggle-on status is-active"></i>Ativo
+                                @else
+                                    <i class="fas fa-toggle-off status"></i>Inativo
+                                @endif
+                            </td>
+                            <td>
+                                @if ($user->active)
+                                    <a class="activate-user deactivate-user" href='{{ route('admin.users.activate', $user->id) }}'>Desativar</a> | 
+                                @else
+                                    <a class="activate-user" href='{{ route('admin.users.activate', $user->id) }}'>Ativar</a> | 
+                                @endif
+                                <a class="generate-password" href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="column is-12">
+            {{ $users->links() }}
+        </div>
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}

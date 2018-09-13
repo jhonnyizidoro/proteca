@@ -12,8 +12,8 @@ class PersonController extends Controller
     public function showPeople()
     {
         $partners = Person::where('type', 'partner')->orderBy('name')->get();
-        $members = Person::where('type', 'team')->orderBy('name')->get();
-        return view('admin.people')->with('partners', $partners)->with('members', $members);
+        $teammates = Person::where('type', 'team')->orderBy('name')->get();
+        return view('admin.people')->with('partners', $partners)->with('teammates', $teammates);
     }
 
     public function createPerson(NewPersonRequest $request)

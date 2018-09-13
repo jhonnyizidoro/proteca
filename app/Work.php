@@ -28,4 +28,13 @@ class Work extends Model
         return end($array);
     }
 
+    public function getShortTitle($length = 50)
+    {
+        $title = $this->title;
+        if (strlen($title) > $length) {
+            return substr($title, 0, $length).'...';
+        }
+        return $title;
+    }
+
 }

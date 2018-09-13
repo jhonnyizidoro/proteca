@@ -86,7 +86,7 @@ window.confirmation = __webpack_require__(8);
 window.tinymceConfig = {
     selector: '.wysiwyg',
     language: 'pt_BR',
-    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor',
+    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen',
     mobile: { theme: 'mobile' },
     images_upload_url: "/api/biblioteca/imagem",
     images_upload_base_path: "/storage",
@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarLink", function() { return activateNavbarLink; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarResponsiveness", function() { return activateNavbarResponsiveness; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollToNavbar", function() { return scrollToNavbar; });
 var activateNavbarLink = function activateNavbarLink() {
     var navbarLinks = document.querySelectorAll('.navbar-item');
     var currentURL = document.URL.split('?');
@@ -126,6 +127,16 @@ var activateNavbarResponsiveness = function activateNavbarResponsiveness() {
             burger.classList.toggle('is-active');
         });
     }
+};
+
+var scrollToNavbar = function scrollToNavbar() {
+    var navbar = document.querySelector('.navbar');
+    setTimeout(function () {
+        window.scroll({
+            top: navbar.offsetTop,
+            behavior: "smooth"
+        });
+    }, 1000);
 };
 
 

@@ -22,7 +22,7 @@ class Post extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y - H:i');
     }
 
-    public function getPrologue(int $length = 180){
+    public function getPrologue(int $length = 200){
         $text = strip_tags($this->body);
         if (strlen($text) > $length) {
             return substr($text, 0, $length).'...';

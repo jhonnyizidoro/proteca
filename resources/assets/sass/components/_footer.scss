@@ -1,0 +1,10 @@
+footer {
+    background: $primary;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 20vh;
+    color: $white;
+    &.is-inverse {
+        background: $light-primary;
+    }
+}

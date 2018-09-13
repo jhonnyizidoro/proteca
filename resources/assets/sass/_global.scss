@@ -9,7 +9,6 @@ body, html {
 
 body {
     overflow-y: hidden;
-    padding-bottom: 100px;
 }
 
 .button, ::placeholder {
@@ -26,4 +25,9 @@ span.info {
     font-size: .9rem;
     font-style: italic;
     text-align: center;
+}
+
+.title {
+    text-align: center;
+    line-height: 2em;
 }

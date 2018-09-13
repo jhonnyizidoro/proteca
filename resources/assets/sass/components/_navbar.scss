@@ -29,6 +29,10 @@
             }
         }
     }
+    &.is-fixed {
+        position: fixed;
+        width: 100%;
+    }
 }
 
 .navbar-top {
@@ -36,7 +40,7 @@
     width: 100%;
     background: $primary;
     position: absolute;
-    z-index: 1;
+    z-index: $banner-z-index + 1;
     .right {
         float: right;
     }

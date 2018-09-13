@@ -1,14 +1,23 @@
 .banner {
-    img {
-        height: 35vh;
+    height: 35vh;
+    position: relative;
+    .background {
         object-fit: cover;
         width: 100%;
         transform: scaleY(1.2);
+        height: 100%;
+        z-index: $banner-z-index;
+        position: absolute;
+    }
+    .logo {
+        position: absolute;
+        z-index: $banner-z-index + 1;
+        height: 80%;
+        transform: translateY(10%) translateX(-50%);
+        left: 50%;
     }
     &.is-small {
-        img {
-            height: 25vh;
-        }
+        height: 25vh;
     }
 }
 
@@ -18,4 +27,12 @@
     width: 100%;
     object-position: 50% 50%;
     min-height: 230px;
+}
+
+.thumbnail {
+    img {
+        height: 48vh;
+        object-fit: cover;
+        width: 100%;
+    }
 }

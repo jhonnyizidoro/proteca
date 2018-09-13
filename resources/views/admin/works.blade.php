@@ -37,7 +37,7 @@
             <tbody>
                 @foreach($works as $work)
                     <tr>
-                        <td>{{ $work->title }}</td>
+                        <td>{{ $work->getShortTitle() }}</td>
                         <td>{{ $work->category->category }}</td>
                         <td class="is-file"><a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="/storage/{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a></td>
                         <td>{{ $work->created_at }}</td>

@@ -7,40 +7,40 @@
         <div class="column is-6 p-r-55">
             <div class="is-divider" data-content="Quem somos"></div>
             <div class="columns is-multiline">
-                @foreach ($members as $member)
+                @foreach ($teammates as $teammate)
                     <div class="column is-6">
                         <div class="card is-person">
-                            <a href="{{ route('admin.people.delete', $member->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
-                            <div class="quickview-trigger is-link" data-target="quickview-{{ $member->id }}">
+                            <a href="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
+                            <div class="quickview-trigger is-link" data-target="quickview-{{ $teammate->id }}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">
-                                        <img src="/storage/{{ $member->image }}" alt="{{ $member->name }}">
+                                        <img src="/storage/{{ $teammate->image }}" alt="{{ $teammate->name }}">
                                     </figure>
                                 </div>
                                 <div class="card-content">
-                                    <p class="title">{{ $member->name }}</p>
+                                    <p class="title">{{ $teammate->name }}</p>
                                 </div>
                             </div>                      
                         </div>
                     </div>
-                    <div id="quickview-{{ $member->id }}" class="quickview">
+                    <div id="quickview-{{ $teammate->id }}" class="quickview">
                         <header class="quickview-header">
-                            <p class="title">{{ $member->name }}</p>
+                            <p class="title">{{ $teammate->name }}</p>
                             <span class="delete"></span>
                         </header>
-                        <div class="quickview-body">{!! $member->presentation !!}</div>
+                        <div class="quickview-body">{!! $teammate->presentation !!}</div>
                         <footer class="quickview-footer">
-                            @if ($member->email)
-                                <a class="tooltip" data-tooltip="{{ $member->email }}"><i class="fas fa-envelope"></i></a>
+                            @if ($teammate->email)
+                                <a class="tooltip" data-tooltip="{{ $teammate->email }}"><i class="fas fa-envelope"></i></a>
                             @endif
-                            @if ($member->facebook)
-                                <a target="_blank" href="{{ $member->facebook }}"><i class="fab fa-facebook"></i></a>
+                            @if ($teammate->facebook)
+                                <a target="_blank" href="{{ $teammate->facebook }}"><i class="fab fa-facebook"></i></a>
                             @endif
-                            @if ($member->linkedin)
-                                <a target="_blank" href="{{ $member->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                            @if ($teammate->linkedin)
+                                <a target="_blank" href="{{ $teammate->linkedin }}"><i class="fab fa-linkedin"></i></a>
                             @endif
-                            @if ($member->lattes)
-                                <a target="_blank" href="{{ $member->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
+                            @if ($teammate->lattes)
+                                <a target="_blank" href="{{ $teammate->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
                             @endif
                         </footer>
                     </div>  

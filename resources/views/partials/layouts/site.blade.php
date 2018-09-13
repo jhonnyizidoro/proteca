@@ -9,7 +9,8 @@
     </head>
     <body>
         <div class="banner">
-            <img src="{{ asset('images/blured-banner.jpg') }}" alt="Banner do projeto PROTECA">
+            <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo PROTECA" class="logo"></a>
+            <img src="{{ asset('images/blured-banner.jpg') }}" alt="PROTECA" class="background">
         </div>
         <nav class="navbar">
             <div class="navbar-burger burger">
@@ -28,10 +29,10 @@
                     <a class="navbar-item" href="# ">
                         Ajuda
                     </a>
-                    <a class="navbar-item" href="# ">
+                    <a class="navbar-item" href="{{ route('team') }}">
                         Quem Somos
                     </a>
-                    <a class="navbar-item" href="# ">
+                    <a class="navbar-item" href="{{ route('partners') }}">
                         Parceiros
                     </a>
                     <a class="navbar-item" href="# ">
@@ -42,6 +43,14 @@
         </nav>
         {{-- Conteudo da página --}}
         @yield('content')
+        <footer>
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam nam ad non amet omnis aperiam?
+                </div>
+                <div class="column is-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus enim dolore sint repudiandae iure fuga assumenda quod officiis vel nam, ipsum nemo numquam cupiditate recusandae odit reiciendis quaerat magnam nostrum. Quae aliquid velit minus harum sequi, magni cumque explicabo ullam sapiente tempore beatae blanditiis molestias reiciendis? Fugiat sapiente, reiciendis deserunt in laborum laudantium enim cupiditate.</div>
+            </div>
+        </footer>
         <script src="{{ mix('js/app.js') }}"></script>
         {{-- Scripts da página --}}
         @yield('scripts')

@@ -1,6 +1,9 @@
 <?php
 
 Route::get('/', 'SiteController@home')->name('home');
+Route::get('/noticia/{url}', 'SiteController@post')->name('post');
+Route::get('/quemsomos', 'SiteController@team')->name('team');
+Route::get('/parceiros', 'SiteController@partners')->name('partners');
 
 //ADMIN
 Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
