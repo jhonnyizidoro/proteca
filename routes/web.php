@@ -2,6 +2,8 @@
 
 Route::get('/', 'SiteController@home')->name('home');
 Route::get('/noticia/{url}', 'SiteController@post')->name('post');
+Route::get('/noticias', 'SiteController@posts')->name('posts');
+Route::get('/biblioteca', 'SiteController@works')->name('works');
 Route::get('/quemsomos', 'SiteController@team')->name('team');
 Route::get('/parceiros', 'SiteController@partners')->name('partners');
 

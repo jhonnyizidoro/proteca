@@ -5,6 +5,7 @@ window.quickview = require('./scripts/quickview');
 window.modal = require('./scripts/modal');
 window.steps = require('./scripts/steps');
 window.confirmation = require('./scripts/confirmation');
+window.card = require('./scripts/card');
 
 window.tinymceConfig = {
     selector: '.wysiwyg',

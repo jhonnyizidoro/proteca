@@ -25,14 +25,15 @@
             object-fit: cover;
         }
         .card-content {
-            padding: 10px;
+            padding: 10px 2px;
         }
         .title {
             font-size: 1.2rem;
             display: block;
             text-align: center;
             color: $light-primary;
-            //letter-spacing: 2px;
+			font-weight: 500;
+			line-height: 1.6rem;
         }
     }
     .button {

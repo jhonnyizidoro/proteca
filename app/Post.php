@@ -22,6 +22,16 @@ class Post extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y - H:i');
     }
 
+    public function getDate()
+    {
+        return Carbon::createFromFormat('d/m/Y - H:i', $this->created_at)->format('d/m/Y');
+    }
+
+    public function getTime()
+    {
+        return Carbon::createFromFormat('d/m/Y - H:i', $this->created_at)->format('H\hm');
+    }
+
     public function getPrologue(int $length = 200){
         $text = strip_tags($this->body);
         if (strlen($text) > $length) {

@@ -105,6 +105,9 @@ return [
         ],
         'presentation' => [
             'required_if' => 'O campo apresentação é obrigatório para membros do time.',
+		],
+		'email' => [
+            'required_if' => 'O campo email é obrigatório para membros do time.',
         ],
     ],
 
@@ -164,6 +167,6 @@ return [
         'organizer' => 'organizador',
         'details' => 'detalhes',
         'starts_at' => 'início',
-        'ends_at' => 'fim',
+		'ends_at' => 'fim',
     ],
 ];

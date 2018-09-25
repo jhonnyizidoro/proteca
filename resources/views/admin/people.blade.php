@@ -3,8 +3,8 @@
 <div class="container">
     @include('partials.alerts.status')
     <button title="Adicionar uma pessoa" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
-    <div class="columns">
-        <div class="column is-6 p-r-55">
+    <div class="columns has-lateral-padding-45">
+        <div class="column is-6">
             <div class="is-divider" data-content="Quem somos"></div>
             <div class="columns is-multiline">
                 @foreach ($teammates as $teammate)
@@ -47,7 +47,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="column is-6 p-l-55">
+        <div class="column is-6">
             <div class="is-divider" data-content="Parceiros"></div>
             <div class="columns is-multiline">
                 @foreach ($partners as $partner)
@@ -138,7 +138,7 @@
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="E-mail para contato" name="email" value="{{ old('email') }}">
+                                                <input class="input" type="text" placeholder="E-mail para contato (opcional para parceiros)" name="email" value="{{ old('email') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
                                             </div>
                                         </div>
@@ -183,7 +183,7 @@
                                 <div class="step-content">
                                     <div class="columns is-multiline">
                                         <div class="column is-12">
-                                            <textarea class="wysiwyg" name="presentation">{!! old('presentation', 'Esqueva aqui a participação dessa pessoa no projeto.') !!}</textarea>
+                                            <textarea class="wysiwyg" name="presentation">{!! old('presentation', 'Escreva aqui o currículo resumido dessa pessoa (apenas para membros do time).') !!}</textarea>
                                             <button type="submit" class="button is-fullwidth is-white m-t-30">Adicionar pessoa</button>
                                         </div>
                                     </div>
@@ -231,6 +231,7 @@
         confirmation.initConfirmation('.confirmation', '.delete-person');
         tinymceConfig.height = "150";
         tinymce.init(tinymceConfig);
+		card.resizeToFit('.card-content .title');
     });
 </script>
 @endsection

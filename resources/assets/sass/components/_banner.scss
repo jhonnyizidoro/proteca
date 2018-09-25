@@ -31,7 +31,7 @@
 
 .thumbnail {
     img {
-        height: 48vh;
+        max-height: 35vh;
         object-fit: cover;
         width: 100%;
     }

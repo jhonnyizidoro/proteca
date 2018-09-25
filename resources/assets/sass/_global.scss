@@ -28,6 +28,50 @@ span.info {
 }
 
 .title {
+    display: block;
     text-align: center;
-    line-height: 2em;
+    line-height: 1.8em;
+}
+
+.post-meta {
+    margin: 20px 0;
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    span {
+        margin: 0 15px;
+    }
+}
+.work {
+	position: relative;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+            0 3px 1px -2px rgba(0,0,0,0.12),
+			0 1px 5px 0 rgba(0,0,0,0.2);
+	padding: 10px;
+	border-radius: 20px;
+	background: rgb(553, 553, 553);
+    .work-title {
+        font-weight: bold;
+        letter-spacing: 1px;
+		color: $primary;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.meta {
+		display: flex;
+  		justify-content: space-evenly;
+		color: $muted;
+		font-style: italic;
+		margin-top: .2rem;
+		font-size: .85rem;
+		a {
+			color: $inverse;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+    
 }

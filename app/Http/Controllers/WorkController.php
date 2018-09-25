@@ -33,7 +33,8 @@ class WorkController extends Controller
     public function createWork(NewWorkrequest $request)
     {
         $data = $request->all();        
-        $data['file'] = FileController::uploadFile($data['file'], 'files');
+		$data['file'] = FileController::uploadFile($data['file'], 'files');
+		$data['url'] = FileController::slugify($data['title']);
         Work::create($data);
         return redirect()->back()->with('status', 'Item adicionado à biblioteca com sucesso.');
     }

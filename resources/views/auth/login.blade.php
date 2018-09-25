@@ -1,7 +1,7 @@
 @extends('partials.layouts.auth')
 @section('content')
 <div class="columns is-centered">
-    <div class="column is-8-tablet is-4-desktop">
+    <div class="column is-8-tablet is-4-desktop has-card-centered">
         <form action="/login" method="post">
             @csrf
             <div class="card is-primary is-centered">

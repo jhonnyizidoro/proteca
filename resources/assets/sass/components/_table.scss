@@ -1,4 +1,4 @@
-table {
+table.table {
     border: 1px solid #EBEBEB;
     .is-location {
         padding-left: 32px;
@@ -19,60 +19,56 @@ table {
             color: $success;
         }
     }
-}
-
-th {
-    color: $white !important;
-    background: $primary;
-    font-size:1.22rem;
-    font-weight: 100;
-}
-  
-tr {
-    color:$muted;
-}
-   
-tr:hover td {
-    background:$light-primary;
-    color:#FFFFFF;
-    border-top: 1px solid #22262e;
-    transition: 50ms;
-}
-
-tr:hover td a {
-    background:$light-primary;
-    color:#FFFFFF;
-    transition: 50ms;
-}
-     
-tr:nth-child(odd) td {
-    background:#EBEBEB;
-}
-   
-tr:nth-child(odd):hover td {
-    background:$light-primary;
-}
-  
-tr:last-child td:first-child {
-    border-bottom-left-radius:3px;
-}
-   
-tr:last-child td:last-child {
-    border-bottom-right-radius:3px;
-}
-   
-td {
-    background:#FFFFFF;
-    padding:20px;
-    text-align:left;
-    vertical-align:middle;
-    font-weight:300;
-    font-size:1.08rem;
-    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #C1C3D1;
-}
-  
-td:last-child {
-    border-right: 0px;
+    th {
+        color: $white !important;
+        background: $primary;
+        font-size:1.22rem;
+        font-weight: 100;
+    }
+    tr {
+        color:$muted;
+        &:hover {
+            td {
+                background:$light-primary;
+                color:#FFFFFF;
+                border-top: 1px solid #22262e;
+                transition: 50ms;
+                a {
+                    background:$light-primary;
+                    color:#FFFFFF;
+                    transition: 50ms;
+                }
+            }
+        }
+        &:nth-child(odd) {
+            td {
+                background:#EBEBEB;
+            }
+            &:hover td {
+                background:$light-primary;
+            }
+        }
+        &:last-child {
+            td {
+                &:first-child {
+                    border-bottom-left-radius:3px;
+                }
+                &:last-child {
+                    border-bottom-right-radius:3px;
+                }
+            }
+        }
+    }
+    td {
+        background:#FFFFFF;
+        text-align:left;
+        vertical-align:middle;
+        font-weight:300;
+        font-size:1.08rem;
+        text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+        &:last-child {
+            border-right: 0px;
+        }
+    }
 }
 

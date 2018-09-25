@@ -11,12 +11,13 @@
     },
     "devDependencies": {
         "axios": "^0.18",
+        "browser-sync": "^2.24.7",
+        "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4"
     },
     "dependencies": {
-        "bulma": "^0.7.1",
-        "bulma-extensions": "^2.2.1"
+        "bulma": "^0.7.1"
     }
 }

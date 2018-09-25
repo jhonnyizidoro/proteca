@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Work extends Model
 {
     protected $fillable = [
-        'title', 'category_id', 'file', 'abstract', 'show_abstract'
+        'title', 'category_id', 'file', 'abstract', 'show_abstract', 'url'
     ];
 
     public function category()

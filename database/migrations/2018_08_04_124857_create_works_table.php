@@ -19,7 +19,7 @@ class CreateWorksTable extends Migration
             $table->string('title');
             $table->string('file');
             $table->mediumText('abstract');
-            $table->boolean('show_abstract')->default(true);
+			$table->string('url')->nullable();
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

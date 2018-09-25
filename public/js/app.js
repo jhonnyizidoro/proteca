@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(9);
+module.exports = __webpack_require__(10);
 
 
 /***/ }),
@@ -82,6 +82,7 @@ window.quickview = __webpack_require__(5);
 window.modal = __webpack_require__(6);
 window.steps = __webpack_require__(7);
 window.confirmation = __webpack_require__(8);
+window.card = __webpack_require__(9);
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
@@ -428,6 +429,24 @@ var initConfirmation = function initConfirmation(confirmationSelector, triggersS
 
 /***/ }),
 /* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeToFit", function() { return resizeToFit; });
+var resizeToFit = function resizeToFit(titleSelector) {
+	var titles = document.querySelectorAll(titleSelector);
+	titles.forEach(function (title) {
+		if (title.innerHTML.length > 15 && window.innerWidth > 768) {
+			title.style.fontSize = '1rem';
+		}
+	});
+};
+
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
