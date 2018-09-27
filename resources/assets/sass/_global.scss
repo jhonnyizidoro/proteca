@@ -17,7 +17,15 @@ body {
 
 a, .is-link {
     text-decoration: none;
-    cursor: pointer;
+	cursor: pointer;
+	&.is-disabled {
+		* {
+			color: $muted !important;
+		}
+		&:hover {
+			cursor: default;
+		}
+	}
 }
 
 span.info {

@@ -22,7 +22,7 @@ class WorkController extends Controller
         if ($request->has('categoria')){
             $works = $works->where('category_id', "like", "%{$request->categoria}%");
         }
-        $works = $works->orderBy('created_at', 'desc')->paginate($this->pageSize)->appends([
+        $works = $works->orderBy('title')->paginate($this->pageSize)->appends([
             'titulo' => $request->titulo,
             'categoria' => $request->categoria,
         ]);
@@ -32,8 +32,10 @@ class WorkController extends Controller
 
     public function createWork(NewWorkrequest $request)
     {
-        $data = $request->all();        
-		$data['file'] = FileController::uploadFile($data['file'], 'files');
+		$data = $request->all();
+		if (isset($data['file'])){
+			$data['file'] = FileController::uploadFile($data['file'], 'files');
+		}
 		$data['url'] = FileController::slugify($data['title']);
         Work::create($data);
         return redirect()->back()->with('status', 'Item adicionado à biblioteca com sucesso.');

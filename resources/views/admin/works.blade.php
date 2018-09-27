@@ -39,7 +39,13 @@
                     <tr>
                         <td>{{ $work->getShortTitle() }}</td>
                         <td>{{ $work->category->category }}</td>
-                        <td class="is-file"><a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="/storage/{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a></td>
+                        <td class="is-file">
+							@if ($work->file)
+								<a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="/storage/{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a>
+							@else
+								<a class="is-disabled tooltip" data-tooltip="Nenhum arquivo disponível."><i class="fas fa-cloud-download-alt"></i></a>
+							@endif
+						</td>
                         <td>{{ $work->created_at }}</td>
                         <td><a class="delete-work" href="{{ route('admin.works.delete', $work->id) }}">Excluir</a></td>
                 @endforeach

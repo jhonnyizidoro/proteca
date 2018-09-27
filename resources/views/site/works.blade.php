@@ -22,18 +22,18 @@
 						</div>
 					@endforeach
 				@endif
-				@if (count($charts) > 0)
+				@if (count($others) > 0)
 					<div class="column is-12">
-						<div class="is-divider m-b-0" data-content="Cartilhas"></div>
+						<div class="is-divider m-b-0" data-content="Outros"></div>
 					</div>
-					@foreach ($charts as $chart)
+					@foreach ($others as $other)
 						<div class="column is-12">
 							<div class="work">
-								<a class="work-title" href="#">{{ $chart->title }}</a>
+								<a class="work-title" href="#">{{ $other->title }}</a>
 								<div class="meta">
-									<span>Postado em {{ $chart->created_at }}</span>
-									<a download href="/storage/{{ $chart->file }}">Download</a>
-									<a href="/storage/{{ $chart->file }}">Ver mais</a>
+									<span>Postado em {{ $other->created_at }}</span>
+									<a download href="/storage/{{ $other->file }}">Download</a>
+									<a href="/storage/{{ $other->file }}">Ver mais</a>
 								</div>
 							</div>
 						</div>
@@ -60,6 +60,23 @@
 		</div>
 		<div class="column is-6">
 			<div class="columns is-multiline">
+					@if (count($charts) > 0)
+					<div class="column is-12">
+						<div class="is-divider m-b-0" data-content="Cartilhas"></div>
+					</div>
+					@foreach ($charts as $chart)
+						<div class="column is-12">
+							<div class="work">
+								<a class="work-title" href="#">{{ $chart->title }}</a>
+								<div class="meta">
+									<span>Postado em {{ $chart->created_at }}</span>
+									<a download href="/storage/{{ $chart->file }}">Download</a>
+									<a href="/storage/{{ $chart->file }}">Ver mais</a>
+								</div>
+							</div>
+						</div>
+					@endforeach
+				@endif
 				@if (count($books) > 0)
 					<div class="column is-12">
 						<div class="is-divider m-b-0" data-content="Livros"></div>
@@ -72,23 +89,6 @@
 									<span>Postado em {{ $book->created_at }}</span>
 									<a download href="/storage/{{ $book->file }}">Download</a>
 									<a href="/storage/{{ $book->file }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-				@if (count($others) > 0)
-					<div class="column is-12">
-						<div class="is-divider m-b-0" data-content="Outros"></div>
-					</div>
-					@foreach ($others as $other)
-						<div class="column is-12">
-							<div class="work">
-								<a class="work-title" href="#">{{ $other->title }}</a>
-								<div class="meta">
-									<span>Postado em {{ $other->created_at }}</span>
-									<a download href="/storage/{{ $other->file }}">Download</a>
-									<a href="/storage/{{ $other->file }}">Ver mais</a>
 								</div>
 							</div>
 						</div>

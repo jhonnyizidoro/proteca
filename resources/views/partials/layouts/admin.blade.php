@@ -53,11 +53,6 @@
         </nav>
         {{-- Conteudo da página --}}
         @yield('content')
-        <footer class="is-inverse">
-            <div class="container has-text-centered">
-                Se estiver enfrentando algum problema ao utilizar o <i>Portal de Administração PROTECA, entre em contato com o suporte.
-            </div>
-        </footer>
         <script src="{{ mix('js/app.js') }}"></script>
         {{-- Scripts da página --}}
         @yield('scripts')

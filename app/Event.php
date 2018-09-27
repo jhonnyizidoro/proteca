@@ -23,11 +23,11 @@ class Event extends Model
 
     public function getStartsAtAttribute($time)
     {
-        return substr($time, 0, 5);
+        return mb_substr($time, 0, 5);
     }
 
     public function getEndsAtAttribute($time)
     {
-        return substr($time, 0, 5);
+        return mb_substr($time, 0, 5);
     }
 }
