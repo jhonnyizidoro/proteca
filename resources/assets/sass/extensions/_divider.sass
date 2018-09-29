@@ -1,18 +1,19 @@
 $divider-background-color: $inverse !default
 $divider-thickness: .1rem !default
-$divider-font-size: 1.2rem !default
+$divider-font-size: 1.35rem !default
 $divider-color: $primary !default
 
-.is-divider, .is-divider-vertical
+.is-divider
   display: block
   position: relative
   border-top: $divider-thickness solid $divider-background-color
   height: $divider-thickness
-  margin: 2rem 0
+  margin: 2rem 0 5px 0
   text-align: center
 
+
 //Titulo
-.is-divider[data-content]::after, .is-divider-vertical[data-content]::after
+.is-divider[data-content]::after
   background: $white
   color: $divider-color
   content: attr(data-content)
@@ -25,7 +26,7 @@ $divider-color: $primary !default
   text-align: center
   font-weight: bold
 
-.is-divider,.is-divider-vertical
+.is-divider
   @each $name, $pair in mergeColorMaps($colors, $shades)
     $color: nth($pair, 1)
     $color-invert: nth($pair, 2)
@@ -36,42 +37,3 @@ $divider-color: $primary !default
         color: $color
       &::before
         border-left-color: $color
-
-//DIVIDERS VERTICAIS...
-.is-divider-vertical
-  +tablet
-    display: block
-    flex: none
-    width: auto
-    height: auto
-    padding: 2rem
-    margin: 0
-    position: relative
-    border-top: none
-    min-height: 2rem
-    &::before
-      border-left: $divider-thickness solid $divider-background-color
-      bottom: 1rem
-      content: ""
-      display: block
-      left: 50%
-      position: absolute
-      top: 1rem
-      -webkit-transform: translateX(-50%)
-      -ms-transform: translateX(-50%)
-      transform: translateX(-50%)
-    &[data-content]::after
-      position: absolute
-      left: 50%
-      top: 50%
-      padding: .1rem
-      -webkit-transform: translateY(-50%) translateX(-50%)
-      -ms-transform: translateY(-50%) translateX(-50%)
-      transform: translateY(-50%) translateX(-50%)
-  &.is-muted
-    &::before
-      border-left: $divider-thickness solid $muted
-      opacity: .5
-  &.is-transparent
-    &::before
-      opacity: 0

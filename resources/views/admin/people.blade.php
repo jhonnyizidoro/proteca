@@ -5,8 +5,10 @@
     <button title="Adicionar uma pessoa" class="button is-fixed is-primary"><i class="fas fa-plus"></i></button>
     <div class="columns has-lateral-padding-45">
         <div class="column is-6">
-            <div class="is-divider" data-content="Quem somos"></div>
             <div class="columns is-multiline">
+				<div class="column is-12">
+					<div class="is-divider" data-content="Quem somos"></div>
+				</div>
                 @foreach ($teammates as $teammate)
                     <div class="column is-6">
                         <div class="card is-person">
@@ -48,13 +50,15 @@
             </div>
         </div>
         <div class="column is-6">
-            <div class="is-divider" data-content="Parceiros"></div>
             <div class="columns is-multiline">
+				<div class="column is-12">
+					<div class="is-divider" data-content="Parceiros"></div>
+				</div>
                 @foreach ($partners as $partner)
                     <div class="column is-6">
                         <div class="card is-person">
                             <a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
-                            <div class="quickview-trigger is-link" data-target="quickview-{{ $partner->id }}">
+                            <div class="is-link" data-target="quickview-{{ $partner->id }}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">
                                         <img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
@@ -65,35 +69,14 @@
                                 </div>
                             </div>                      
                         </div>
-                    </div>
-                    <div id="quickview-{{ $partner->id }}" class="quickview">
-                        <header class="quickview-header">
-                            <p class="title">{{ $partner->name }}</p>
-                            <span class="delete"></span>
-                        </header>
-                        <div class="quickview-body">{!! $partner->presentation !!}</div>
-                        <footer class="quickview-footer">
-                            @if ($partner->email)
-                                <a class="tooltip" data-tooltip="{{ $partner->email }}"><i class="fas fa-envelope"></i></a>
-                            @endif
-                            @if ($partner->facebook)
-                                <a target="_blank" href="{{ $partner->facebook }}"><i class="fab fa-facebook"></i></a>
-                            @endif
-                            @if ($partner->linkedin)
-                                <a target="_blank" href="{{ $partner->linkedin }}"><i class="fab fa-linkedin"></i></a>
-                            @endif
-                            @if ($partner->lattes)
-                                <a target="_blank" href="{{ $partner->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
-                            @endif
-                        </footer>
-                    </div>  
+                    </div> 
                 @endforeach
             </div>
         </div>
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}
-<div class="modal {{ $errors->isEmpty() ? '' : 'is-active' }}">
+<div class="modal {{ $errors->isEmpty() ? 'is-active' : 'is-active' }}">
     <div class="modal-background"></div>
     <button class="modal-close is-large"></button>
     <div class="modal-content">
@@ -138,28 +121,34 @@
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="E-mail para contato (opcional para parceiros)" name="email" value="{{ old('email') }}">
+                                                <input class="input" disabled type="text" placeholder="E-mail para contato" name="email" value="{{ old('email') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
                                             </div>
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="Facebook (opcional)" name="facebook" value="{{ old('facebook') }}">
+                                                <input class="input" disabled type="text" placeholder="Facebook (opcional)" name="facebook" value="{{ old('facebook') }}">
                                                 <span class="icon is-small is-left"><i class="fab fa-facebook-square"></i></span>
                                             </div>
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="Linkedin (opcional)" name="linkedin" value="{{ old('linkedin') }}">
+                                                <input class="input" disabled type="text" placeholder="Linkedin (opcional)" name="linkedin" value="{{ old('linkedin') }}">
                                                 <span class="icon is-small is-left"><i class="fab fa-linkedin"></i></span>
                                             </div>
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="Lattes (opcional)" name="lattes" value="{{ old('lattes') }}">
+                                                <input class="input" disabled type="text" placeholder="Lattes (opcional)" name="lattes" value="{{ old('lattes') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-eye fa-rotate-60"></i></span>
                                             </div>
-                                        </div>
+										</div>
+										<div class="column is-12">
+											<div class="control has-icons-left">
+												<input class="input" disabled type="text" placeholder="Link para o site do parceiro (opcional)" name="link" value="{{ old('link') }}">
+												<span class="icon is-small is-left"><i class="fas fa-link"></i></span>
+											</div>
+										</div>
                                     </div>
                                 </div>
                                 <div class="step-content">

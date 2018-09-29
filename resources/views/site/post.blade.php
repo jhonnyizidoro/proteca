@@ -4,7 +4,7 @@
 <div class="container">
     <div class="columns is-multiline is-centered">
         <div class="column is-12">
-            <span class="title">{{ $post->title }}</span>
+            <span class="post-title">{{ $post->title }}</span>
         </div>
         <div class="column is-6">
             <div class="post-meta">
@@ -13,9 +13,9 @@
             </div>
         </div>
         <div class="column is-10">
-            <div class="post-body">
-                {!! $post->body !!}
-            </div>
+			<div class="post-body">
+				{!! $post->body !!}
+			</div>
         </div>
     </div>
 </div>

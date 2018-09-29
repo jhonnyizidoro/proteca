@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <title>{{ env('APP_NAME') }} - Painel</title>
     </head>
-    <body>
+    <body class="m-b-100">
         <div class="navbar-top">
             <div class="container">
                 <div class="right">

@@ -18,27 +18,6 @@
                     </div>                      
                 </div>
             </div>
-            <div id="quickview-{{ $partner->id }}" class="quickview">
-                <header class="quickview-header">
-                    <p class="title">{{ $partner->name }}</p>
-                    <span class="delete"></span>
-                </header>
-                <div class="quickview-body">{!! $partner->presentation !!}</div>
-                <footer class="quickview-footer">
-                    @if ($partner->email)
-                        <a class="tooltip" data-tooltip="{{ $partner->email }}"><i class="fas fa-envelope"></i></a>
-                    @endif
-                    @if ($partner->facebook)
-                        <a target="_blank" href="{{ $partner->facebook }}"><i class="fab fa-facebook"></i></a>
-                    @endif
-                    @if ($partner->linkedin)
-                        <a target="_blank" href="{{ $partner->linkedin }}"><i class="fab fa-linkedin"></i></a>
-                    @endif
-                    @if ($partner->lattes)
-                        <a target="_blank" href="{{ $partner->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
-                    @endif
-                </footer>
-            </div>  
         @endforeach
     </div>
 </div>
@@ -46,7 +25,6 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-		quickview.initQuickview('.quickview-trigger');
 		card.resizeToFit('.card-content .title');
     });
 </script>

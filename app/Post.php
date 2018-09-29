@@ -36,7 +36,7 @@ class Post extends Model
 		$text = strip_tags($this->body);
         if (strlen($text) > $length) {
             return mb_substr($text, 0, $length).'...';
-        }
+		}
         return $text;
     }
 }

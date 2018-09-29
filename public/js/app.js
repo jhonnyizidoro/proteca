@@ -60,34 +60,70 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(1);
-module.exports = __webpack_require__(10);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeModalContent", function() { return changeModalContent; });
+var initModal = function initModal(modalSelector, openModalButtonsSelector, closeModalButtonSelector) {
+	var modal = document.querySelector(modalSelector);
+	var openModalButtons = document.querySelectorAll(openModalButtonsSelector);
+	var closeModalButton = document.querySelector(closeModalButtonSelector);
+	openModalButtons.forEach(function (openModalButton) {
+		openModalButton.addEventListener('click', function () {
+			modal.classList.add('is-active');
+		});
+	});
+	closeModalButton.addEventListener('click', function () {
+		modal.classList.remove('is-active');
+	});
+};
+/**
+ * @param Array recebe dois arrays de mesmo tamanho
+ * @return void
+ * Cada endereço do array modalSections receberá o conteúdo do mesmo endereço do array contents
+ */
+var changeModalContent = function changeModalContent(modalSectionsSelector, contents) {
+	var modalSections = document.querySelectorAll(modalSectionsSelector);
+	modalSections.forEach(function (section, index) {
+		section.innerHTML = contents[index];
+	});
+};
+
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window.navbar = __webpack_require__(2);
-window.notification = __webpack_require__(3);
-window.form = __webpack_require__(4);
-window.quickview = __webpack_require__(5);
-window.modal = __webpack_require__(6);
+__webpack_require__(2);
+module.exports = __webpack_require__(11);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+window.navbar = __webpack_require__(3);
+window.notification = __webpack_require__(4);
+window.form = __webpack_require__(5);
+window.quickview = __webpack_require__(6);
+window.modal = __webpack_require__(0);
 window.steps = __webpack_require__(7);
 window.confirmation = __webpack_require__(8);
 window.card = __webpack_require__(9);
+window.myscripts = __webpack_require__(10);
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
     language: 'pt_BR',
-    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen',
+    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen paste preview',
     mobile: { theme: 'mobile' },
     images_upload_url: "/api/biblioteca/imagem",
     images_upload_base_path: "/storage",
@@ -101,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -143,7 +179,7 @@ var scrollToNavbar = function scrollToNavbar() {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -161,7 +197,7 @@ var initNotification = function initNotification() {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -253,7 +289,7 @@ var initMaskedTimeForm = function initMaskedTimeForm(inputSelector) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -277,27 +313,6 @@ var initQuickview = function initQuickview(quickviewTriggerSelector) {
         closeButton.addEventListener('click', function () {
             quickview.classList.remove('is-active');
         });
-    });
-};
-
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
-var initModal = function initModal(modalSelector, openModalButtonSelector, closeModalButtonSelector) {
-    var modal = document.querySelector(modalSelector);
-    var openModalButton = document.querySelector(openModalButtonSelector);
-    var closeModalButton = document.querySelector(closeModalButtonSelector);
-    openModalButton.addEventListener('click', function () {
-        modal.classList.add('is-active');
-    });
-    closeModalButton.addEventListener('click', function () {
-        modal.classList.remove('is-active');
     });
 };
 
@@ -447,6 +462,35 @@ var resizeToFit = function resizeToFit(titleSelector) {
 
 /***/ }),
 /* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "workScript", function() { return workScript; });
+modal = __webpack_require__(0);
+
+var workScript = function workScript() {
+	var modalButtons = document.querySelectorAll('.meta a');
+	var cardButton = document.querySelector('.card a');
+	var buttonText = void 0;
+	modalButtons.forEach(function (modalButton) {
+		modalButton.addEventListener('click', function () {
+			if (!modalButton.dataset.file) {
+				cardButton.classList.add('is-disabled');
+			} else {
+				cardButton.classList.remove('is-disabled');
+				cardButton.href = modalButton.dataset.file;
+			}
+			modalButton.dataset.file ? buttonText = 'Download do arquivo' : buttonText = 'Nenhum arquivo disponível';
+			modal.changeModalContent(['.card .card-header-title', '.card .content', '.card a'], [modalButton.dataset.title, modalButton.dataset.abstract, buttonText]);
+		});
+	});
+};
+
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -1,13 +1,26 @@
-const initModal = (modalSelector, openModalButtonSelector, closeModalButtonSelector) => {
+const initModal = (modalSelector, openModalButtonsSelector, closeModalButtonSelector) => {
     const modal = document.querySelector(modalSelector);
-    const openModalButton = document.querySelector(openModalButtonSelector);
-    const closeModalButton = document.querySelector(closeModalButtonSelector);
-    openModalButton.addEventListener('click', ()=> {
-        modal.classList.add('is-active');
-    });
+    const openModalButtons = document.querySelectorAll(openModalButtonsSelector);
+	const closeModalButton = document.querySelector(closeModalButtonSelector);
+	openModalButtons.forEach(openModalButton => {
+		openModalButton.addEventListener('click', ()=> {
+			modal.classList.add('is-active');
+		});
+	});
     closeModalButton.addEventListener('click', ()=> {
         modal.classList.remove('is-active');
     });
 }
+/**
+ * @param Array recebe dois arrays de mesmo tamanho
+ * @return void
+ * Cada endereço do array modalSections receberá o conteúdo do mesmo endereço do array contents
+ */
+const changeModalContent = (modalSectionsSelector, contents) => {
+	const modalSections = document.querySelectorAll(modalSectionsSelector);
+	modalSections.forEach((section, index) => {
+		section.innerHTML = contents[index];
+	});
+}
 
-export {initModal};
+export {initModal, changeModalContent};

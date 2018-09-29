@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Work extends Model
 {
     protected $fillable = [
-        'title', 'category_id', 'file', 'abstract', 'show_abstract', 'url'
+        'title', 'category_id', 'file', 'abstract', 'url'
     ];
 
     public function category()
@@ -26,7 +26,15 @@ class Work extends Model
     {
         $array = explode('/', $this->file);
         return end($array);
-    }
+	}
+	
+	public function getFilePath($prefix = null)
+	{
+		if ($this->file != null){
+			return $prefix . $this->file;
+		}
+		return null;
+	}
 
     public function getShortTitle($length = 55)
     {

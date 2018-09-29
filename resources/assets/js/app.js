@@ -6,11 +6,12 @@ window.modal = require('./scripts/modal');
 window.steps = require('./scripts/steps');
 window.confirmation = require('./scripts/confirmation');
 window.card = require('./scripts/card');
+window.myscripts = require('./myScripts');
 
 window.tinymceConfig = {
     selector: '.wysiwyg',
     language: 'pt_BR',
-    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen',
+	plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen paste preview',
     mobile: { theme: 'mobile' },
     images_upload_url: "/api/biblioteca/imagem",
     images_upload_base_path: "/storage",

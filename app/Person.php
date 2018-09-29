@@ -14,11 +14,14 @@ class Person extends Model
 
     public function getNameAttribute($name)
     {
-        $nameArray = explode(' ', $name);
-        if (sizeof($nameArray) === 1){
-            return $name;
-        }
-        return "{$nameArray[0]} ".end($nameArray);
+		if ($this->type === 'team'){
+			$nameArray = explode(' ', $name);
+			if (sizeof($nameArray) === 1){
+				return $name;
+			}
+			return "{$nameArray[0]} ".end($nameArray);
+		}
+        return $name;
     }
 
 }
