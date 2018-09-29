@@ -5,18 +5,20 @@
     <div class="columns has-padding-30 is-multiline">
         @foreach ($partners as $partner)
             <div class="column is-4 is-3-fullhd">
-                <div class="card is-person">
-                    <div class="quickview-trigger is-link" data-target="quickview-{{ $partner->id }}">
-                        <div class="card-image">
-                            <figure class="image is-1by1">
-                                <img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <p class="title">{{ $partner->name }}</p>
-                        </div>
-                    </div>                      
-                </div>
+				<a target="_blank" href="{{ $partner->link }}">
+					<div class="card is-person">
+						<div class="is-link" data-target="quickview-{{ $partner->id }}">
+							<div class="card-image">
+								<figure class="image is-1by1">
+									<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+								</figure>
+							</div>
+							<div class="card-content">
+								<p class="title">{{ $partner->name }}</p>
+							</div>
+						</div>                      
+					</div>
+				</a>
             </div>
         @endforeach
     </div>

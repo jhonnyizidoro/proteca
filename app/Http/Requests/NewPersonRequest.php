@@ -25,12 +25,10 @@ class NewPersonRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:191|min:3',
-            'email' => 'nullable|email|max:191|required_if:type,team',
+			'email' => 'nullable|email|max:191|required_if:type,team',
+			'link' => 'nullable|url|max:191|required_if:type,partner',
             'image' => 'required|mimes:jpeg,jpg,png',
             'type' => 'required|in:partner,team',
-            'facebook' => 'nullable|url|max:191',
-            'linkedin' => 'nullable|url|max:191',
-            'lattes' => 'nullable|url|max:191',
             'presentation' => 'required|string|max:65000|required_if:type,team',
         ];
     }

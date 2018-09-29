@@ -7,11 +7,13 @@ use Auth;
 use App\Post;
 use App\Person;
 use App\Work;
+use App\Category;
 
 class SiteController extends Controller
 {
 
-    private $postsPageSize = 5;
+	private $postsPageSize = 5;
+	private $worksPageSize = 10;
 
     public function home()
     {
@@ -47,34 +49,21 @@ class SiteController extends Controller
         return view('site.post')->with('post', $post);
     }
 
-    public function works()
+    public function works(Request $request)
     {
-		$books = Work::whereHas('category', function($q){
-			$q->where('category', 'Livros');
-		})->orderBy('title')->get();
-		$articles = Work::whereHas('category', function($q){
-			$q->where('category', 'Artigos');
-		})->orderBy('title')->get();
-		$charts = Work::whereHas('category', function($q){
-			$q->where('category', 'Cartilhas');
-		})->orderBy('title')->get();
-		$laws = Work::whereHas('category', function($q){
-			$q->where('category', 'Leis');
-		})->orderBy('title')->get();
-		$reviews = Work::whereHas('category', function($q){
-			$q->where('category', 'Resenhas');
-		})->orderBy('title')->get();
-		$others = Work::whereHas('category', function($q){
-			$q->where('category', 'Outros');
-		})->orderBy('title')->get();
-
-		return view('site.works')
-			->with('books', $books)
-			->with('articles', $articles)
-			->with('laws', $laws)
-			->with('reviews', $reviews)
-			->with('others', $others)
-			->with('charts', $charts);
+		$works = new Work;
+        if ($request->has('titulo')){
+            $works = $works->where('title', 'like', "%{$request->titulo}%");
+        }
+        if ($request->has('categoria') && $request->categoria){
+            $works = $works->where('category_id', "{$request->categoria}");
+        }
+        $works = $works->orderBy('title')->paginate($this->worksPageSize)->appends([
+            'titulo' => $request->titulo,
+            'categoria' => $request->categoria,
+        ]);
+		$categories = Category::orderBy('category')->get();
+		return view('site.works')->with('works', $works)->with('categories', $categories);
     }
 
     public function team()

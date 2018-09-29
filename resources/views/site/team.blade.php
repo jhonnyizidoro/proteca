@@ -1,6 +1,5 @@
 @extends('partials.layouts.site')
 @section('content')
-
 <div class="container">
     <div class="columns has-padding-30 is-multiline">
         @foreach ($teammates as $teammate)
@@ -25,18 +24,7 @@
                 </header>
                 <div class="quickview-body">{!! $teammate->presentation !!}</div>
                 <footer class="quickview-footer">
-                    @if ($teammate->email)
-                        <a class="tooltip" data-tooltip="{{ $teammate->email }}"><i class="fas fa-envelope"></i></a>
-                    @endif
-                    @if ($teammate->facebook)
-                        <a target="_blank" href="{{ $teammate->facebook }}"><i class="fab fa-facebook"></i></a>
-                    @endif
-                    @if ($teammate->linkedin)
-                        <a target="_blank" href="{{ $teammate->linkedin }}"><i class="fab fa-linkedin"></i></a>
-                    @endif
-                    @if ($teammate->lattes)
-                        <a target="_blank" href="{{ $teammate->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
-                    @endif
+					<i class="fas fa-envelope"></i>{{ $teammate->email }}
                 </footer>
             </div>  
         @endforeach

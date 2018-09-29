@@ -24,11 +24,19 @@
                 padding-right: 30px;
             }
         }
-        &.has-lateral-padding-45 {
+        &.has-lateral-padding-45:not(.is-multiline) {
             >.column:not(:first-child) {
                 padding-left: 45px;
             }
             >.column:not(:last-child) {
+                padding-right: 45px;
+            }
+		}
+		&.has-lateral-padding-45.is-multiline {
+            >.column {
+                padding-left: 45px;
+            }
+            >.column {
                 padding-right: 45px;
             }
         }

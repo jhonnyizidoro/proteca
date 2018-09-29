@@ -470,7 +470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 modal = __webpack_require__(0);
 
 var workScript = function workScript() {
-	var modalButtons = document.querySelectorAll('.meta a');
+	var modalButtons = document.querySelectorAll('.work');
 	var cardButton = document.querySelector('.card a');
 	var buttonText = void 0;
 	modalButtons.forEach(function (modalButton) {

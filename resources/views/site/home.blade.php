@@ -77,11 +77,11 @@
                 </div>
                 @foreach ($works as $work)
 					<div class="column is-12">
-						<div class="work">
-							<div class="work-title">{{ $work->title }}</div>
+						<div class="work is-animated" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->getFilePath("/storage/") }}">
+							<div class="work-title has-text-centered">{{ $work->title }}</div>
 							<div class="meta">
-								<span>Postado em {{ $work->created_at }}</span>
-								<a data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->getFilePath("/storage/") }}">Ver mais</a>
+								<span class="tag">[ {{ $work->getDate() . ' - ' . $work->getTime() }}]</span>
+								<span class="tag">{{ $work->category->category }}</span>
 							</div>
 						</div>
 					</div>
@@ -111,7 +111,7 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-		modal.initModal('.modal', '.meta a', '.modal-close');
+		modal.initModal('.modal', '.work', '.modal-close');
 		myscripts.workScript();
     });
 </script>

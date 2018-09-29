@@ -1,7 +1,7 @@
 modal = require('./scripts/modal');
 
 const workScript = ()=> {
-	const modalButtons = document.querySelectorAll('.meta a');
+	const modalButtons = document.querySelectorAll('.work');
 	const cardButton = document.querySelector('.card a');
 	let buttonText;
 	modalButtons.forEach(modalButton => {

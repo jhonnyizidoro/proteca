@@ -108,6 +108,9 @@ return [
 		],
 		'email' => [
             'required_if' => 'O campo email é obrigatório para membros do time.',
+		],
+		'link' => [
+            'required_if' => 'O campo link é obrigatório para parceiros.',
         ],
     ],
 

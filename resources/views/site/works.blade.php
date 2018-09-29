@@ -2,110 +2,41 @@
 @section('content')
 
 <div class="container">
-    <div class="columns has-lateral-padding-45 is-multiline">
-        <div class="column is-6">
-            <div class="columns is-multiline">
-				@if (count($articles) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Artigos"></div>
+    <div class="columns is-multiline is-centered">
+		<div class="column is-10">
+			<form action="{{ route('works') }}">
+				<div class="field has-addons">
+					<div class="control is-expanded">
+						<input class="input" type="text" name="titulo" placeholder="Buscar um item" value="{{ Request::get('titulo') }}">
 					</div>
-					@foreach ($articles as $article)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $article->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $article->created_at }}</span>
-									<a data-title="{{ $article->title }}" data-abstract="{{ $article->abstract }}" data-file="{{ $article->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-				@if (count($others) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Outros"></div>
+					<div class="control select">
+						<select name="categoria">
+							<option value="">Todas as categorias</option>
+							@foreach ($categories as $category )
+								<option {{ Request::get('categoria') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->category }}</option>
+							@endforeach
+						</select>
 					</div>
-					@foreach ($others as $other)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $other->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $other->created_at }}</span>
-									<a data-title="{{ $other->title }}" data-abstract="{{ $other->abstract }}" data-file="{{ $other->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-				@if (count($laws) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Leis"></div>
+					<div class="control">
+						<button class="button is-primary"><i class="fas fa-search"></i></button>
 					</div>
-					@foreach ($laws as $law)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $law->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $law->created_at }}</span>
-									<a data-title="{{ $law->title }}" data-abstract="{{ $law->abstract }}" data-file="{{ $law->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-            </div>
+				</div>
+			</form>
 		</div>
-		<div class="column is-6">
-			<div class="columns is-multiline">
-					@if (count($charts) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Cartilhas"></div>
+		@foreach ($works as $work)
+			<div class="column is-10">
+				<div class="work" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->getFilePath("/storage/") }}">
+					<div class="work-title has-text-centered">{{ $work->title }}</div>
+					<div class="preview">{!! $work->getPrologue() !!}</div>
+					<div class="meta">
+						<span class="tag">[ {{ $work->getDate() . ' - ' . $work->getTime() }}]</span>
+						<span class="tag">{{ $work->category->category }}</span>
 					</div>
-					@foreach ($charts as $chart)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $chart->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $chart->created_at }}</span>
-									<a data-title="{{ $chart->title }}" data-abstract="{{ $chart->abstract }}" data-file="{{ $chart->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-				@if (count($books) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Livros"></div>
-					</div>
-					@foreach ($books as $book)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $book->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $book->created_at }}</span>
-									<a data-title="{{ $book->title }}" data-abstract="{{ $book->abstract }}" data-file="{{ $book->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
-				@if (count($reviews) > 0)
-					<div class="column is-12">
-						<div class="is-divider" data-content="Resenhas"></div>
-					</div>
-					@foreach ($reviews as $review)
-						<div class="column is-12">
-							<div class="work">
-								<div class="work-title">{{ $review->title }}</div>
-								<div class="meta">
-									<span>Postado em {{ $review->created_at }}</span>
-									<a data-title="{{ $review->title }}" data-abstract="{{ $review->abstract }}" data-file="{{ $review->getFilePath("/storage/") }}">Ver mais</a>
-								</div>
-							</div>
-						</div>
-					@endforeach
-				@endif
+				</div>
 			</div>
+		@endforeach
+		<div class="column is-10">
+			{{ $works->links() }}
 		</div>
     </div>
 </div>
@@ -130,7 +61,7 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-		modal.initModal('.modal', '.meta a', '.modal-close');
+		modal.initModal('.modal', '.work', '.modal-close');
 		myscripts.workScript();
     });
 </script>

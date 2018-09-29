@@ -32,18 +32,7 @@
                         </header>
                         <div class="quickview-body">{!! $teammate->presentation !!}</div>
                         <footer class="quickview-footer">
-                            @if ($teammate->email)
-                                <a class="tooltip" data-tooltip="{{ $teammate->email }}"><i class="fas fa-envelope"></i></a>
-                            @endif
-                            @if ($teammate->facebook)
-                                <a target="_blank" href="{{ $teammate->facebook }}"><i class="fab fa-facebook"></i></a>
-                            @endif
-                            @if ($teammate->linkedin)
-                                <a target="_blank" href="{{ $teammate->linkedin }}"><i class="fab fa-linkedin"></i></a>
-                            @endif
-                            @if ($teammate->lattes)
-                                <a target="_blank" href="{{ $teammate->lattes }}"><i class="fas fa-eye fa-lattes"></i></a>
-                            @endif
+							<i class="fas fa-envelope"></i>{{ $teammate->email }}
                         </footer>
                     </div>  
                 @endforeach
@@ -76,7 +65,7 @@
     </div>
 </div>
 {{-- Modal para registrar novo usuário --}}
-<div class="modal {{ $errors->isEmpty() ? 'is-active' : 'is-active' }}">
+<div class="modal {{ $errors->isEmpty() ? '' : 'is-active' }}">
     <div class="modal-background"></div>
     <button class="modal-close is-large"></button>
     <div class="modal-content">
@@ -121,31 +110,13 @@
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input" disabled type="text" placeholder="E-mail para contato" name="email" value="{{ old('email') }}">
+                                                <input class="input" type="text" placeholder="E-mail (apenas para membros)" name="email" value="{{ old('email') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
                                             </div>
                                         </div>
-                                        <div class="column is-12">
-                                            <div class="control has-icons-left">
-                                                <input class="input" disabled type="text" placeholder="Facebook (opcional)" name="facebook" value="{{ old('facebook') }}">
-                                                <span class="icon is-small is-left"><i class="fab fa-facebook-square"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="column is-12">
-                                            <div class="control has-icons-left">
-                                                <input class="input" disabled type="text" placeholder="Linkedin (opcional)" name="linkedin" value="{{ old('linkedin') }}">
-                                                <span class="icon is-small is-left"><i class="fab fa-linkedin"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="column is-12">
-                                            <div class="control has-icons-left">
-                                                <input class="input" disabled type="text" placeholder="Lattes (opcional)" name="lattes" value="{{ old('lattes') }}">
-                                                <span class="icon is-small is-left"><i class="fas fa-eye fa-rotate-60"></i></span>
-                                            </div>
-										</div>
 										<div class="column is-12">
 											<div class="control has-icons-left">
-												<input class="input" disabled type="text" placeholder="Link para o site do parceiro (opcional)" name="link" value="{{ old('link') }}">
+												<input class="input" type="text" placeholder="Link do site (apenas para parceiros)" name="link" value="{{ old('link') }}">
 												<span class="icon is-small is-left"><i class="fas fa-link"></i></span>
 											</div>
 										</div>
