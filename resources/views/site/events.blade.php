@@ -5,7 +5,7 @@
 		<div class="columns is-multiline">
 			<div class="column is-8">
 				<div class="iframe-container">
-					<iframe allowfullscreen src="https://www.google.com/maps/embed/v1/place?key={{ env('MAPS_KEY') }}={{ $nextEvent->address }}"></iframe>
+					<iframe allowfullscreen src="https://www.google.com/maps/embed/v1/place?key={{ env('MAPS_KEY') }}&q={{ $nextEvent->address }}"></iframe>
 				</div>
 			</div>
 			<div class="column is-4">
