@@ -13,9 +13,10 @@
         margin-bottom: 20px;
         border-radius: 30px;
         z-index: $fixed-button-z-index;
-        &.aside {
-            right: 75px;
-        }
+		transition: 200ms;
+		&:hover {
+			transform: scale(1.05);
+		}
     }
     &.is-primary {
         background-color: $primary;

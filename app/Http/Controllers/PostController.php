@@ -29,7 +29,7 @@ class PostController extends Controller
     public function showEditPostForm($id)
     {
         $post = Post::find($id);
-        if (Auth::user()->isAuthorOrAdmin($post)){
+        if ($post && Auth::user()->isAuthorOrAdmin($post)){
             return view('admin.editpost')->with('post', $post);
         }
         return redirect()->route('admin.posts')->with('status', 'Você só pode editar uma notícia caso seja um administrador ou o autor da noticia.');

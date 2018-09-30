@@ -17,7 +17,15 @@
         left: 50%;
     }
     &.is-small {
-        height: 25vh;
+		height: 25vh;
+		filter: brightness(1.2);
+		.logo {
+			padding: $navbar-top-height 5px 0 5px;
+			height: 80%;
+			transform: translateY(15%) translateX(-50%);
+			left: 50%;
+			object-fit: contain;
+		}
     }
 }
 

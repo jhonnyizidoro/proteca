@@ -45,19 +45,19 @@
 				</div>
                 @foreach ($partners as $partner)
                     <div class="column is-6">
-                        <div class="card is-person">
-                            <a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
-                            <div class="is-link" data-target="quickview-{{ $partner->id }}">
-                                <div class="card-image">
-                                    <figure class="image is-1by1">
-                                        <img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-                                    <p class="title">{{ $partner->name }}</p>
-                                </div>
-                            </div>                      
-                        </div>
+						<div class="card is-person">
+							<a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
+							<a target="_blank" href="{{ $partner->link }}">
+								<div class="card-image">
+									<figure class="image is-1by1">
+										<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+									</figure>
+								</div>
+								<div class="card-content">
+									<p class="title">{{ $partner->name }}</p>
+								</div>
+							</a>
+						</div>
                     </div> 
                 @endforeach
             </div>

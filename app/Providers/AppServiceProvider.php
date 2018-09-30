@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
+use App\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Paginator::defaultView('partials.pagination.pagination');
+		Paginator::defaultView('partials.pagination.pagination');
+		
+		Blade::if('hasevent', function () {
+			return Event::where('date', '>=', date('Y-m-d'))->first();
+		});
+
+		Blade::if('admin', function () {
+			return auth()->user()->hasTheRole('admin');
+		});
+
     }
 
     /**

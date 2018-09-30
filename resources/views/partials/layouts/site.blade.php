@@ -26,7 +26,7 @@
                     <a class="navbar-item" href="{{ route('works') }}">
                         Biblioteca
                     </a>
-                    <a class="navbar-item" href="# ">
+                    <a class="navbar-item" href="{{ route('help') }}">
                         Ajuda
                     </a>
                     <a class="navbar-item" href="{{ route('team') }}">
@@ -34,10 +34,12 @@
                     </a>
                     <a class="navbar-item" href="{{ route('partners') }}">
                         Parceiros
-                    </a>
-                    <a class="navbar-item" href="{{ route('events') }}">
-                        Eventos
-                    </a>
+					</a>
+					@hasevent
+						<a class="navbar-item" href="{{ route('events') }}">
+							Eventos
+						</a>
+					@endhasevent
                 </div>
             </div>
         </nav>

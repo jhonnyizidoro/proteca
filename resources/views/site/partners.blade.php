@@ -7,16 +7,14 @@
             <div class="column is-4 is-3-fullhd">
 				<a target="_blank" href="{{ $partner->link }}">
 					<div class="card is-person">
-						<div class="is-link" data-target="quickview-{{ $partner->id }}">
-							<div class="card-image">
-								<figure class="image is-1by1">
-									<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
-								</figure>
-							</div>
-							<div class="card-content">
-								<p class="title">{{ $partner->name }}</p>
-							</div>
-						</div>                      
+						<div class="card-image">
+							<figure class="image is-1by1">
+								<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+							</figure>
+						</div>
+						<div class="card-content">
+							<p class="title">{{ $partner->name }}</p>
+						</div>
 					</div>
 				</a>
             </div>

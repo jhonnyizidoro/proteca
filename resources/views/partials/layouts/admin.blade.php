@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="banner is-small">
-            {{-- <a href="{{ route('admin') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo PROTECA" class="logo"></a> --}}
+			<a href="{{ route('admin') }}"><img src="{{ asset('images/logo-admin.png') }}" alt="Logo PROTECA" class="logo"></a>
             <img src="{{ asset('images/blured-banner.jpg') }}" alt="PROTECA" class="background">
         </div>
         <nav class="navbar">
@@ -40,14 +40,14 @@
                     <a class="navbar-item" href="{{ route('admin.events') }}">
                         Eventos
                     </a>
-                    @if (auth()->user()->hasTheRole('admin'))
+                    @admin
                         <a class="navbar-item" href="{{ route('admin.users') }}">
                             Usuários
                         </a>
                         <a class="navbar-item" href="{{ route('admin.people') }}">
                             Pessoas
                         </a>
-                    @endif
+					@endadmin
                 </div>
             </div>
         </nav>

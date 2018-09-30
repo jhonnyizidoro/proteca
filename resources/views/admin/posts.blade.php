@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="columns is-centered is-multiline">
-        <div class="column is-12">
+        <div class="column is-12 is-10-fullhd">
             @include('partials.alerts.status')
             <a title="Adicionar notícia" class="button is-fixed is-primary" href="{{ route('admin.posts.new') }}"><i class="fas fa-plus"></i></a>
             <form action="{{ route('admin.posts') }}">

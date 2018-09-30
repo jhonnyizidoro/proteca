@@ -1,5 +1,9 @@
+.has-responsive-table { 
+	overflow-x: auto !important; 
+}
+
 table.table {
-    border: 1px solid #EBEBEB;
+	border: 1px solid #EBEBEB;
     .is-address {
         padding-left: 32px;
         i {

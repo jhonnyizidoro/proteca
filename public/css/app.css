@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);@import url(https://use.fontawesome.com/releases/v5.2.0/css/all.css);/** Z-Index variables */
 
+/** Navbar */
+
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
@@ -14629,6 +14631,33 @@ span.info {
   text-align: center;
 }
 
+.event {
+  color: #14252A;
+}
+
+.event .name {
+  font-size: 1.4rem;
+  text-align: left;
+  font-weight: 1000;
+}
+
+.event .meta {
+  margin-top: 1rem;
+}
+
+.event .meta .title {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.not-found .code {
+  font-size: 10rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+}
+
 .banner {
   height: 35vh;
   position: relative;
@@ -14656,6 +14685,18 @@ span.info {
 
 .banner.is-small {
   height: 25vh;
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+}
+
+.banner.is-small .logo {
+  padding: 25px 5px 0 5px;
+  height: 80%;
+  -webkit-transform: translateY(15%) translateX(-50%);
+          transform: translateY(15%) translateX(-50%);
+  left: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .thumbnail-preview {
@@ -14760,10 +14801,13 @@ span.info {
   margin-bottom: 20px;
   border-radius: 30px;
   z-index: 99;
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
-.button.is-fixed.aside {
-  right: 75px;
+.button.is-fixed:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .button.is-primary {
@@ -15173,6 +15217,10 @@ select,
           box-shadow: none;
 }
 
+.has-responsive-table {
+  overflow-x: auto !important;
+}
+
 table.table {
   border: 1px solid #EBEBEB;
 }
@@ -15283,6 +15331,18 @@ table.table td:last-child {
 
 .modal .modal-content.is-large {
   width: 70%;
+}
+
+.modal .modal-close {
+  background: #ff3860;
+  color: #FEFFFF;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.modal .modal-close:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 1088px) {

@@ -23,7 +23,7 @@
             </div>
         </form>
     </div>
-    <div class="column is-10">
+    <div class="column is-10 has-responsive-table">
         <table class="table is-fullwidth">
             <thead>
                 <tr>

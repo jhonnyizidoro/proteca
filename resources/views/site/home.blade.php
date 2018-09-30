@@ -73,7 +73,7 @@
         <div class="column is-7">
             <div class="columns is-multiline">
                 <div class="column is-12">
-                    <div class="is-divider" data-content="Itens recentes da biblioteca"></div>
+                    <div class="is-divider" data-content="Itens da biblioteca"></div>
                 </div>
                 @foreach ($works as $work)
 					<div class="column is-12">

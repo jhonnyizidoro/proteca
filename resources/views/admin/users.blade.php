@@ -30,7 +30,7 @@
                 </div>
             </form>
         </div>
-        <div class="column is-12">
+        <div class="column is-12 has-responsive-table">
             <table class="table is-fullwidth">
                 <thead>
                     <tr>

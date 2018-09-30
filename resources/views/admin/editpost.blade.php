@@ -9,7 +9,7 @@
             <form class="control" method="POST" action="{{ route('admin.posts.update', $post->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="columns is-centered is-multiline">
-                    <div class="column is-12">
+                    <div class="column is-8">
                         <img class="thumbnail-preview" src="/storage/{{ $post->thumbnail }}">
                     </div>
                     <div class="column is-8">

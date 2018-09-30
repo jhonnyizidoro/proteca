@@ -117,11 +117,37 @@ span.info {
 		transform: scale(1.01);
 	}
 }
-
 .video-list {
 	height: 100%;
 	display: flex;
 	justify-content: space-around;
 	flex-direction: column;
 	text-align: center;
+}
+
+//EVENTO EM DESTAQUE
+.event {
+	color: $primary;
+	.name {
+		font-size: 1.4rem;
+		text-align: left;
+		font-weight: 1000;
+	}
+	.meta {
+		margin-top: 1rem;
+		.title {
+			font-size: 1.1rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin: 0;
+		}
+	}
+}
+
+.not-found {
+	.code {
+		font-size: 10rem;
+		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		text-align: center;
+	}
 }

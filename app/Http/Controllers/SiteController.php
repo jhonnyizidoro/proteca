@@ -17,6 +17,17 @@ class SiteController extends Controller
 	private $worksPageSize = 10;
 	private $eventsAmount = 5;
 
+	public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('home');
+    }
+
+    public function admin()
+    {
+        return redirect()->route('admin.posts');
+    }
+
     public function home()
     {
         $featuredPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
@@ -28,20 +39,15 @@ class SiteController extends Controller
             ->with('works', $works);
     }
 
-    public function logout()
+    public function posts(Request $request)
     {
-        Auth::logout();
-        return redirect()->route('home');
-    }
-
-    public function admin()
-    {
-        return redirect()->route('admin.posts');
-    }
-
-    public function posts()
-    {
-        $posts = Post::orderBy('created_at', 'desc')->paginate($this->postsPageSize);
+		$posts = new Post;
+        if ($request->has('titulo')){
+            $posts = $posts->where('title', 'like', "%{$request->titulo}%");
+        }
+        $posts = $posts->orderBy('created_at', 'desc')->paginate($this->postsPageSize)->appends([
+            'titulo' => $request->titulo,
+        ]);
         return view('site.posts')->with('posts', $posts);
     }
 
@@ -66,7 +72,12 @@ class SiteController extends Controller
         ]);
 		$categories = Category::orderBy('category')->get();
 		return view('site.works')->with('works', $works)->with('categories', $categories);
-    }
+	}
+	
+	public function help()
+	{
+		return view('site.help');
+	}
 
     public function team()
     {
