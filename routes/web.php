@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
 });
 
 //ROTAS DE AUTENTICAÇÃO
-Route::group(['prefix' => 'login', 'namespace' => 'auth'], function(){
+Route::group(['prefix' => 'login', 'namespace' => 'Auth'], function(){
     Route::get('/', 'LoginController@showLoginForm')->name('login');
     Route::post('/', 'LoginController@login');
 });

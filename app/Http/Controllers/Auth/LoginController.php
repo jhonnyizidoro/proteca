@@ -34,7 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-		dd('teste');
         $this->middleware('guest')->except('logout');
     }
 }
