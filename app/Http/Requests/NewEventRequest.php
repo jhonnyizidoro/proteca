@@ -25,12 +25,10 @@ class NewEventRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:191|min:3',
-            'location' => 'required|string|max:191|min:3',
+            'address' => 'required|string|max:191|min:3',
             'date' => 'required|date_format:d/m/Y',
             'starts_at' => 'required|date_format:H:i',
             'ends_at' => 'required|date_format:H:i',
-            'url' => 'nullable|url|max:191',
-            'organizer' => 'nullable|string|max:191|min:3',
             'details' => 'required|string|max:65000',
         ];
     }

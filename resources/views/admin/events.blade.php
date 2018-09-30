@@ -30,17 +30,17 @@
                         <th>Evento</th>
                         <th>Data</th>
                         <th>Horário</th>
-                        <th>Local</th>
+                        <th>Endereço</th>
                         <th>Gerenciar</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($events as $event)
                         <tr>
-                            <td>{{ $event->name }}</td>
+                            <td title="{{ $event->name }}">{{ $event->getShortName() }}</td>
                             <td>{{ $event->date }}</td>
                             <td>{{ $event->starts_at }} - {{ $event->ends_at }}</td>
-                            <td class="is-location"><a data-tooltip="{{ $event->location }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
+                            <td class="is-address"><a data-tooltip="{{ $event->address }}" class="tooltip"><i class="fas fa-map-marker-alt"></i></a></td>
                             <td><a class="delete-event" href='{{ route('admin.events.delete', $event->id) }}'>Excluir</a></td>
                         </tr>
                     @endforeach
@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="column is-12">
                                             <div class="control has-icons-left">
-                                                <input class="input has-char-counter" type="text" placeholder="Local do evento" name="location" value="{{ old('location') }}">
+                                                <input class="input has-char-counter" type="text" placeholder="Endereço do evento" name="address" value="{{ old('address') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-map-marker-alt"></i></span>
                                                 <span class="char-counter">191</span>
                                             </div>
@@ -106,18 +106,6 @@
                                             <div class="control has-icons-left">
                                                 <input class="input" type="text" placeholder="Fim" name="ends_at" value="{{ old('ends_at') }}">
                                                 <span class="icon is-small is-left"><i class="fas fa-hourglass-start is-rotated-180"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="column is-12">
-                                            <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="Organizador do evento (opcional)" name="organizer" value="{{ old('organizer') }}">
-                                                <span class="icon is-small is-left"><i class="fas fa-male"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="column is-12">
-                                            <div class="control has-icons-left">
-                                                <input class="input" type="text" placeholder="URL do evento (opcional)" name="url" value="{{ old('url') }}">
-                                                <span class="icon is-small is-left"><i class="fas fa-link"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +151,7 @@
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-        form.initCharCounter('input[name="location"]', '.char-counter');
+        form.initCharCounter('input[name="address"]', '.char-counter');
         modal.initModal('.modal', '.button.is-fixed', '.modal-close');
         notification.initNotification();
         form.initMaskedDateForm('input[name="date"]');

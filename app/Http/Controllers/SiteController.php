@@ -8,21 +8,23 @@ use App\Post;
 use App\Person;
 use App\Work;
 use App\Category;
+use App\Event;
 
 class SiteController extends Controller
 {
 
 	private $postsPageSize = 5;
 	private $worksPageSize = 10;
+	private $eventsAmount = 5;
 
     public function home()
     {
-        $featureds = Post::orderBy('created_at', 'desc')->take(3)->get();
-        $newposts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        $featuredPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        $newPosts = Post::orderBy('created_at', 'desc')->take(5)->get();
         $works = Work::orderBy('created_at', 'desc')->take(10)->get();
         return view('site.home')
-            ->with('featureds', $featureds)
-            ->with('newposts', $newposts)
+            ->with('featuredPosts', $featuredPosts)
+            ->with('newPosts', $newPosts)
             ->with('works', $works);
     }
 
@@ -76,6 +78,13 @@ class SiteController extends Controller
     {
         $partners = Person::where('type', 'partner')->orderBy('name')->get();
         return view('site.partners')->with('partners', $partners);
-    }
+	}
+	
+	public function events()
+	{
+		$nextEvent = Event::where('date', '>=', date('Y-m-d'))->orderBy('date', 'asc')->first();
+		$events = Event::where('date', '>=', date('Y-m-d'))->orderBy('date', 'asc')->skip(1)->take($this->eventsAmount)->get();
+		return view('site.events')->with('nextEvent', $nextEvent)->with('events', $events);
+	}
 
 }

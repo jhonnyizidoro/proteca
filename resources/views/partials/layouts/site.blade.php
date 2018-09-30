@@ -35,7 +35,7 @@
                     <a class="navbar-item" href="{{ route('partners') }}">
                         Parceiros
                     </a>
-                    <a class="navbar-item" href="# ">
+                    <a class="navbar-item" href="{{ route('events') }}">
                         Eventos
                     </a>
                 </div>

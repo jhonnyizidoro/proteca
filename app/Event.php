@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Event extends Model
 {
     protected $fillable = [
-        'name', 'date', 'url', 'organizer', 'location', 'details', 'starts_at', 'ends_at'
+        'name', 'date', 'address', 'details', 'starts_at', 'ends_at'
     ];
 
     public function getCreatedAtAttribute($date)
@@ -29,5 +29,14 @@ class Event extends Model
     public function getEndsAtAttribute($time)
     {
         return mb_substr($time, 0, 5);
-    }
+	}
+	
+	public function getShortName($length = 45)
+    {
+        $name = $this->name;
+        if (strlen($name) > $length) {
+            return mb_substr($name, 0, $length).'...';
+        }
+        return $name;
+	}
 }

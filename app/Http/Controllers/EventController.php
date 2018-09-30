@@ -32,7 +32,7 @@ class EventController extends Controller
     {
         $data = $request->all();
         $dateArray = explode('/', $data['date']);
-        $data['date'] = "{$dateArray[2]}-{$dateArray[1]}-$dateArray[0]";
+		$data['date'] = "{$dateArray[2]}-{$dateArray[1]}-$dateArray[0]";
         $event = Event::create($data);
         return redirect()->route('admin.events')->with('status', "O evento <b>{$event->name}</b> foi adicionado com sucesso!");
     }

@@ -5,7 +5,7 @@
 	{{-- Vídeos em destaque --}}
     <div class="columns is-multiline is-centered">
 		<div class="column is-8">
-			<div class="video-frame">
+			<div class="iframe-container">
 				<iframe src="https://www.youtube.com/embed/8MRdu6LW80w?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</div>
 		</div>
@@ -25,20 +25,20 @@
         <div class="column is-12">
             <div class="is-divider" data-content="Destaques"></div>
         </div>
-        @foreach ($featureds as $key => $featured)
+        @foreach ($featuredPosts as $key => $featuredPost)
             <div class="column is-12">
                 <div class="post {{ $key % 2 == 0 ? '' : 'alt' }}">
                     <div class="meta">
-                        <img class="photo" src="/storage/{{ $featured->thumbnail }}">
+                        <img class="photo" src="/storage/{{ $featuredPost->thumbnail }}">
                         <ul class="details">
-                            <li class="author">{{ $featured->user()->first()->name }}</li>
-                            <li class="date">{{ $featured->created_at }}</li>
+                            <li class="author">{{ $featuredPost->user()->first()->name }}</li>
+                            <li class="date">{{ $featuredPost->created_at }}</li>
                         </ul>
                     </div>
                     <div class="description">
-                        <h1>{{ $featured->title }}</h1>
-                        <p>{{ $featured->getPrologue() }}</p>
-                        <p class="read-more"><a href="{{ route('post', $featured->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
+                        <h1>{{ $featuredPost->title }}</h1>
+                        <p>{{ $featuredPost->getPrologue() }}</p>
+                        <p class="read-more"><a href="{{ route('post', $featuredPost->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
                     </div>
                 </div>
             </div>
@@ -51,19 +51,19 @@
                 <div class="column is-12">
                     <div class="is-divider" data-content="Últimas Notícias"></div>
                 </div>
-                @foreach ($newposts as $newpost)
+                @foreach ($newPosts as $newPost)
                     <div class="column is-12">
                         <div class="post is-vertical">
                             <div class="meta">
-                                <img class="photo black-and-white" src="/storage/{{ $newpost->thumbnail }}">
+                                <img class="photo black-and-white" src="/storage/{{ $newPost->thumbnail }}">
                                 <ul class="details">
-                                    <li class="author">{{ $newpost->user()->first()->name }}</li>
-                                    <li class="date">{{ $newpost->created_at }}</li>
+                                    <li class="author">{{ $newPost->user()->first()->name }}</li>
+                                    <li class="date">{{ $newPost->created_at }}</li>
                                 </ul>
                             </div>
                             <div class="description">
-                                <h1>{{ $newpost->title }}</h1>
-                                <p class="read-more"><a href="{{ route('post', $newpost->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
+                                <h1>{{ $newPost->title }}</h1>
+                                <p class="read-more"><a href="{{ route('post', $newPost->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
                             </div>
                         </div>
                     </div>

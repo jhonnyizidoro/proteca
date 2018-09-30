@@ -6,6 +6,7 @@ Route::get('/noticias', 'SiteController@posts')->name('posts');
 Route::get('/biblioteca', 'SiteController@works')->name('works');
 Route::get('/quemsomos', 'SiteController@team')->name('team');
 Route::get('/parceiros', 'SiteController@partners')->name('partners');
+Route::get('/eventos', 'SiteController@events')->name('events');
 
 //ADMIN
 Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
