@@ -1,1 +1,499 @@
-!function(e){var t={};function n(i){if(t[i])return t[i].exports;var c=t[i]={i:i,l:!1,exports:{}};return e[i].call(c.exports,c,c.exports,n),c.l=!0,c.exports}n.m=e,n.c=t,n.d=function(e,t,i){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:i})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=1)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initModal",function(){return i}),n.d(t,"changeModalContent",function(){return c});var i=function(e,t,n){var i=document.querySelector(e),c=document.querySelectorAll(t),a=document.querySelector(n);c.forEach(function(e){e.addEventListener("click",function(){i.classList.add("is-active")})}),a.addEventListener("click",function(){i.classList.remove("is-active")})},c=function(e,t){document.querySelectorAll(e).forEach(function(e,n){e.innerHTML=t[n]})}},function(e,t,n){n(2),e.exports=n(11)},function(e,t,n){window.navbar=n(3),window.notification=n(4),window.form=n(5),window.quickview=n(6),window.modal=n(0),window.steps=n(7),window.confirmation=n(8),window.card=n(9),window.myscripts=n(10),window.tinymceConfig={selector:".wysiwyg",language:"pt_BR",plugins:"image imagetools advlist code media link colorpicker paste table textcolor fullscreen paste preview",mobile:{theme:"mobile"},images_upload_url:"/api/biblioteca/imagem",images_upload_base_path:"/storage",height:"300",entity_encoding:"raw"},document.addEventListener("DOMContentLoaded",function(){navbar.activateNavbarLink(),navbar.activateNavbarResponsiveness()})},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"activateNavbarLink",function(){return i}),n.d(t,"activateNavbarResponsiveness",function(){return c}),n.d(t,"scrollToNavbar",function(){return a});var i=function(){var e=document.querySelectorAll(".navbar-item"),t=document.URL.split("?");e.forEach(function(e){e.href==t[0]&&e.classList.add("is-active")})},c=function(){var e=document.querySelector(".burger"),t=document.querySelector(".navbar-menu");e&&e.addEventListener("click",function(){t.classList.toggle("is-active"),e.classList.toggle("is-active")})},a=function(){var e=document.querySelector(".navbar");setTimeout(function(){window.scroll({top:e.offsetTop,behavior:"smooth"})},1e3)}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initNotification",function(){return i});var i=function(){document.querySelectorAll(".notification").forEach(function(e){e.children[0].addEventListener("click",function(){e.style.display="none"})})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initFileField",function(){return i}),n.d(t,"initCharCounter",function(){return a}),n.d(t,"changeImageSrcWhenInputChanges",function(){return c}),n.d(t,"initMaskedDateForm",function(){return o}),n.d(t,"initMaskedTimeForm",function(){return r});var i=function(e,t){var n=document.querySelector(e),i=document.querySelector(t);n.addEventListener("change",function(){i.innerHTML=n.files[0].name})},c=function(e,t){var n=document.querySelector(e),i=document.querySelector(t);n.addEventListener("change",function(){if(n.files[0]){var e=new FileReader;e.readAsDataURL(n.files[0]),e.onloadend=function(e){i.src=e.target.result}}})},a=function(e,t){var n=document.querySelector(e),i=document.querySelector(t),c=i.innerHTML;i.innerHTML=c-n.value.length,n.addEventListener("keyup",function(){(i.innerHTML=c-n.value.length>=0)?(n.classList.remove("is-invalid"),i.classList.remove("text-danger"),i.innerHTML=c-n.value.length):(n.classList.add("is-invalid"),i.classList.add("text-danger"),i.innerHTML=0)})},o=function(e){var t=document.querySelector(e),n=/^[0-9]+$/,i=/^\d{2}$/,c=/^\d{2}\/\d{2}$/;t.addEventListener("keypress",function(e){t.value.length>9||!e.key.match(n)?e.preventDefault():(t.value.match(i)||t.value.match(c))&&(t.value=t.value+"/")})},r=function(e){var t=document.querySelector(e),n=/^[0-9]+$/,i=/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/;t.addEventListener("keypress",function(e){(t.value.length>=5||!e.key.match(n))&&e.preventDefault(),2==t.value.length&&(t.value=t.value+":")}),t.addEventListener("keyup",function(e){5==t.value.length&&(i.test(t.value)?t.classList.remove("is-invalid"):t.classList.add("is-invalid"))})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initQuickview",function(){return i});var i=function(e){var t=document.querySelectorAll(e),n=document.querySelectorAll(".quickview");t.forEach(function(e){var t=document.getElementById(e.dataset.target),i=t.querySelector(".delete");e.addEventListener("click",function(){n.forEach(function(e){e!=t&&e.classList.remove("is-active")}),t.classList.toggle("is-active")}),i.addEventListener("click",function(){t.classList.remove("is-active")})})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initSteps",function(){return i});var i=function(e){var t=document.querySelectorAll(e+" .step-item"),n=document.querySelectorAll(e+" .step-content"),i=document.querySelector(e+" .next-step"),c=document.querySelector(e+" .previous-step"),a=t.length-1,o=0,r=!1;t.forEach(function(e){e.classList.contains("is-active")&&!r?r=!0:r||(e.classList.add("is-completed"),o++)}),r||(t[o=0].classList.add("is-active"),t.forEach(function(e){e.classList.remove("is-completed")})),n[o].classList.add("is-active"),o==a?i.classList.add("is-disabled"):0==o&&c.classList.add("is-disabled"),i.addEventListener("click",function(){c.classList.remove("is-disabled"),o<a&&(t[o].classList.remove("is-active"),n[o].classList.remove("is-active"),t[o].classList.add("is-completed"),t[++o].classList.add("is-active"),n[o].classList.add("is-active")),o==a&&i.classList.add("is-disabled")}),c.addEventListener("click",function(){i.classList.remove("is-disabled"),o>0&&(t[o].classList.remove("is-active"),n[o].classList.remove("is-active"),t[o].classList.remove("is-completed"),t[--o].classList.add("is-active"),n[o].classList.add("is-active")),0==o&&c.classList.add("is-disabled")})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"initConfirmation",function(){return i});var i=function(e,t){var n=document.querySelectorAll(t),i=document.querySelector(e),c=document.querySelector(e+" .true"),a=document.querySelector(e+" .false"),o=void 0;document.querySelector(e+" .confirmation-close").addEventListener("click",function(){i.classList.remove("is-active")}),a.addEventListener("click",function(){i.classList.remove("is-active")}),n.forEach(function(e){e.addEventListener("click",function(e){e.preventDefault(),i.classList.add("is-active"),o=e})}),c.addEventListener("click",function(){i.classList.remove("is-active");try{window.location.replace(o.target.href)}catch(e){location.reload()}})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"resizeToFit",function(){return i});var i=function(e){document.querySelectorAll(e).forEach(function(e){e.innerHTML.length>15&&window.innerWidth>768&&(e.style.fontSize="1rem")})}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"workScript",function(){return i}),modal=n(0);var i=function(){var e=document.querySelectorAll(".work"),t=document.querySelector(".card a"),n=void 0;e.forEach(function(e){e.addEventListener("click",function(){e.dataset.file?(t.classList.remove("is-disabled"),t.href=e.dataset.file):t.classList.add("is-disabled"),n=e.dataset.file?"Download do arquivo":"Nenhum arquivo disponível",modal.changeModalContent([".card .card-header-title",".card .content",".card a"],[e.dataset.title,e.dataset.abstract,n])})})}},function(e,t){}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initModal", function() { return initModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeModalContent", function() { return changeModalContent; });
+var initModal = function initModal(modalSelector, openModalButtonsSelector, closeModalButtonSelector) {
+	var modal = document.querySelector(modalSelector);
+	var openModalButtons = document.querySelectorAll(openModalButtonsSelector);
+	var closeModalButton = document.querySelector(closeModalButtonSelector);
+	openModalButtons.forEach(function (openModalButton) {
+		openModalButton.addEventListener('click', function () {
+			modal.classList.add('is-active');
+		});
+	});
+	closeModalButton.addEventListener('click', function () {
+		modal.classList.remove('is-active');
+	});
+};
+/**
+ * @param Array recebe dois arrays de mesmo tamanho
+ * @return void
+ * Cada endereço do array modalSections receberá o conteúdo do mesmo endereço do array contents
+ */
+var changeModalContent = function changeModalContent(modalSectionsSelector, contents) {
+	var modalSections = document.querySelectorAll(modalSectionsSelector);
+	modalSections.forEach(function (section, index) {
+		section.innerHTML = contents[index];
+	});
+};
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(2);
+module.exports = __webpack_require__(11);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+window.navbar = __webpack_require__(3);
+window.notification = __webpack_require__(4);
+window.form = __webpack_require__(5);
+window.quickview = __webpack_require__(6);
+window.modal = __webpack_require__(0);
+window.steps = __webpack_require__(7);
+window.confirmation = __webpack_require__(8);
+window.card = __webpack_require__(9);
+window.myscripts = __webpack_require__(10);
+
+window.tinymceConfig = {
+    selector: '.wysiwyg',
+    language: 'pt_BR',
+    plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen paste preview',
+    mobile: { theme: 'mobile' },
+    images_upload_url: "/api/biblioteca/imagem",
+    images_upload_base_path: "/storage",
+    height: "300",
+    entity_encoding: "raw"
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    navbar.activateNavbarLink();
+    navbar.activateNavbarResponsiveness();
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarLink", function() { return activateNavbarLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activateNavbarResponsiveness", function() { return activateNavbarResponsiveness; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollToNavbar", function() { return scrollToNavbar; });
+var activateNavbarLink = function activateNavbarLink() {
+    var navbarLinks = document.querySelectorAll('.navbar-item');
+    var currentURL = document.URL.split('?');
+    navbarLinks.forEach(function (link) {
+        if (link.href == currentURL[0]) {
+            link.classList.add('is-active');
+        }
+    });
+};
+
+var activateNavbarResponsiveness = function activateNavbarResponsiveness() {
+    var burger = document.querySelector('.burger');
+    var menu = document.querySelector('.navbar-menu');
+    if (burger) {
+        burger.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            burger.classList.toggle('is-active');
+        });
+    }
+};
+
+var scrollToNavbar = function scrollToNavbar() {
+    var navbar = document.querySelector('.navbar');
+    setTimeout(function () {
+        window.scroll({
+            top: navbar.offsetTop,
+            behavior: "smooth"
+        });
+    }, 1000);
+};
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initNotification", function() { return initNotification; });
+var initNotification = function initNotification() {
+    var notifications = document.querySelectorAll('.notification');
+    notifications.forEach(function (notification) {
+        notification.children[0].addEventListener('click', function () {
+            notification.style.display = 'none';
+        });
+    });
+};
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initFileField", function() { return initFileField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initCharCounter", function() { return initCharCounter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImageSrcWhenInputChanges", function() { return changeImageSrcWhenInputChanges; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMaskedDateForm", function() { return initMaskedDateForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMaskedTimeForm", function() { return initMaskedTimeForm; });
+var initFileField = function initFileField(inputSelector, labelSelector) {
+    var input = document.querySelector(inputSelector);
+    var label = document.querySelector(labelSelector);
+    input.addEventListener('change', function () {
+        label.innerHTML = input.files[0].name;
+    });
+};
+
+var changeImageSrcWhenInputChanges = function changeImageSrcWhenInputChanges(inputSelector, imgSelector) {
+    var input = document.querySelector(inputSelector);
+    var image = document.querySelector(imgSelector);
+    input.addEventListener('change', function () {
+        if (input.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+            reader.onloadend = function (data) {
+                image.src = data.target.result;
+            };
+        }
+    });
+};
+
+var initCharCounter = function initCharCounter(inputSelector, charCounterSelector) {
+    var input = document.querySelector(inputSelector);
+    var counter = document.querySelector(charCounterSelector);
+    var maxLength = counter.innerHTML;
+    counter.innerHTML = maxLength - input.value.length;
+    input.addEventListener('keyup', function () {
+        if (counter.innerHTML = maxLength - input.value.length >= 0) {
+            input.classList.remove('is-invalid');
+            counter.classList.remove('text-danger');
+            counter.innerHTML = maxLength - input.value.length;
+        } else {
+            input.classList.add('is-invalid');
+            counter.classList.add('text-danger');
+            counter.innerHTML = 0;
+        }
+    });
+};
+
+var initMaskedDateForm = function initMaskedDateForm(inputSelector) {
+    var input = document.querySelector(inputSelector);
+    var isNumericRegex = /^[0-9]+$/;
+    var dateRegex = {
+        ddmm: /^\d{2}$/,
+        yyyy: /^\d{2}\/\d{2}$/
+    };
+    input.addEventListener('keypress', function (e) {
+        if (input.value.length > 9 || !e.key.match(isNumericRegex)) {
+            e.preventDefault();
+        } else if (input.value.match(dateRegex.ddmm) || input.value.match(dateRegex.yyyy)) {
+            input.value = input.value + '/';
+        }
+    });
+};
+
+var initMaskedTimeForm = function initMaskedTimeForm(inputSelector) {
+    var input = document.querySelector(inputSelector);
+    var isNumericRegex = /^[0-9]+$/;
+    var timeRegex = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/;
+    input.addEventListener('keypress', function (e) {
+        if (input.value.length >= 5 || !e.key.match(isNumericRegex)) {
+            e.preventDefault();
+        }
+        if (input.value.length == 2) {
+            input.value = input.value + ':';
+        }
+    });
+    input.addEventListener('keyup', function (e) {
+        if (input.value.length == 5) {
+            if (timeRegex.test(input.value)) {
+                input.classList.remove('is-invalid');
+            } else {
+                input.classList.add('is-invalid');
+            }
+        }
+    });
+};
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initQuickview", function() { return initQuickview; });
+//Todo botão para abrir uma quickview tem um atributo 'data-target' => esse atributo é o ID da quickview
+var initQuickview = function initQuickview(quickviewTriggerSelector) {
+    var quickviewTriggers = document.querySelectorAll(quickviewTriggerSelector);
+    var quickviews = document.querySelectorAll('.quickview');
+    quickviewTriggers.forEach(function (trigger) {
+        var quickview = document.getElementById(trigger.dataset.target);
+        var closeButton = quickview.querySelector('.delete');
+        trigger.addEventListener('click', function () {
+            quickviews.forEach(function (el) {
+                if (el != quickview) {
+                    el.classList.remove('is-active');
+                }
+            });
+            quickview.classList.toggle('is-active');
+        });
+        closeButton.addEventListener('click', function () {
+            quickview.classList.remove('is-active');
+        });
+    });
+};
+
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initSteps", function() { return initSteps; });
+var initSteps = function initSteps(stepsSelector) {
+    var stepsTitle = document.querySelectorAll(stepsSelector + ' .step-item');
+    var stepsContent = document.querySelectorAll(stepsSelector + ' .step-content');
+    var nextButton = document.querySelector(stepsSelector + ' .next-step');
+    var previousButton = document.querySelector(stepsSelector + ' .previous-step');
+    var maxSteps = stepsTitle.length - 1;
+    var activeStep = 0;
+
+    /**
+     * Um do título ('.step-item') deve ter a classe 'is-active', esse trecho de código adiciona
+     * a classe 'is-active' no conteúdo do step referente ao título ativo.
+     * Exemplo: se o step 2 está com a classe 'is.active', o segunto step também terá essa classe
+     * esse código também adiciona a classe 'is-completed' nos títulos enquanto não encontrar no título ativo
+     */
+    var found = false;
+    stepsTitle.forEach(function (stepTitle) {
+        if (stepTitle.classList.contains('is-active') && !found) {
+            found = true;
+        } else if (!found) {
+            stepTitle.classList.add('is-completed');
+            activeStep++;
+        }
+    });
+    if (!found) {
+        activeStep = 0;
+        stepsTitle[activeStep].classList.add('is-active');
+        stepsTitle.forEach(function (stepTitle) {
+            stepTitle.classList.remove('is-completed');
+        });
+    }
+    stepsContent[activeStep].classList.add('is-active');
+
+    //Adiciona a classe is-disabled nos botões caso esteja no primeiro ou no último step
+    if (activeStep == maxSteps) {
+        nextButton.classList.add('is-disabled');
+    } else if (activeStep == 0) {
+        previousButton.classList.add('is-disabled');
+    }
+
+    //Evento botão next
+    nextButton.addEventListener('click', function () {
+        previousButton.classList.remove('is-disabled');
+        if (activeStep < maxSteps) {
+            stepsTitle[activeStep].classList.remove('is-active');
+            stepsContent[activeStep].classList.remove('is-active');
+            stepsTitle[activeStep].classList.add('is-completed');
+            activeStep++;
+            stepsTitle[activeStep].classList.add('is-active');
+            stepsContent[activeStep].classList.add('is-active');
+        }
+        if (activeStep == maxSteps) {
+            nextButton.classList.add('is-disabled');
+        }
+    });
+
+    //Evento botão previous
+    previousButton.addEventListener('click', function () {
+        nextButton.classList.remove('is-disabled');
+        if (activeStep > 0) {
+            stepsTitle[activeStep].classList.remove('is-active');
+            stepsContent[activeStep].classList.remove('is-active');
+            stepsTitle[activeStep].classList.remove('is-completed');
+            activeStep--;
+            stepsTitle[activeStep].classList.add('is-active');
+            stepsContent[activeStep].classList.add('is-active');
+        }
+        if (activeStep == 0) {
+            previousButton.classList.add('is-disabled');
+        }
+    });
+};
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initConfirmation", function() { return initConfirmation; });
+var initConfirmation = function initConfirmation(confirmationSelector, triggersSelector) {
+
+    var triggers = document.querySelectorAll(triggersSelector);
+    var confirmationWindow = document.querySelector(confirmationSelector);
+    var trueButton = document.querySelector(confirmationSelector + ' .true');
+    var falseButton = document.querySelector(confirmationSelector + ' .false');
+    var closeButton = document.querySelector(confirmationSelector + ' .confirmation-close');
+    var clickEvent = void 0;
+
+    closeButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+    });
+    falseButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+    });
+
+    triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            confirmationWindow.classList.add('is-active');
+            clickEvent = e;
+        });
+    });
+
+    trueButton.addEventListener('click', function () {
+        confirmationWindow.classList.remove('is-active');
+        try {
+            window.location.replace(clickEvent.target.href);
+        } catch (error) {
+            location.reload();
+        }
+    });
+};
+
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeToFit", function() { return resizeToFit; });
+var resizeToFit = function resizeToFit(titleSelector) {
+	var titles = document.querySelectorAll(titleSelector);
+	titles.forEach(function (title) {
+		if (title.innerHTML.length > 15 && window.innerWidth > 768) {
+			title.style.fontSize = '1rem';
+		}
+	});
+};
+
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "workScript", function() { return workScript; });
+modal = __webpack_require__(0);
+
+var workScript = function workScript() {
+	var modalButtons = document.querySelectorAll('.work');
+	var cardButton = document.querySelector('.card a');
+	var buttonText = void 0;
+	modalButtons.forEach(function (modalButton) {
+		modalButton.addEventListener('click', function () {
+			if (!modalButton.dataset.file) {
+				cardButton.classList.add('is-disabled');
+			} else {
+				cardButton.classList.remove('is-disabled');
+				cardButton.href = modalButton.dataset.file;
+			}
+			modalButton.dataset.file ? buttonText = 'Download do arquivo' : buttonText = 'Nenhum arquivo disponível';
+			modal.changeModalContent(['.card .card-header-title', '.card .content', '.card a'], [modalButton.dataset.title, modalButton.dataset.abstract, buttonText]);
+		});
+	});
+};
+
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+/******/ ]);
