@@ -15147,6 +15147,10 @@ span.info {
   z-index: 1;
 }
 
+.post.is-vertical .photo {
+  position: relative;
+}
+
 .post.is-vertical p:first-of-type {
   margin-top: 1.25rem;
 }

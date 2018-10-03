@@ -221,7 +221,10 @@
             background: $white;
             position: relative;
             z-index: $post-z-index + 1;
-        }
+		}
+		.photo {
+			position: relative;
+		}
         p {
             &:first-of-type {
                 margin-top: 1.25rem;
