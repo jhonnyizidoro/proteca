@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Category;
+use App\Models\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -12,23 +12,18 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'category' => 'Artigos'
-        ]);
-        Category::create([
-            'category' => 'Livros'
-        ]);
-        Category::create([
-            'category' => 'Resenhas'
-        ]);
-        Category::create([
-            'category' => 'Cartilhas'
-        ]);
-        Category::create([
-            'category' => 'Leis'
-        ]);
-        Category::create([
-            'category' => 'Outros'
-        ]);
+		$categories = [
+			'Artigos',
+			'Livros',
+			'Resenhas',
+			'Cartilhas',
+			'Leis',
+			'Outros',
+		];
+		foreach($categories as $category) {
+			Category::create([
+				'category' => $category,
+			]);
+		}
     }
 }

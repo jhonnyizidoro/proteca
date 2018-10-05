@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
-use Carbon\Carbon;
+use App\Models\Category;
+use Carbon\Models\Carbon;
 
 class Work extends Model
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Role;
-use App\Post;
+use App\Models\Role;
+use App\Models\ost;
 use Carbon\Carbon;
 
 class User extends Authenticatable

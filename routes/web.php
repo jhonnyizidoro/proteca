@@ -10,7 +10,10 @@ Route::get('/parceiros', 'SiteController@partners')->name('partners');
 Route::get('/eventos', 'SiteController@events')->name('events');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
-    Route::get('/', 'SiteController@admin')->name('admin');
+	Route::get('/', 'SiteController@admin')->name('admin');
+	Route::group(['prefix' => 'destaques'], function(){
+        Route::get('/', 'FeaturedController@showFeatured')->name('admin.featured');
+	});
     Route::group(['prefix' => 'noticias'], function(){
         Route::get('/', 'PostController@showPosts')->name('admin.posts');
         Route::post('/', 'PostController@createPost')->name('admin.posts.create');

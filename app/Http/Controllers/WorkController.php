@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Work;
-use App\Category;
 use App\Http\Requests\NewWorkrequest;
 use App\Http\Controllers\FileController;
+use App\Models\Work;
+use App\Models\Category;
 
 class WorkController extends Controller
 {

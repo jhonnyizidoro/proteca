@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
-use Illuminate\Support\Facades\Hash;
-use App\User;
+use App\Models\User;
+use App\Models\Role;
 use Auth;
-use App\Role;
 
 class UserController extends Controller
 {

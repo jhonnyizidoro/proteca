@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\NewPostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Controllers\FileController;
-use App\Post;
+use App\Models\Post;
 use Auth;
 
 class PostController extends Controller

@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Schema;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
-use App\Event;
+use App\Models\Event;
+use Schema;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 		});
 
 		Blade::if('admin', function () {
-			return auth()->user()->hasTheRole('admin');
+			return Auth::user()->hasTheRole('admin');
 		});
 
     }

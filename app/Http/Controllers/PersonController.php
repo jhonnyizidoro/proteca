@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Person;
+use App\Models\Person;
 use App\Http\Requests\NewPersonRequest;
 use App\Http\Controllers\FileController;
 

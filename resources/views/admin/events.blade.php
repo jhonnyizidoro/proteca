@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-{{-- Modal para registrar novo usuário --}}
+{{-- Modal para registrar novo evento --}}
 <div class="modal {{ $errors->isEmpty() ? '' : 'is-active' }}">
     <div class="modal-background"></div>
     <button class="modal-close is-large"></button>

@@ -31,6 +31,9 @@
             </div>
             <div class="navbar-menu">
                 <div class="navbar-start">
+					<a class="navbar-item" href="{{ route('admin.featured') }}">
+						Destaques
+					</a>
                     <a class="navbar-item" href="{{ route('admin.posts') }}">
                         Notícias
                     </a>

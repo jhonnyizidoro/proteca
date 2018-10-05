@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Post;
-use App\Person;
-use App\Work;
-use App\Category;
-use App\Event;
+use App\Models\Post;
+use App\Models\Person;
+use App\Models\Work;
+use App\Models\Category;
+use App\Models\Event;
 
 class SiteController extends Controller
 {
