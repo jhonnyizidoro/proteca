@@ -29,7 +29,7 @@
             <div class="column is-12">
                 <div class="post {{ $key % 2 == 0 ? '' : 'alt' }}">
                     <div class="meta">
-                        <img class="photo" src="/storage/{{ $featuredPost->thumbnail }}">
+                        <img class="photo" src="{{ $featuredPost->thumbnail }}">
                         <ul class="details">
                             <li class="author">{{ $featuredPost->user()->first()->name }}</li>
                             <li class="date">{{ $featuredPost->created_at }}</li>
@@ -55,7 +55,7 @@
                     <div class="column is-12">
                         <div class="post is-vertical">
                             <div class="meta">
-                                <img class="photo black-and-white" src="/storage/{{ $newPost->thumbnail }}">
+                                <img class="photo black-and-white" src="{{ $newPost->thumbnail }}">
                                 <ul class="details">
                                     <li class="author">{{ $newPost->user()->first()->name }}</li>
                                     <li class="date">{{ $newPost->created_at }}</li>
@@ -77,7 +77,7 @@
                 </div>
                 @foreach ($works as $work)
 					<div class="column is-12">
-						<div class="work is-animated" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->getFilePath("/storage/") }}">
+						<div class="work is-animated" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->file }}">
 							<div class="work-title has-text-centered">{{ $work->title }}</div>
 							<div class="meta">
 								<span class="tag">[ {{ $work->getDate() . ' - ' . $work->getTime() }}]</span>

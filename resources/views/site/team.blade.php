@@ -8,7 +8,7 @@
                     <div class="quickview-trigger is-link" data-target="quickview-{{ $teammate->id }}">
                         <div class="card-image">
                             <figure class="image is-1by1">
-                                <img src="/storage/{{ $teammate->image }}" alt="{{ $teammate->name }}">
+                                <img src="{{ $teammate->image }}" alt="{{ $teammate->name }}">
                             </figure>
                         </div>
                         <div class="card-content">

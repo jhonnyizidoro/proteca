@@ -20,7 +20,7 @@
             <div class="column is-12 is-10-fullhd">
                 <div class="post {{ $key % 2 == 0 ? '' : 'alt' }}">
                     <div class="meta">
-                        <img class="photo" src="/storage/{{ $post->thumbnail }}">
+                        <img class="photo" src="{{ $post->thumbnail }}">
                         <ul class="details">
                             <li class="author">{{ $post->user()->first()->name }}</li>
                             <li class="date">{{ $post->created_at }}</li>

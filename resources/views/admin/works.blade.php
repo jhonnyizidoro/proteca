@@ -41,7 +41,7 @@
                         <td>{{ $work->category->category }}</td>
                         <td class="is-file">
 							@if ($work->file)
-								<a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="/storage/{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a>
+								<a class="tooltip" data-tooltip="{{ $work->getFileName() }}" href="{{ $work->file }}" download><i class="fas fa-cloud-download-alt"></i></a>
 							@else
 								<a class="is-disabled tooltip" data-tooltip="Nenhum arquivo disponível."><i class="fas fa-cloud-download-alt"></i></a>
 							@endif

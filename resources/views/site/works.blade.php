@@ -25,7 +25,7 @@
 		</div>
 		@foreach ($works as $work)
 			<div class="column is-10">
-				<div class="work" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->getFilePath("/storage/") }}">
+				<div class="work" data-title="{{ $work->title }}" data-abstract="{{ $work->abstract }}" data-file="{{ $work->file }}">
 					<div class="work-title has-text-centered">{{ $work->title }}</div>
 					<div class="preview">{!! $work->getPrologue() !!}</div>
 					<div class="meta">

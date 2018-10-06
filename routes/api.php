@@ -2,4 +2,4 @@
 
 use Illuminate\Http\Request;
 
-Route::post('/biblioteca/imagem', 'FileController@uploadFileFromRequest');
+Route::post('/biblioteca/imagem', 'FileController@tinymceUploader');

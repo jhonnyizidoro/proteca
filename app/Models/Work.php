@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
-use Carbon\Models\Carbon;
+use Carbon\Carbon;
 
 class Work extends Model
 {
@@ -38,14 +38,6 @@ class Work extends Model
         return end($array);
 	}
 	
-	public function getFilePath($prefix = null)
-	{
-		if ($this->file != null){
-			return $prefix . $this->file;
-		}
-		return null;
-	}
-
     public function getShortTitle($length = 55)
     {
         $title = $this->title;

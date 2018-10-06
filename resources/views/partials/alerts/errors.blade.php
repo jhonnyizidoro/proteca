@@ -1,4 +1,4 @@
-@if (!$errors->isEmpty())
+@if ($errors->isNotEmpty())
     <div class="notification is-danger">
         <button type="button" class="delete"></button>
         @foreach($errors->all() as $error)

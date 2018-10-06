@@ -9,7 +9,7 @@
 					<div class="card is-person">
 						<div class="card-image">
 							<figure class="image is-1by1">
-								<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+								<img src="{{ $partner->image }}" alt="{{ $partner->name }}">
 							</figure>
 						</div>
 						<div class="card-content">

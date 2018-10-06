@@ -7,10 +7,10 @@
 //Bulma
 @import '~bulma/bulma';
 //Bulma extensions
-@import 'extensions/divider.sass';
-@import 'extensions/quickview.sass';
-@import 'extensions/tooltip.sass';
-@import 'extensions/steps.sass';
+@import 'components/divider.sass';
+@import 'components/quickview.sass';
+@import 'components/tooltip.sass';
+@import 'components/steps.sass';
 // Helpers
 @import 'helpers';
 //Estilos globais

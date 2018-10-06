@@ -14,9 +14,10 @@ window.tinymceConfig = {
 	plugins: 'image imagetools advlist code media link colorpicker paste table textcolor fullscreen paste preview',
     mobile: { theme: 'mobile' },
     images_upload_url: "/api/biblioteca/imagem",
-    images_upload_base_path: "/storage",
     height : "300",
-    entity_encoding : "raw",
+	entity_encoding : "raw",
+	relative_urls : false,
+	convert_urls : true,
 };
 
 document.addEventListener('DOMContentLoaded', ()=> {

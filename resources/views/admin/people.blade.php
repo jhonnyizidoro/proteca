@@ -16,7 +16,7 @@
                             <div class="quickview-trigger is-link" data-target="quickview-{{ $teammate->id }}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">
-                                        <img src="/storage/{{ $teammate->image }}" alt="{{ $teammate->name }}">
+                                        <img src="{{ $teammate->image }}" alt="{{ $teammate->name }}">
                                     </figure>
                                 </div>
                                 <div class="card-content">
@@ -50,7 +50,7 @@
 							<a target="_blank" href="{{ $partner->link }}">
 								<div class="card-image">
 									<figure class="image is-1by1">
-										<img src="/storage/{{ $partner->image }}" alt="{{ $partner->name }}">
+										<img src="{{ $partner->image }}" alt="{{ $partner->name }}">
 									</figure>
 								</div>
 								<div class="card-content">

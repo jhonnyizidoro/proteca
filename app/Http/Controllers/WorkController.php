@@ -16,10 +16,10 @@ class WorkController extends Controller
     public function showWorks(Request $request)
     {
         $works = new Work;
-        if ($request->has('titulo')){
+        if ($request->titulo){
             $works = $works->where('title', 'like', "%{$request->titulo}%");
         }
-        if ($request->has('categoria') && $request->categoria){
+        if ($request->categoria){
             $works = $works->where('category_id', "{$request->categoria}");
         }
         $works = $works->orderBy('title')->paginate($this->pageSize)->appends([

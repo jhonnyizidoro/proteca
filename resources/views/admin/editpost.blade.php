@@ -10,7 +10,7 @@
                 @csrf
                 <div class="columns is-centered is-multiline">
                     <div class="column is-8">
-                        <img class="thumbnail-preview" src="/storage/{{ $post->thumbnail }}">
+                        <img class="thumbnail-preview" src="{{ $post->thumbnail }}">
                     </div>
                     <div class="column is-8">
                         <div class="control has-icons-left">

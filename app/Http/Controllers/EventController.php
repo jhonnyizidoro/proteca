@@ -14,10 +14,10 @@ class EventController extends Controller
     public function showEvents(Request $request)
     {
         $events = new Event;
-        if ($request->has('evento')){
+        if ($request->evento){
             $events = $events->where('name', 'like', "%{$request->evento}%");
         }
-        if ($request->has('data') && $request->data){
+        if ($request->data){
             $request->data == 'passados' ? $operation = '<' : $operation = '>';
             $events = $events->where('date', $operation, date("Y-m-d"));
         }

@@ -17,7 +17,7 @@ class PostController extends Controller
     public function showPosts(Request $request)
     {
         $posts = new Post;
-        if ($request->has('titulo')){
+        if ($request->titulo){
             $posts = $posts->where('title', 'like', "%{$request->titulo}%");
         }
         $posts = $posts->orderBy('created_at', 'desc')->paginate($this->pageSize)->appends([
