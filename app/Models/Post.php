@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SiteContent\FeaturedPost;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -30,7 +31,12 @@ class Post extends Model
     public function getTime()
     {
         return Carbon::createFromFormat('d/m/Y - H:i', $this->created_at)->format('H\hm');
-    }
+	}
+	
+	public function featuredPost()
+	{
+		return $this->hasOne(FeaturedPost::class);
+	}
 
     public function getPrologue(int $length = 180){
 		$text = strip_tags($this->body);

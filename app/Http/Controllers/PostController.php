@@ -45,7 +45,10 @@ class PostController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $data['thumbnail'] = FileController::uploadFile($data['thumbnail']);
-        $data['url'] = FileController::slugify($data['title']);
+		$data['url'] = FileController::slugify($data['title']);
+		if (Post::where('url', $data['url'])->first()) {
+			$data['url'] .= uniqid('_');
+		}
         Post::create($data);
         return redirect()->route('admin.posts')->with('status', 'Notícia publicada com sucesso.');
     }
@@ -60,7 +63,10 @@ class PostController extends Controller
         if (isset($data['thumbnail'])) {
             $data['thumbnail'] = FileController::uploadFile($data['thumbnail']);
         }
-        $data['url'] = FileController::slugify($data['title']);
+		$data['url'] = FileController::slugify($data['title']);
+		if (Post::where('url', $data['url'])->where('id', '!=', $id)->first()) {
+			$data['url'] .= uniqid('_');
+		}
         $post->update($data);
         return redirect()->route('admin.posts')->with('status', 'Notícia editada com sucesso.');
 

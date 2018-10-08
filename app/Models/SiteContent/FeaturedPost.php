@@ -11,8 +11,10 @@ class FeaturedPost extends Model
 		'post_id'
 	];
 
-	public function posts()
+	public $timestamps = false;
+
+	public function post()
 	{
-		return $this->hasMany(Post::class);
+		return $this->belongsTo(Post::class);
 	}
 }

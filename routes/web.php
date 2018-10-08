@@ -12,7 +12,11 @@ Route::get('/eventos', 'SiteController@events')->name('events');
 Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
 	Route::get('/', 'SiteController@admin')->name('admin');
 	Route::group(['prefix' => 'destaques'], function(){
-        Route::get('/', 'FeaturedController@showFeatured')->name('admin.featured');
+		Route::get('/', 'FeaturedController@showFeatured')->name('admin.featured');
+		Route::group(['prefix' => 'noticia'], function(){
+			Route::post('/adicionar', 'FeaturedController@createFeaturedPost')->name('admin.featured.post.create');
+			Route::get('/remover/{id}', 'FeaturedController@deleteFeaturedPost')->name('admin.featured.post.delete');
+		});
 	});
     Route::group(['prefix' => 'noticias'], function(){
         Route::get('/', 'PostController@showPosts')->name('admin.posts');

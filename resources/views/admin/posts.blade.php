@@ -28,10 +28,10 @@
                     </div>
                     <div class="description">
                         <h1><a target="_blank" href="{{ route('post', $post->url) }}">{{ $post->title }}</a></h1>
-                        <p>{{ $post->getPrologue() }}</p>
+						<p>{{ $post->getPrologue() }}</p>
                         @if (auth()->user()->isAuthorOrAdmin($post))
                             <p class="read-more"><a href="{{ route('admin.posts.edit', $post->id) }}">Editar</a></p>
-                            <p class="read-more"><a class="delete-post" href="{{ route('admin.posts.delete', $post->id) }}">Excluir</a></p>
+							<p class="read-more"><a class="delete-post" href="{{ route('admin.posts.delete', $post->id) }}">Excluir</a></p>
                         @else
                             <p class="read-more text-danger">Você não tem permissão para gerenciar essa notícia.</p>
                         @endif

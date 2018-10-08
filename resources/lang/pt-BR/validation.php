@@ -171,5 +171,6 @@ return [
         'details' => 'detalhes',
         'starts_at' => 'início',
 		'ends_at' => 'fim',
+		'url' => 'link'
     ],
 ];

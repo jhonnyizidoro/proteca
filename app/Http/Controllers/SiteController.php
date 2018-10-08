@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\SiteContent\FeaturedPost;
 use App\Models\Post;
 use App\Models\Person;
 use App\Models\Work;
@@ -30,7 +31,7 @@ class SiteController extends Controller
 
     public function home()
     {
-        $featuredPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        $featuredPosts = FeaturedPost::get();
         $newPosts = Post::orderBy('created_at', 'desc')->take(5)->get();
         $works = Work::orderBy('created_at', 'desc')->take(10)->get();
         return view('site.home')

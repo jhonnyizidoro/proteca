@@ -29,16 +29,16 @@
             <div class="column is-12">
                 <div class="post {{ $key % 2 == 0 ? '' : 'alt' }}">
                     <div class="meta">
-                        <img class="photo" src="{{ $featuredPost->thumbnail }}">
+                        <img class="photo" src="{{ $featuredPost->post->thumbnail }}">
                         <ul class="details">
-                            <li class="author">{{ $featuredPost->user()->first()->name }}</li>
-                            <li class="date">{{ $featuredPost->created_at }}</li>
+                            <li class="author">{{ $featuredPost->post->user()->first()->name }}</li>
+                            <li class="date">{{ $featuredPost->post->created_at }}</li>
                         </ul>
                     </div>
                     <div class="description">
-                        <h1>{{ $featuredPost->title }}</h1>
-                        <p>{{ $featuredPost->getPrologue() }}</p>
-                        <p class="read-more"><a href="{{ route('post', $featuredPost->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
+                        <h1>{{ $featuredPost->post->title }}</h1>
+                        <p>{{ $featuredPost->post->getPrologue() }}</p>
+                        <p class="read-more"><a href="{{ route('post', $featuredPost->post->url) }}">Ler mais<i class="fas fa-arrow-right"></i></a></p>
                     </div>
                 </div>
             </div>
