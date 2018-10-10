@@ -17,6 +17,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'roles:author'], function(){
 			Route::post('/adicionar', 'FeaturedController@createFeaturedPost')->name('admin.featured.post.create');
 			Route::get('/remover/{id}', 'FeaturedController@deleteFeaturedPost')->name('admin.featured.post.delete');
 		});
+		Route::group(['prefix' => 'video'], function(){
+			Route::post('/adicionar', 'FeaturedController@createFeaturedVideo')->name('admin.featured.video.create');
+			Route::get('/remover/{id}', 'FeaturedController@deleteFeaturedVideo')->name('admin.featured.video.delete');
+		});
 	});
     Route::group(['prefix' => 'noticias'], function(){
         Route::get('/', 'PostController@showPosts')->name('admin.posts');

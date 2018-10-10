@@ -56,11 +56,11 @@
                             </td>
                             <td>
                                 @if ($user->active)
-                                    <a class="activate-user deactivate-user" href='{{ route('admin.users.activate', $user->id) }}'>Desativar</a> | 
+                                    <a class="confirmed" data-action='{{ route('admin.users.activate', $user->id) }}'>Desativar</a> | 
                                 @else
-                                    <a class="activate-user" href='{{ route('admin.users.activate', $user->id) }}'>Ativar</a> | 
+                                    <a class="confirmed" data-action='{{ route('admin.users.activate', $user->id) }}'>Ativar</a> | 
                                 @endif
-                                <a class="generate-password" href='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
+                                <a class="confirmed" data-action='{{ route('admin.users.password', $user->id) }}'>Gerar Senha</a>
                             </td>
                         </tr>
                     @endforeach
@@ -116,36 +116,14 @@
         </form>
     </div>
 </div>
-{{-- Confirmation para desativar um usuário --}}
-<div class="confirmation deactivate">
-    <div class="confirmation-container">
-        <p>Você tem certeza que deja desativar esse usuário? Ele não terá mais cesso ao portal.</p>
-        <ul class="confirmation-buttons">
-            <li><a class="true">Sim</a></li>
-            <li><a class="false">Não</a></li>
-        </ul>
-        <a class="confirmation-close img-replace">Close</a>
-    </div>
-</div>
-{{-- Confirmation para gerar a senha de um usuário --}}
-<div class="confirmation password">
-    <div class="confirmation-container">
-        <p>Você tem certeza que deseja gerar uma nova senha aleatória para esse usuário?</p>
-        <ul class="confirmation-buttons">
-            <li><a class="true">Sim</a></li>
-            <li><a class="false">Não</a></li>
-        </ul>
-        <a class="confirmation-close img-replace">Close</a>
-    </div>
-</div>
+@include('partials.confirmation.confirmation')
 @endsection
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
         modal.initModal('.modal', '.button.is-fixed', '.modal-close');
-        notification.initNotification();
-        confirmation.initConfirmation('.confirmation.deactivate', '.deactivate-user');
-        confirmation.initConfirmation('.confirmation.password', '.generate-password');
+		notification.initNotification();
+		confirmation.initConfirmation();
     });
 </script>
 @endsection

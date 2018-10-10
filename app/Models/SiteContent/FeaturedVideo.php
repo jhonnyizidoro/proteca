@@ -9,4 +9,6 @@ class FeaturedVideo extends Model
     protected $fillable = [
 		'title', 'url', 'main'
 	];
+
+	public $timestamps = false;
 }

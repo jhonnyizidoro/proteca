@@ -111,7 +111,7 @@ return [
 		],
 		'link' => [
             'required_if' => 'O campo link é obrigatório para parceiros.',
-        ],
+		],
     ],
 
     /*
@@ -171,6 +171,7 @@ return [
         'details' => 'detalhes',
         'starts_at' => 'início',
 		'ends_at' => 'fim',
-		'url' => 'link'
+		'url' => 'link',
+		'main' => 'vídeo principal',
     ],
 ];

@@ -31,7 +31,7 @@
 						<p>{{ $post->getPrologue() }}</p>
                         @if (auth()->user()->isAuthorOrAdmin($post))
                             <p class="read-more"><a href="{{ route('admin.posts.edit', $post->id) }}">Editar</a></p>
-							<p class="read-more"><a class="delete-post" href="{{ route('admin.posts.delete', $post->id) }}">Excluir</a></p>
+							<p class="read-more"><a class="confirmed" data-action="{{ route('admin.posts.delete', $post->id) }}">Excluir</a></p>
                         @else
                             <p class="read-more text-danger">Você não tem permissão para gerenciar essa notícia.</p>
                         @endif
@@ -44,23 +44,13 @@
         </div>
     </div>
 </div>
-{{-- Confirmation window para excluir um item --}}
-<div class="confirmation">
-    <div class="confirmation-container">
-        <p>Você tem certeza que deseja excluir essa notícia permanetemente?</p>
-        <ul class="confirmation-buttons">
-            <li><a class="true">Sim</a></li>
-            <li><a class="false">Não</a></li>
-        </ul>
-        <a class="confirmation-close img-replace">Close</a>
-    </div>
-</div>
+@include('partials.confirmation.confirmation')
 @endsection
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', ()=> {
-        notification.initNotification();
-        confirmation.initConfirmation('.confirmation', '.delete-post');
+		notification.initNotification();
+		confirmation.initConfirmation();
     });
 </script>
 @endsection

@@ -12,7 +12,8 @@
                 @foreach ($teammates as $teammate)
                     <div class="column is-6">
                         <div class="card is-person">
-                            <a href="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
+							<a data-action="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger confirmed"><i class="fas fa-trash"></i></a>
+                            {{-- <a href="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a> --}}
                             <div class="quickview-trigger is-link" data-target="quickview-{{ $teammate->id }}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">
@@ -46,7 +47,7 @@
                 @foreach ($partners as $partner)
                     <div class="column is-6">
 						<div class="card is-person">
-							<a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger delete-person"><i class="fas fa-trash"></i></a>
+							<a href="{{ route('admin.people.delete', $partner->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a>
 							<a target="_blank" href="{{ $partner->link }}">
 								<div class="card-image">
 									<figure class="image is-1by1">
@@ -166,17 +167,7 @@
         </form>
     </div>
 </div>
-{{-- Confirmation window para excluir um item --}}
-<div class="confirmation">
-    <div class="confirmation-container">
-        <p>Você tem certeza que deseja excluir essa pessoa permanetemente?</p>
-        <ul class="confirmation-buttons">
-            <li><a class="true">Sim</a></li>
-            <li><a class="false">Não</a></li>
-        </ul>
-        <a class="confirmation-close img-replace">Close</a>
-    </div>
-</div>
+@include('partials.confirmation.confirmation')
 @endsection
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
@@ -188,10 +179,10 @@
         form.initFileField('.file-input', 'span.file-label');
         steps.initSteps('.steps');
         form.changeImageSrcWhenInputChanges('input[name="image"]', ".image-preview");
-        confirmation.initConfirmation('.confirmation', '.delete-person');
         tinymceConfig.height = "150";
         tinymce.init(tinymceConfig);
 		card.resizeToFit('.card-content .title');
+		confirmation.initConfirmation();
     });
 </script>
 @endsection

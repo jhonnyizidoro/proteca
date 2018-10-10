@@ -47,7 +47,7 @@
 							@endif
 						</td>
                         <td>{{ $work->created_at }}</td>
-                        <td><a class="delete-work" href="{{ route('admin.works.delete', $work->id) }}">Excluir</a></td>
+                        <td><a class="confirmed" data-action="{{ route('admin.works.delete', $work->id) }}">Excluir</a></td>
                 @endforeach
             </tbody>
         </table>
@@ -109,17 +109,7 @@
         </form>
     </div>
 </div>
-{{-- Confirmation window para excluir um item --}}
-<div class="confirmation">
-    <div class="confirmation-container">
-        <p>Você tem certeza que deseja excluir esse item da biblioteca permanetemente?</p>
-        <ul class="confirmation-buttons">
-            <li><a class="true">Sim</a></li>
-            <li><a class="false">Não</a></li>
-        </ul>
-        <a class="confirmation-close img-replace">Close</a>
-    </div>
-</div>
+@include('partials.confirmation.confirmation')
 @endsection
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
@@ -129,8 +119,8 @@
         notification.initNotification();
         form.initFileField('.file-input', 'span.file-label');
         form.initCharCounter('input[name="title"]', '.char-counter');
-        confirmation.initConfirmation('.confirmation', '.delete-work');
-        tinymce.init(tinymceConfig);
+		tinymce.init(tinymceConfig);
+		confirmation.initConfirmation();
     });
 </script>
 @endsection

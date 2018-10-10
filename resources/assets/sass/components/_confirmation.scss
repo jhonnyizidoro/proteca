@@ -8,7 +8,7 @@
     background-color: $rgba-primary;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+	transition: opacity 0.3s 0s, visibility 0s 0.3s;
     &.is-active {
         opacity: 1;
         visibility: visible;

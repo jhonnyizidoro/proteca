@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewFeaturedPostRequest;
+use App\Http\Requests\NewFeaturedVideoRequest;
 use App\Models\SiteContent\FeaturedPost;
 use App\Models\SiteContent\FeaturedVideo;
 use App\Models\Post;
