@@ -11,4 +11,11 @@ class FeaturedVideo extends Model
 	];
 
 	public $timestamps = false;
+
+	public function getVideoEmbedLink()
+	{
+		$urlParts = parse_url($this->url);
+		parse_str($urlParts['query'], $urlParameters);
+		return "https://www.youtube.com/embed/{$urlParameters['v']}";
+	}
 }

@@ -26,7 +26,7 @@ class SiteController extends Controller
 
     public function admin()
     {
-        return redirect()->route('admin.posts');
+        return redirect()->route('admin.featured');
     }
 
     public function home()

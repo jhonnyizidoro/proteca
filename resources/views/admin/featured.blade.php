@@ -20,7 +20,7 @@
 								<input class="input" type="text" name="url" placeholder="Link da notícia" value="{{ old('url') }}">
 							</div>
 							<div class="control">
-								<button class="button is-primary">Destacar</button>
+								<button class="button is-primary"><i class="fas fa-plus"></i></button>
 							</div>
 						</div>
 					</form>
@@ -49,24 +49,38 @@
 				<div class="column is-12">
 					<div class="is-divider" data-content="Vídeos em destque"></div>
 				</div>
-				@foreach ($featuredVideos as $featuredVideo)
-                    <div class="column is-12">
-						@if ($featuredVideo->main)
-							<div class="iframe-container">
-								<iframe src="https://www.youtube.com/embed/8MRdu6LW80w?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				<div class="column is-12">
+					<form action="{{ route('admin.featured.video.create') }}" method="post">
+						@csrf
+						<div class="field has-addons">
+							<div class="control is-expanded">
+								<input class="input" type="text" name="video_url" placeholder="Link do vídeo" value="{{ old('video_url') }}">
 							</div>
-						@else
-							<ul class="video-list">
-								<span class="title">Assista também</span>
-								<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-								<li><a href="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore dolores accusamus!</a></li>
-								<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-								<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-								<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-							</ul>
-						@endif
-                    </div>
-				@endforeach
+							<div class="select control">
+								<select name="main">
+									<option {{ old('main') === '1' ? 'selected' : '' }} value="1">Tornar principal</option>
+									<option {{ old('main') === '0' ? 'selected' : '' }} value="0">Adicionar à lista</option>
+								</select>
+							</div>
+							<div class="control">
+								<button class="button is-primary"><i class="fas fa-plus"></i></button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="column is-12">
+					@if($mainFeaturedVideo)
+						<div class="iframe-container">
+							<iframe src="{{ $mainFeaturedVideo->getVideoEmbedLink() }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						</div>
+					@endif
+					<ul class="video-list">
+						<span class="title">Assista também</span>
+						@foreach ($featuredVideos as $featuredVideo)
+							<li><a target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a></li>
+						@endforeach
+					</ul>
+				</div>
 			</div>
 		</div>
     </div>
