@@ -44,6 +44,7 @@
 				@endforeach
 			</div>
 		</div>
+		{{-- Featured Videos --}}
 		<div class="column is-6">
 			<div class="columns is-multiline">
 				<div class="column is-12">
@@ -74,10 +75,12 @@
 							<iframe src="{{ $mainFeaturedVideo->getVideoEmbedLink() }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 						</div>
 					@endif
-					<ul class="video-list">
-						<span class="title">Assista também</span>
+					<ul class="video-list m-t-25">
 						@foreach ($featuredVideos as $featuredVideo)
-							<li><a target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a></li>
+							<li>
+								<a href="{{ route('admin.featured.video.delete', $featuredVideo->id) }}" class="button is-floating is-square is-danger"><i class="fas fa-trash"></i></a>
+								<a class="video-link" target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a>
+							</li>
 						@endforeach
 					</ul>
 				</div>

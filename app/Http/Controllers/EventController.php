@@ -34,14 +34,13 @@ class EventController extends Controller
         $dateArray = explode('/', $data['date']);
 		$data['date'] = "{$dateArray[2]}-{$dateArray[1]}-$dateArray[0]";
         $event = Event::create($data);
-        return redirect()->route('admin.events')->with('status', "O evento <b>{$event->name}</b> foi adicionado com sucesso!");
+        return redirect()->route('admin.events')->with('status', "Evento adicionado com sucesso!");
     }
 
     public function deleteEvent($id)
     {
-        $event = Event::find($id);
-        $event->delete();
-        return redirect()->route('admin.events')->with('status', "O evento <b>{$event->name}</b> foi excluído com sucesso!");
+        $event = Event::find($id)->delete();
+        return redirect()->route('admin.events')->with('status', "Evento removido com sucesso!");
     }
 
 }

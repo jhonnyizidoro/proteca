@@ -1,17 +1,25 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+		{{-- TAGS PADRÃO --}}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <title>{{ env('APP_NAME') }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{ isset($title) ? "PROTECA - {$title}" : env('APP_NAME') }}</title>
+		{{-- SEO --}}
+		@include('partials.header.seo')
+		{{-- FAVICON --}}
+		@include('partials.header.favicon')
+		{{-- IMPORTAÇÃO DO CSS GLOBAL --}}
+		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
     <body>
-        <div class="banner">
+		{{-- BANNER PRINCIPAL --}}
+        <figure class="banner">
             <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo PROTECA" class="logo"></a>
             <img src="{{ asset('images/blured-banner.jpg') }}" alt="PROTECA" class="background">
-        </div>
+		</figure>
+		{{-- NAVBAR --}}
         <nav class="navbar">
             <div class="navbar-burger burger">
                 <span></span>
@@ -43,8 +51,9 @@
                 </div>
             </div>
         </nav>
-        {{-- Conteudo da página --}}
-        @yield('content')
+        {{-- CONTEÚDO DA PÁGINA --}}
+		@yield('content')
+		{{-- RODAPÉ --}}
         <footer>
             <div class="container">
                 <div class="columns is-centered">
@@ -54,9 +63,10 @@
                     <div class="column is-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus enim dolore sint repudiandae iure fuga assumenda quod officiis vel nam, ipsum nemo numquam cupiditate recusandae odit reiciendis quaerat magnam nostrum. Quae aliquid velit minus harum sequi, magni cumque explicabo ullam sapiente tempore beatae blanditiis molestias reiciendis? Fugiat sapiente, reiciendis deserunt in laborum laudantium enim cupiditate.</div>
                 </div>
             </div>
-        </footer>
+		</footer>
+		{{-- IMPORTAÇÃO DO SCRIPT GLOBAL --}}
         <script src="{{ mix('js/app.js') }}"></script>
-        {{-- Scripts da página --}}
+        {{-- SEÇÃO PARA SCRIPTS DE CADA PÁGINA --}}
         @yield('scripts')
     </body>
 </html>

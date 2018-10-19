@@ -85,7 +85,7 @@ class UserController extends Controller
             $user->password = uniqid();
             $user->active = false;
             $user->update();
-            return redirect()->back()->with('status', "Usuário <b>{$user->email}</b> desativado com sucesso.");
+            return redirect()->back()->with('status', "Usuário desativado com sucesso.");
         } else {
             $password = FileController::generateString();
             $user->password = bcrypt($password);

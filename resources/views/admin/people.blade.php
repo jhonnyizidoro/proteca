@@ -13,7 +13,6 @@
                     <div class="column is-6">
                         <div class="card is-person">
 							<a data-action="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger confirmed"><i class="fas fa-trash"></i></a>
-                            {{-- <a href="{{ route('admin.people.delete', $teammate->id) }}" class="button is-floating is-danger"><i class="fas fa-trash"></i></a> --}}
                             <div class="quickview-trigger is-link" data-target="quickview-{{ $teammate->id }}">
                                 <div class="card-image">
                                     <figure class="image is-1by1">

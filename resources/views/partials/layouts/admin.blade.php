@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+		{{-- TAGS PADRÃO --}}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <title>{{ env('APP_NAME') }} - Painel</title>
+		<title>{{ env('APP_NAME') }} - Admnistração</title>
+		{{-- SEO --}}
+		@include('partials.header.seo')
+		{{-- FAVICON --}}
+		@include('partials.header.favicon')
+		{{-- IMPORTAÇÃO DO CSS GLOBAL --}}
+		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
     <body class="p-b-100">
-        <div class="navbar-top">
+		{{-- NAVBAR PEQUENA DO TOPO --}}
+        <nav class="navbar-top">
             <div class="container">
                 <div class="right">
                     <a data-tooltip="Alterar nome ou senha" class="tooltip is-tooltip-bottom" href="{{ route('admin.profile') }}"><i class="fas fa-user-cog"></i></a>
@@ -18,11 +25,13 @@
                     <a data-tooltip="Sair e retornar para o PROTECA" class="tooltip is-tooltip-bottom" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
-        </div>
-        <div class="banner is-small">
+		</nav>
+		{{-- BANNER PRINCIPAL --}}
+        <figure class="banner is-small">
 			<a href="{{ route('admin') }}"><img src="{{ asset('images/logo-admin.png') }}" alt="Logo PROTECA" class="logo"></a>
             <img src="{{ asset('images/blured-banner.jpg') }}" alt="PROTECA" class="background">
-        </div>
+		</figure>
+		{{-- NAVBAR --}}
         <nav class="navbar">
             <div class="navbar-burger burger">
                 <span></span>
@@ -54,10 +63,11 @@
                 </div>
             </div>
         </nav>
-        {{-- Conteudo da página --}}
-        @yield('content')
+        {{-- CONTEÚDO DA PÁGINA --}}
+		@yield('content')
+		{{-- IMPORTAÇÃO DO SCRIPT GLOBAL --}}
         <script src="{{ mix('js/app.js') }}"></script>
-        {{-- Scripts da página --}}
+        {{-- SEÇÃO PARA SCRIPTS DE CADA PÁGINA --}}
         @yield('scripts')
     </body>
 </html>

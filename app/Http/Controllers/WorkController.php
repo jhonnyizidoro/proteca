@@ -27,7 +27,10 @@ class WorkController extends Controller
             'categoria' => $request->categoria,
         ]);
         $categories = Category::orderBy('category')->get();
-        return view('admin.works')->with('works', $works)->with('categories', $categories);
+        return view('admin.works', [
+			'works' => $works,
+			'categories' => $categories,
+		]);
     }
 
     public function createWork(NewWorkrequest $request)

@@ -6,17 +6,18 @@
     <div class="columns is-multiline is-centered">
 		<div class="column is-8">
 			<div class="iframe-container">
-				<iframe src="https://www.youtube.com/embed/8MRdu6LW80w?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				<iframe src="{{ $mainFeaturedVideo->getVideoEmbedLink() }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</div>
 		</div>
 		<div class="column is-4">
 			<ul class="video-list">
 				<span class="title">Assista também</span>
-				<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-				<li><a href="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore dolores accusamus!</a></li>
-				<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-				<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
-				<li><a href="">Lorem ipsum dolor sit amet consectetur.</a></li>
+				@foreach ($featuredVideos as $featuredVideo)
+					<li>
+						<a class="video-link" target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a>
+						<i class="fab fa-youtube"></i>
+					</li>
+				@endforeach
 			</ul>
 		</div>
 	</div>
