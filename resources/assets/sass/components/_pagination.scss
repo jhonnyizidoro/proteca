@@ -1,32 +1,32 @@
 .pagination {
-    a {
-        border-radius: 0;
-        background: $inverse;
-        color: $white;
-        border: none;
-        transition: 300ms;
-        box-shadow: 1px 1px 1px $muted;
-        &.is-current {
-            background: $primary;
-        }
-        &:hover {
-            transition: 100ms;
-            background: $light-primary;
-            color: $white;
-        }
-        &.is-disabled {
-            background: $muted;
-            box-shadow: none;
-            pointer-events:none;
-            &:hover {
-                background: $muted;
-            }
-        }
-        &.pagination-link, li {
-            transform: scaleX(.85);
-        }
-    }
-    a:disabled {
-        background: $light-inverse;
-    } 
+	a {
+		border-radius: 0;
+		background: $inverse;
+		color: $white;
+		border: none;
+		transition: 300ms;
+		box-shadow: 1px 1px 1px $muted;
+		&.is-current {
+			background: $primary;
+		}
+		&:hover {
+			transition: 100ms;
+			background: $light-primary;
+			color: $white;
+		}
+		&.is-disabled {
+			background: $muted;
+			box-shadow: none;
+			pointer-events:none;
+			&:hover {
+				background: $muted;
+			}
+		}
+		&.pagination-link, li {
+			transform: scaleX(.85);
+		}
+	}
+	a:disabled {
+		background: $light-inverse;
+	} 
 }

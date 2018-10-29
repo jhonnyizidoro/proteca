@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Artisan;
 use App\Models\SiteContent\FeaturedPost;
 use App\Models\SiteContent\FeaturedVideo;
 use App\Models\Post;
@@ -11,6 +12,7 @@ use App\Models\Person;
 use App\Models\Work;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\User;
 
 class SiteController extends Controller
 {
@@ -68,7 +70,7 @@ class SiteController extends Controller
         $post = Post::where('url', $url)->first();
         return view('site.post', [
 			'post' => $post,
-			'description' => $post->title
+			'description' => isset($post->title) ? $post->title : null
 		]);
     }
 
@@ -127,6 +129,21 @@ class SiteController extends Controller
 			'title' => 'Eventos',
 			'description' => 'Veja o próximo eventos sobre prevenção do aliciamento de crianças e adolescentes'
 		]);
+	}
+
+	public function runArtisanCommand($command)
+	{
+		if ($command === 'migrate') {
+			Artisan::call('migrate');
+			return 'Migration executada!';
+		} else if ($command === 'seed') {
+			if (User::count() === 0) {
+				Artisan::call('db:seed');
+				return 'Seed executado!';
+			}
+			return 'Seed não executado! Já foram encontrados usuários na base de dados.';
+		}
+		return 'Comando inválido!';
 	}
 
 }

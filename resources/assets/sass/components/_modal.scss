@@ -1,7 +1,7 @@
 .modal {
-    z-index: $modal-z-index;
-    .modal-content.is-large {
-        width: 70%;
+	z-index: $modal-z-index;
+	.modal-content.is-large {
+		width: 70%;
 	}
 	.modal-close {
 		background: $danger;
@@ -11,10 +11,10 @@
 			transform: rotate(180deg);
 		}
 	}
-    @media only screen and (max-width:1088px) {
-        .modal-content.is-large {
-            width: 90%;
-        }
+	@media only screen and (max-width:1088px) {
+		.modal-content.is-large {
+			width: 90%;
+		}
 	}
 	&.is-active {
 		animation: modal-enter-active 100ms ease-in-out ;

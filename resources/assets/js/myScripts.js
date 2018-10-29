@@ -24,9 +24,9 @@ const workScript = ()=> {
 					modalButton.dataset.abstract,
 					buttonText,
 				],
-			);
-		});
+				);
+			});
 	});
-}
+}	
 
 export {workScript};

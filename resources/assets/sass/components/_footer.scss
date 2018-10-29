@@ -1,10 +1,35 @@
 footer {
-    background: $primary;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-top: 20vh;
-	color: $white;
-    &.is-inverse {
-        background: $light-primary;
-    }
+	background: $primary;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin-top: 20vh;
+	small, p {
+		display: block;
+		text-align: center;
+		line-height: 1.85;
+	}
+	* {
+		color: $white;
+	}
+	.icons {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-top: .5em;
+		i {
+			padding: 0 10px;
+			font-size: 1.2rem;
+			&:hover {
+				transition: 150ms;
+				color: $inverse;
+			}
+		}
+	}
+	a {
+		color: $inverse;
+		&:hover {
+			color: $white;
+			text-decoration: underline;
+		}
+	}
 }

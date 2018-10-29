@@ -1,7 +1,7 @@
 @extends('partials.layouts.admin')
 @section('content')
 <div class="container">
-    <div class="columns is-multiline">
+	<div class="columns is-multiline">
 		<div class="column is-12">
 			@include('partials.alerts.status')
 			@include('partials.alerts.errors')
@@ -26,21 +26,21 @@
 					</form>
 				</div>
 				@foreach ($featuredPosts as $featuredPost)
-                    <div class="column is-12">
-                        <div class="post is-vertical">
-                            <div class="meta">
-								<img class="photo" src="{{ $featuredPost->post->thumbnail }}">
-								<a href="{{ route('admin.featured.post.delete', $featuredPost->id) }}" class="button is-floating is-square right is-danger"><i class="fas fa-trash"></i></a>
-                                <ul class="details">
-                                    <li class="author">{{ $featuredPost->post->user()->first()->name }}</li>
-                                    <li class="date">{{ $featuredPost->post->created_at }}</li>
-                                </ul>
-                            </div>
-                            <div class="description">
-                                <h1><a target="_blank" href="{{ route('post', $featuredPost->post->url) }}">{{ $featuredPost->post->title }}</a></h1>
-                            </div>
-                        </div>
-                    </div>
+				<div class="column is-12">
+					<div class="post is-vertical">
+						<div class="meta">
+							<img class="photo" src="{{ $featuredPost->post->thumbnail }}">
+							<a href="{{ route('admin.featured.post.delete', $featuredPost->id) }}" class="button is-floating is-square right is-danger"><i class="fas fa-trash"></i></a>
+							<ul class="details">
+								<li class="author">{{ $featuredPost->post->user()->first()->name }}</li>
+								<li class="date">{{ $featuredPost->post->created_at }}</li>
+							</ul>
+						</div>
+						<div class="description">
+							<h1><a target="_blank" href="{{ route('post', $featuredPost->post->url) }}">{{ $featuredPost->post->title }}</a></h1>
+						</div>
+					</div>
+				</div>
 				@endforeach
 			</div>
 		</div>
@@ -71,28 +71,28 @@
 				</div>
 				<div class="column is-12">
 					@if($mainFeaturedVideo)
-						<div class="iframe-container">
-							<iframe src="{{ $mainFeaturedVideo->getVideoEmbedLink() }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-						</div>
+					<div class="iframe-container">
+						<iframe src="{{ $mainFeaturedVideo->getVideoEmbedLink() }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
 					@endif
 					<ul class="video-list m-t-25">
 						@foreach ($featuredVideos as $featuredVideo)
-							<li>
-								<a href="{{ route('admin.featured.video.delete', $featuredVideo->id) }}" class="button is-floating is-square is-danger"><i class="fas fa-trash"></i></a>
-								<a class="video-link" target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a>
-							</li>
+						<li>
+							<a href="{{ route('admin.featured.video.delete', $featuredVideo->id) }}" class="button is-floating is-square is-danger"><i class="fas fa-trash"></i></a>
+							<a class="video-link" target="_blank" href="{{ $featuredVideo->url }}">{{ $featuredVideo->title }}</a>
+						</li>
 						@endforeach
 					</ul>
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </div>
 @endsection
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', ()=> {
-        notification.initNotification();
-    });
+	document.addEventListener('DOMContentLoaded', ()=> {
+		notification.initNotification();
+	});
 </script>
 @endsection

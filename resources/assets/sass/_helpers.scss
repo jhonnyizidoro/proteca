@@ -2,29 +2,29 @@ $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 75, 100);
 $sides: (top, bottom, left, right);
 
 @each $space in $spaceamounts {
-    @each $side in $sides {
-        .m-#{str-slice($side, 0, 1)}-#{$space} {
-        margin-#{$side}: #{$space}px !important;
-        }
-        .p-#{str-slice($side, 0, 1)}-#{$space} {
-        padding-#{$side}: #{$space}px !important;
-        }
-    }
+	@each $side in $sides {
+		.m-#{str-slice($side, 0, 1)}-#{$space} {
+			margin-#{$side}: #{$space}px !important;
+		}
+		.p-#{str-slice($side, 0, 1)}-#{$space} {
+			padding-#{$side}: #{$space}px !important;
+		}
+	}
 }
 .text-white {
-    color: $white;
+	color: $white;
 }
 .text-danger {
-    color: $danger;
+	color: $danger;
 }
 .hide-on-tablet {
-    @media (max-width:768px){
-        display: none !important;
-    }
+	@media (max-width:768px){
+		display: none !important;
+	}
 }
 .is-rotated-180 {
-    transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 img.cover {
-    object-fit: cover;
+	object-fit: cover;
 }

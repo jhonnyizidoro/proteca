@@ -1,53 +1,53 @@
 .button {
-    border-radius: 0;
-    text-transform: uppercase;
-    transition: 300ms;
-    border: none;
-    outline: none;
-    &.is-fixed {
-        position: fixed;
-        bottom: 0px;
-        right: 15px;
-        height: 50px;
-        width: 50px;
-        margin-bottom: 20px;
-        border-radius: 30px;
-        z-index: $fixed-button-z-index;
+	border-radius: 0;
+	text-transform: uppercase;
+	transition: 300ms;
+	border: none;
+	outline: none;
+	&.is-fixed {
+		position: fixed;
+		bottom: 0px;
+		right: 15px;
+		height: 50px;
+		width: 50px;
+		margin-bottom: 20px;
+		border-radius: 30px;
+		z-index: $fixed-button-z-index;
 		transition: 200ms;
 		&:hover {
 			transform: scale(1.05);
 		}
-    }
-    &.is-primary {
-        background-color: $primary;
-        color: $white;
-        box-shadow: 1px 3px 5px $muted;
-        &:hover {
-            transition: 100ms;
-            background: $light-primary;
-        }
-    }
-    &.is-danger {
-        background-color: $danger;
-        color: $white;
-        &:hover {
-            transition: 100ms;
-        }
-    }
-    &.is-white {
-        background-color: $white;
-        color: $primary;
-        &:hover {
-            transition: 100ms;
-            letter-spacing: 0.2px;
-        }
 	}
-    &.is-disabled {
-        background: $muted;
-        box-shadow: none;
-        pointer-events:none;
-        &:hover {
-            background: $muted;
-        }
-    }
+	&.is-primary {
+		background-color: $primary;
+		color: $white;
+		box-shadow: 1px 3px 5px $muted;
+		&:hover {
+			transition: 100ms;
+			background: $light-primary;
+		}
+	}
+	&.is-danger {
+		background-color: $danger;
+		color: $white;
+		&:hover {
+			transition: 100ms;
+		}
+	}
+	&.is-white {
+		background-color: $white;
+		color: $primary;
+		&:hover {
+			transition: 100ms;
+			letter-spacing: 0.2px;
+		}
+	}
+	&.is-disabled {
+		background: $muted;
+		box-shadow: none;
+		pointer-events:none;
+		&:hover {
+			background: $muted;
+		}
+	}
 }

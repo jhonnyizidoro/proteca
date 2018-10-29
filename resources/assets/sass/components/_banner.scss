@@ -1,22 +1,22 @@
 .banner {
-    height: 35vh;
-    position: relative;
-    .background {
-        object-fit: cover;
-        width: 100%;
-        transform: scaleY(1.2);
-        height: 100%;
-        z-index: $banner-z-index;
-        position: absolute;
-    }
-    .logo {
-        position: absolute;
-        z-index: $banner-z-index + 1;
-        height: 80%;
-        transform: translateY(10%) translateX(-50%);
-        left: 50%;
-    }
-    &.is-small {
+	height: 35vh;
+	position: relative;
+	.background {
+		object-fit: cover;
+		width: 100%;
+		transform: scaleY(1.2);
+		height: 100%;
+		z-index: $banner-z-index;
+		position: absolute;
+	}
+	.logo {
+		position: absolute;
+		z-index: $banner-z-index + 1;
+		height: 80%;
+		transform: translateY(10%) translateX(-50%);
+		left: 50%;
+	}
+	&.is-small {
 		height: 25vh;
 		filter: brightness(1.2);
 		.logo {
@@ -26,15 +26,15 @@
 			left: 50%;
 			object-fit: contain;
 		}
-    }
+	}
 }
 
 .thumbnail-preview {
-    object-fit: cover;
-    width: 100%;
+	object-fit: cover;
+	width: 100%;
 	height: 40vh;
 	border: 1px solid $muted;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
-        0 3px 1px -2px rgba(0,0,0,0.12),
-        0 1px 5px 0 rgba(0,0,0,0.2);
+	0 3px 1px -2px rgba(0,0,0,0.12),
+	0 1px 5px 0 rgba(0,0,0,0.2);
 }

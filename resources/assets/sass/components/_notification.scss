@@ -1,15 +1,15 @@
 .notification {
-    padding: .5rem 1rem;
-    text-align: center;
-    &.is-inverse {
-        background: $inverse;
-        color: $white;
-    }
-    &.is-danger {
-        background: $danger;
-        color: $white;
-    }
-    strong {
-        letter-spacing: 1px;
-    }
+	padding: .5rem 1rem;
+	text-align: center;
+	&.is-inverse {
+		background: $inverse;
+		color: $white;
+	}
+	&.is-danger {
+		background: $danger;
+		color: $white;
+	}
+	strong {
+		letter-spacing: 1px;
+	}
 }

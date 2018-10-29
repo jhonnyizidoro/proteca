@@ -168,7 +168,7 @@ tinymce.addI18n('pt_BR',{
 "Poster": "Autor",
 "Paste your embed code below:": "Insira o c\u00f3digo de incorpora\u00e7\u00e3o abaixo:",
 "Embed": "Incorporar",
-"Media": "imagem",
+"Media": "Mídia",
 "Nonbreaking space": "Espa\u00e7o n\u00e3o separ\u00e1vel",
 "Page break": "Quebra de p\u00e1gina",
 "Paste as text": "Colar como texto",
