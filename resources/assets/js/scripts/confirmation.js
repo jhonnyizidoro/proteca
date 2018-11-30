@@ -1,3 +1,5 @@
+import { forEach, on } from './functions';
+
 const initConfirmation = () => {
 	
 	const triggers = document.querySelectorAll('.confirmed');
@@ -5,9 +7,9 @@ const initConfirmation = () => {
 	const trueButton = document.querySelector('.confirmation .true');
 	const falseButton = document.querySelector('.confirmation .false');
 	const closeButton = document.querySelector('.confirmation .confirmation-close');
-	
-	triggers.forEach(trigger => {
-		trigger.addEventListener('click', (e)=> {
+
+	forEach(triggers, trigger => {
+		on('click', trigger, e => {
 			confirmationWindow.classList.add('is-active');
 			confirmationWindow.onclick = (click)  => {
 				if (click.target == trueButton) {
@@ -15,12 +17,13 @@ const initConfirmation = () => {
 				}
 			}
 		});
-	});
+	})
 	
-	closeButton.addEventListener('click', ()=> {
+	on('click', closeButton, ()=> {
 		confirmationWindow.classList.remove('is-active');
 	});
-	falseButton.addEventListener('click', ()=> {
+
+	on('click', falseButton, ()=> {
 		confirmationWindow.classList.remove('is-active');
 	});
 	

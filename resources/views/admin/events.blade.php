@@ -140,7 +140,7 @@
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		form.initCharCounter('input[name="address"]', '.char-counter');
 		modal.initModal('.modal', '.button.is-fixed', '.modal-close');
 		notification.initNotification();

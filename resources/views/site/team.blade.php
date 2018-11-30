@@ -33,7 +33,7 @@
 @endsection
 @section('scripts')
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		quickview.initQuickview('.quickview-trigger');
 		card.resizeToFit('.card-content .title');
 	});

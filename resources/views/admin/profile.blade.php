@@ -33,7 +33,7 @@
 @endsection
 @section('scripts')
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		notification.initNotification();
 	});
 </script>

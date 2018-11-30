@@ -114,7 +114,7 @@
 	@section('scripts')
 	<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', ()=> {
+		document.addEventListener('DOMContentLoaded', function() {
 			modal.initModal('.modal', '.button.is-fixed', '.modal-close');
 			notification.initNotification();
 			form.initFileField('.file-input', 'span.file-label');

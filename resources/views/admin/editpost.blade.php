@@ -44,7 +44,7 @@
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		notification.initNotification();
 		form.initCharCounter('input[name="title"]', '.char-counter');
 		form.initFileField('.file-input', 'span.file-label');

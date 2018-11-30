@@ -113,7 +113,7 @@
 
 @section('scripts')
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		modal.initModal('.modal', '.work', '.modal-close');
 		myscripts.workScript();
 	});

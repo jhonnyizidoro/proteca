@@ -1,21 +1,23 @@
+import { forEach, on } from './functions';
+
 const activateNavbarLink = ()=> {
     const navbarLinks = document.querySelectorAll('.navbar-item');
-    const currentURL = document.URL.split('?');
-    navbarLinks.forEach(link => {
-        if (link.href == currentURL[0]){
+	const currentURL = document.URL.split('?');
+	forEach(navbarLinks, link => {
+		if (link.href == currentURL[0]){
             link.classList.add('is-active');
         }
-    });
+	});
 }
 
 const activateNavbarResponsiveness = ()=> {
     const burger = document.querySelector('.burger');
     const menu = document.querySelector('.navbar-menu');
     if (burger) {
-        burger.addEventListener('click', ()=> {
-            menu.classList.toggle('is-active');
+		on('click', burger, ()=> {
+			menu.classList.toggle('is-active');
             burger.classList.toggle('is-active');
-        });
+		});
     }
 }
 

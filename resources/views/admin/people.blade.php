@@ -171,7 +171,7 @@
 @section('scripts')
 <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		modal.initModal('.modal', '.button.is-fixed', '.modal-close');
 		quickview.initQuickview('.quickview-trigger');
 		notification.initNotification();

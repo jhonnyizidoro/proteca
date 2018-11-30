@@ -12,7 +12,7 @@
 					<div class="content">
 						<div class="field">
 							<div class="control has-icons-left">
-								<input class="input" type="email" placeholder="E-mail" name="email" value="{{ old('email') }}">
+								<input class="input" type="text" placeholder="E-mail" name="email" value="{{ old('email') }}">
 								<span class="icon is-small is-left">
 									<i class="fas fa-envelope"></i>
 								</span>

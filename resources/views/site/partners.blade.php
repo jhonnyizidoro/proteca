@@ -24,7 +24,7 @@
 @endsection
 @section('scripts')
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		card.resizeToFit('.card-content .title');
 	});
 </script>

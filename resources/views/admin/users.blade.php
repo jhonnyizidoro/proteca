@@ -120,7 +120,7 @@
 @endsection
 @section('scripts')
 <script>
-	document.addEventListener('DOMContentLoaded', ()=> {
+	document.addEventListener('DOMContentLoaded', function() {
 		modal.initModal('.modal', '.button.is-fixed', '.modal-close');
 		notification.initNotification();
 		confirmation.initConfirmation();

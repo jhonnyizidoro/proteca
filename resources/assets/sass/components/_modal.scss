@@ -1,5 +1,6 @@
 .modal {
 	z-index: $modal-z-index;
+	justify-content: center !important;
 	.modal-content.is-large {
 		width: 70%;
 	}

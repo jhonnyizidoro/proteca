@@ -1,15 +1,17 @@
+import { forEach, on, forEachIndex } from './functions';
+
 const initModal = (modalSelector, openModalButtonsSelector, closeModalButtonSelector) => {
     const modal = document.querySelector(modalSelector);
     const openModalButtons = document.querySelectorAll(openModalButtonsSelector);
 	const closeModalButton = document.querySelector(closeModalButtonSelector);
-	openModalButtons.forEach(openModalButton => {
-		openModalButton.addEventListener('click', ()=> {
+	forEach(openModalButtons, openModalButton => {
+		on('click', openModalButton, ()=> {
 			modal.classList.add('is-active');
 		});
 	});
-    closeModalButton.addEventListener('click', ()=> {
-        modal.classList.remove('is-active');
-    });
+	on('click', closeModalButton, ()=> {
+		modal.classList.remove('is-active');
+	});
 }
 /**
  * @param Array recebe dois arrays de mesmo tamanho
@@ -18,7 +20,7 @@ const initModal = (modalSelector, openModalButtonsSelector, closeModalButtonSele
  */
 const changeModalContent = (modalSectionsSelector, contents) => {
 	const modalSections = document.querySelectorAll(modalSectionsSelector);
-	modalSections.forEach((section, index) => {
+	forEachIndex(modalSections, (section, index) => {
 		section.innerHTML = contents[index];
 	});
 }
