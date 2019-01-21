@@ -6,9 +6,7 @@
 >git clone https://github.com/jhonnyizidoro/proteca.git
 
 2 - Create the .env file and configure **DB_DATABASE, DB_USERNAME and DB_PASSWORD**
->cd proteca
-
->cp .env.example .env
+>cd proteca<br>cp .env.example .env
 
 3 - Install Docker containers, this will take a while
 >docker-compose up
@@ -23,6 +21,6 @@
 >php artisan key:generate
 
 7 - Create database tables
->php artisan migrate
+>php artisan migrate<br>php artisan db:seed
 
->php artisan db:seed
+8 - It's done, just access localhost:9000
