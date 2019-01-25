@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Models\Event;
 use Schema;
 use Auth;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
 		Blade::if('admin', function () {
 			return Auth::user()->hasTheRole('admin');
 		});
+
+		if (env('APP_ENV') != 'development') {
+			URL::forceScheme('https');
+		}
 
     }
 
