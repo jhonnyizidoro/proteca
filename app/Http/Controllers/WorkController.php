@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\NewWorkrequest;
+use App\Http\Requests\NewWorkRequest;
 use App\Http\Controllers\FileController;
 use App\Models\Work;
 use App\Models\Category;
